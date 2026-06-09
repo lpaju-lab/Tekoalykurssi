@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessio 6 – Tekoäly, etiikka ja ympäristö</title>
+<style>
+  :root {
+    --sininen: #1a3a5c;
+    --vaaleasininen: #2d6aa0;
+    --korostus: #e8f0fa;
+    --harjoitus: #fff8e1;
+    --harjoitus-reuna: #f0c040;
+    --tärkeä: #fdecea;
+    --tärkeä-reuna: #c62828;
+    --vihreä: #e8f5e9;
+    --vihreä-reuna: #388e3c;
+    --etiikka: #fce4ec;
+    --etiikka-reuna: #c2185b;
+    --ymparisto: #e0f2f1;
+    --ymparisto-reuna: #00796b;
+    --teksti: #1a1a1a;
+    --taustaharmoninen: #f5f7fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; color: var(--teksti); background: #fff; }
+  .header { background: var(--sininen); color: white; padding: 2rem 2.5rem; }
+  .header .kurssinimi { font-size: 0.95rem; opacity: 0.8; font-family: Arial, sans-serif; margin-bottom: 0.4rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .header h1 { font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem; }
+  .header .info { font-size: 1rem; opacity: 0.85; font-family: Arial, sans-serif; }
+  .nav-bar { background: var(--vaaleasininen); padding: 0.75rem 2.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap; font-family: Arial, sans-serif; font-size: 0.9rem; }
+  .nav-bar a { color: white; text-decoration: none; opacity: 0.9; }
+  .nav-bar a:hover { opacity: 1; text-decoration: underline; }
+  .nav-bar .aktiivinen { font-weight: bold; opacity: 1; }
+  .sisällysluettelo { background: var(--korostus); border-left: 5px solid var(--vaaleasininen); margin: 2rem 2.5rem; padding: 1.5rem 2rem; border-radius: 0 8px 8px 0; font-family: Arial, sans-serif; }
+  .sisällysluettelo h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--sininen); margin-bottom: 0.75rem; }
+  .sisällysluettelo ol { padding-left: 1.5rem; }
+  .sisällysluettelo li { margin-bottom: 0.3rem; }
+  .sisällysluettelo a { color: var(--vaaleasininen); text-decoration: none; }
+  .sisällysluettelo a:hover { text-decoration: underline; }
+  main { max-width: 860px; margin: 0 auto; padding: 1rem 2.5rem 4rem; }
+  section { margin-top: 3rem; }
+  h2.osio-otsikko { font-size: 1.6rem; color: var(--sininen); border-bottom: 3px solid var(--vaaleasininen); padding-bottom: 0.5rem; margin-bottom: 1.2rem; font-family: Arial, sans-serif; }
+  h3 { font-size: 1.2rem; color: var(--vaaleasininen); margin: 1.8rem 0 0.7rem; font-family: Arial, sans-serif; }
+  p { margin-bottom: 1rem; }
+  .harjoitus { background: var(--harjoitus); border-left: 5px solid var(--harjoitus-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .harjoitus .harjoitus-otsikko { font-family: Arial, sans-serif; font-weight: bold; font-size: 0.95rem; color: #7a5800; margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .tärkeää { background: var(--tärkeä); border-left: 5px solid var(--tärkeä-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .tärkeää .tärkeä-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: var(--tärkeä-reuna); margin-bottom: 0.5rem; }
+  .vinkki { background: var(--vihreä); border-left: 5px solid var(--vihreä-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .vinkki .vinkki-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: #2e7d32; margin-bottom: 0.5rem; }
+  .etiikka { background: var(--etiikka); border-left: 5px solid var(--etiikka-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .etiikka .etiikka-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: var(--etiikka-reuna); margin-bottom: 0.5rem; }
+  .ymparisto { background: var(--ymparisto); border-left: 5px solid var(--ymparisto-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .ymparisto .ymparisto-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: var(--ymparisto-reuna); margin-bottom: 0.5rem; }
+  .kehote-esimerkki { background: #1e1e2e; color: #e0e0ff; font-family: 'Courier New', monospace; font-size: 0.95rem; padding: 1.2rem 1.5rem; border-radius: 8px; margin: 1rem 0; white-space: pre-wrap; line-height: 1.6; }
+  .kehote-esimerkki .label { font-family: Arial, sans-serif; font-size: 0.78rem; color: #aaa; display: block; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-family: Arial, sans-serif; font-size: 0.95rem; }
+  th { background: var(--sininen); color: white; padding: 0.6rem 1rem; text-align: left; }
+  td { padding: 0.6rem 1rem; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: var(--taustaharmoninen); }
+  ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+  li { margin-bottom: 0.4rem; }
+  .yhteenveto { background: var(--korostus); border: 2px solid var(--vaaleasininen); border-radius: 10px; padding: 1.5rem 2rem; margin-top: 3rem; font-family: Arial, sans-serif; }
+  .yhteenveto h3 { color: var(--sininen); margin-bottom: 0.8rem; }
+  .pohdinta { background: #f8f4ff; border: 2px solid #7b1fa2; border-radius: 10px; padding: 1.5rem 2rem; margin: 1.5rem 0; font-family: Arial, sans-serif; }
+  .pohdinta .pohdinta-otsikko { font-weight: bold; color: #7b1fa2; margin-bottom: 0.8rem; font-size: 1.05rem; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="kurssinimi">Tekoälytaitoja arjen tarpeisiin · Ikääntyvien yliopisto</div>
+  <h1>Sessio 6: Tekoäly, etiikka ja ympäristö</h1>
+  <div class="info">Vastuullinen käyttö, luonnonvarat ja ihmisen rooli</div>
+</div>
+
+<div class="nav-bar">
+  <a href="index.html">Etusivu</a>
+  <a href="sessio1-kehotekoulu.html">S1: Kehotekoulu</a>
+  <a href="sessio2-turvallisuus-sukututkimus.html">S2: Turvallisuus</a>
+  <a href="sessio3-yhdistystoiminta.html">S3: Yhdistystoiminta</a>
+  <a href="sessio4-kielet.html">S4: Kielten opiskelu</a>
+  <a href="sessio5-kuvat.html">S5: Kuvat</a>
+  <a href="sessio6-etiikka.html" class="aktiivinen">S6: Etiikka &amp; Ympäristö</a>
+  <a href="sessio7-vinkit.html">S7: Vinkit &amp; Edistynyt käyttö</a>
+  <a href="sessio8-sukututkimus.html">S8: Sukututkimus</a>
+</div>
+
+<div class="sisällysluettelo">
+  <h2>Tämän session sisältö</h2>
+  <ol>
+    <li><a href="#johdanto">Johdanto: miksi etiikka kuuluu tekoälykeskusteluun</a></li>
+    <li><a href="#ymparisto">Tekoälyn ympäristövaikutukset</a></li>
+    <li><a href="#vastuu">Vastuu ja ihmisen rooli</a></li>
+    <li><a href="#vinoumat">Vinoumat ja syrjivyys</a></li>
+    <li><a href="#avoimuus">Avoimuus ja rehellisyys tekoälyn käytössä</a></li>
+    <li><a href="#tyo">Tekoäly ja työ</a></li>
+    <li><a href="#harjoitukset">Pienryhmäharjoitukset</a></li>
+    <li><a href="#yhteenveto">Yhteenveto</a></li>
+  </ol>
+</div>
+
+<main>
+
+<section id="johdanto">
+  <h2 class="osio-otsikko">1. Johdanto: miksi etiikka kuuluu tekoälykeskusteluun</h2>
+
+  <p>Tekoälystä puhutaan usein sen mahdollisuuksien kautta: mitä se osaa, miten se helpottaa elämää, mitä uutta se mahdollistaa. Mutta teknologia ei ole koskaan arvovapaata. Kun käytät tekoälyä, olet osa suurempaa kokonaisuutta — taloudellista, ekologista ja yhteiskunnallista.</p>
+
+  <p>Alkeiskurssilla sivuttiin etiikan peruskysymyksiä: hallusinointia, tekijänoikeuksia, deepfakeja. Tässä sessiossa pysähdymme pidemmäksi aikaa ja katsomme laajempaan kuvaan. Tavoitteena ei ole saada valmiita vastauksia — monet kysymyksistä ovat aitoja, avoimia ja yhteiskunnallisesti kiisteltyjä. Tavoitteena on oppia ajattelemaan niistä tietoisemmin.</p>
+
+  <div class="etiikka">
+    <div class="etiikka-otsikko">Etiikka ei tarkoita, ettei saa käyttää</div>
+    Eettinen pohdinta ei johda siihen, että tekoäly pitäisi hylätä. Se johtaa siihen, että sitä käytetään tietoisemmin — tietäen mitä valitaan ja miksi. Sama pätee autoihin, älypuhelimiin tai sähköön.
+  </div>
+</section>
+
+<section id="ymparisto">
+  <h2 class="osio-otsikko">2. Tekoälyn ympäristövaikutukset</h2>
+
+  <p>Tekoäly tuntuu aineettomalta — se on ohjelmisto, ei fyysinen esine. Mutta sen pyörittäminen vaatii valtavan fyysisen infrastruktuurin: palvelinkeskuksia, sähköä, vettä ja raaka-aineita.</p>
+
+  <h3>Energiankulutus</h3>
+  <p>Tekoälyllä on kaksi eri vaihetta, joissa energiaa kuluu:</p>
+
+  <table>
+    <tr><th>Vaihe</th><th>Mitä tapahtuu</th><th>Energiankulutus</th></tr>
+    <tr>
+      <td><strong>Opetusvaihde</strong></td>
+      <td>Suurten kielimallien kouluttaminen miljardeja tekstejä käyttäen</td>
+      <td>Erittäin suuri — tapahtuu kerran tai harvoin. GPT-4:n kouluttamisen arvioitiin kuluttavan sähköä kuten pieni kaupunki kuukaudessa.</td>
+    </tr>
+    <tr>
+      <td><strong>Käyttövaihe</strong></td>
+      <td>Jokainen käyttäjän kysymys käsitellään palvelimella</td>
+      <td>Pienempi per kysymys, mutta miljardeja kyselyitä päivässä globaalisti — yhteenlaskettuna merkittävä.</td>
+    </tr>
+  </table>
+
+  <div class="ymparisto">
+    <div class="ymparisto-otsikko">Vertailulukuja mittakaavan ymmärtämiseksi</div>
+    <ul>
+      <li>Yhden tekoälykuvan luominen kuluttaa arviolta noin 10 kertaa enemmän sähköä kuin tavallinen Google-haku</li>
+      <li>Pitkä tekoälykeskustelu vastaa energialtaan suunnilleen puhelimen latausta</li>
+      <li>Koko tekoälyteollisuuden sähkönkulutus kasvaa nopeasti — se oli vuonna 2023 jo samaa luokkaa kuin pienten maiden kulutus</li>
+    </ul>
+    <p style="margin-top:0.7rem"><em>Luvut ovat arvioita — tarkat tiedot vaihtelevat mallista ja laskutavasta riippuen.</em></p>
+  </div>
+
+  <h3>Vesienkulutus</h3>
+  <p>Palvelinkeskukset kuumenevat ja tarvitsevat jäähdytystä. Useimmiten jäähdytys perustuu veteen — palvelinkeskukset kuluttavat vettä miljardeja litroja vuodessa. Microsoftin palvelinkeskusten vesienkulutus kasvoi merkittävästi samaan aikaan, kun ChatGPT yleistyi.</p>
+
+  <h3>Luonnonvarat ja mineraalit</h3>
+  <p>Palvelimet tarvitsevat fyysistä laitteistoa: prosessoreita, muistia, tallennustilaa. Näiden valmistaminen kuluttaa harvinaisia maametalleja, kuparia, litiumia ja muita kaivannaismateriaaleja — joiden louhinta kuormittaa ympäristöä ja tapahtuu usein maissa, joissa ympäristö- ja ihmisoikeusstandardit ovat heikot.</p>
+
+  <h3>Hiilijalanjälki ja uusiutuva energia</h3>
+  <p>Kaikki suuret tekoälyyritykset ovat ilmoittaneet siirtyvänsä uusiutuvaan energiaan — mutta tavoitteet ja todellisuus eivät aina kohtaa. Palvelinkeskusten sijainti vaikuttaa paljon: Pohjoismaissa sähkö on puhtaampaa kuin monissa muissa maissa.</p>
+
+  <div class="vinkki">
+    <div class="vinkki-otsikko">Mitä käyttäjä voi tehdä?</div>
+    <ul>
+      <li><strong>Tarkoituksenmukaisuus:</strong> Käytä tekoälyä silloin, kun siitä on aitoa hyötyä — ei vain kokeilun ilosta</li>
+      <li><strong>Tehokkuus:</strong> Tarkka kehote tuottaa hyvän vastauksen yhdellä kierroksella. Epätarkka kehote vaatii monta uudelleenyritystä — jokainen kuluttaa energiaa</li>
+      <li><strong>Kuvat harkiten:</strong> Kuvageneraatio kuluttaa enemmän energiaa kuin tekstikeskustelu</li>
+    </ul>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 2.1 – Ympäristövaikutusten pohdinta</div>
+    <p>Pyydä tekoälyä itse kertomaan omista ympäristövaikutuksistaan:</p>
+    <div class="kehote-esimerkki"><span class="label">Kokeile:</span>Kuinka paljon energiaa kuluu, kun käytän tekoälyä? Mistä energiankulutus muodostuu, ja mitä käyttäjä voi tehdä vähentääkseen vaikutusta?</div>
+    <p>Vertailkaa vastauksia keskenään. Onko vastauksissa eroja eri palveluiden välillä? Myöntääkö tekoäly omat ympäristövaikutuksensa avoimesti?</p>
+  </div>
+</section>
+
+<section id="vastuu">
+  <h2 class="osio-otsikko">3. Vastuu ja ihmisen rooli</h2>
+
+  <p>Tekoäly ei kanna vastuuta teoistaan. Se ei voi vastata oikeudessa, se ei tunne syyllisyyttä, sillä ei ole omaatuntoa. Kaikki vastuu siitä, mitä tekoälyllä tehdään, on ihmisillä.</p>
+
+  <h3>Kuka vastaa mistäkin?</h3>
+
+  <table>
+    <tr><th>Toimija</th><th>Vastuu</th></tr>
+    <tr><td><strong>Tekoälyn kehittäjät</strong></td><td>Siitä, miten malli on koulutettu, mitä se voi tuottaa ja miten sitä voidaan väärinkäyttää</td></tr>
+    <tr><td><strong>Yritykset ja organisaatiot</strong></td><td>Siitä, miten tekoälyä käytetään heidän toiminnassaan ja minkälaisia päätöksiä sen avulla tehdään</td></tr>
+    <tr><td><strong>Käyttäjä</strong></td><td>Siitä, mitä tekoälyn avulla tuotetaan, jaetaan tai julkaistaan</td></tr>
+  </table>
+
+  <div class="etiikka">
+    <div class="etiikka-otsikko">Keskeinen periaate</div>
+    Jos julkaiset tekoälyn kirjoittaman tekstin omalla nimelläsi tai yhdistyksesi nimissä, vastaat sen sisällöstä — aivan kuin olisit kirjoittanut sen itse. Tekoäly ei ole tekosyy virheille tai harhaanjohtaville väitteille.
+  </div>
+
+  <h3>Ihmisen rooli päätöksenteossa</h3>
+  <p>Tekoäly voi antaa suosituksen, mutta päätöksen tekee ihminen. Tämä pätee erityisesti tilanteissa, joissa päätöksillä on merkittäviä seurauksia:</p>
+  <ul>
+    <li>Terveyteen liittyvät päätökset — tekoäly ei tunne historiasi tai tilannettasi</li>
+    <li>Oikeudelliset kysymykset — lakitulkinnat vaativat ammattilaisen</li>
+    <li>Taloudelliset päätökset — tekoäly ei vastaa sijoitusten kehityksestä</li>
+    <li>Henkilöarviointeihin vaikuttavat päätökset — ihmisiä koskevat päätökset vaativat ihmisen harkinnan</li>
+  </ul>
+
+  <div class="pohdinta">
+    <div class="pohdinta-otsikko">Pohdittavaksi ryhmässä</div>
+    <p>Sairaala käyttää tekoälyä auttamaan triagessa — kenen pitää hoitoa saada ensin. Tekoäly ehdottaa järjestystä, lääkäri päättää. Kuka vastaa, jos järjestys oli väärä ja potilas menehtyy? Muuttaisiko vastaus, jos lääkäri seurasi tekoälyn suositusta kritiikittömästi?</p>
+  </div>
+</section>
+
+<section id="vinoumat">
+  <h2 class="osio-otsikko">4. Vinoumat ja syrjivyys</h2>
+
+  <p>Alkeiskurssilla sivuttiin vinoumat lyhyesti. Käydään nyt syvemmälle: mistä ne tulevat ja miksi ne ovat tärkeä asia käyttäjälle tietää.</p>
+
+  <h3>Mistä vinoumat syntyvät?</h3>
+  <p>Tekoäly oppii siitä aineistosta, jolla se on koulutettu. Jos aineisto on yksipuolinen — esimerkiksi enimmäkseen englanninkielistä, länsimaista tai tiettyjen ikäryhmien tuottamaa — tekoäly oppii nämä vinoumat ja toistaa ne.</p>
+
+  <ul>
+    <li><strong>Kielelliset vinoumat:</strong> Englanti on ylivoimaisesti edustetuin kieli. Suomeksi toimivat mallit ovat parantuneet, mutta pienten kielten ja murteiden kohdalla laatu vaihtelee</li>
+    <li><strong>Kulttuuriset vinoumat:</strong> Tekoäly tuntee paremmin yhdysvaltalaisen kuin suomalaisen yhteiskunnan käytännöt, lait ja kulttuurin</li>
+    <li><strong>Historialliset vinoumat:</strong> Jos menneisyydessä tietyt ryhmät ovat olleet aliedustettuina kirjoittajina tai toimijoina, tekoäly voi toistaa tätä epätasapainoa</li>
+    <li><strong>Stereotyyppiset vinoumat:</strong> Tekoäly voi liittää ammatteja, ominaisuuksia tai rooleja tiettyihin sukupuoliin tai etnisiin ryhmiin tavalla, joka heijastaa aineiston vinoumia</li>
+  </ul>
+
+  <h3>Vinoumien testaaminen käytännössä</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Kokeile paljastaa vinouma</span>Kuvittele lääkäri. Kerro, millainen henkilö hän on.
+
+---
+
+Kuvittele sairaanhoitaja. Kerro, millainen henkilö hän on.
+
+---
+
+Kuvittele insinööri. Kerro, millainen henkilö hän on.</div>
+
+  <p>Vastauksissa saattaa näkyä, että tekoäly liittää eri ammatteihin eri sukupuolia tai muita stereotypioita. Sama kokeilu toimii monilla eri ammateilla tai rooleilla.</p>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 4.1 – Vinoumajahti</div>
+    <p>Kokeilkaa pienryhmissä seuraavia pyyntöjä ja merkitkää, millaisia oletuksia tekoäly tekee:</p>
+    <ol>
+      <li>"Kirjoita tarina johtajasta, joka pitää tärkeän puheen."</li>
+      <li>"Kuvittele henkilö, joka hoitaa lapsia kotona."</li>
+      <li>"Kerro esimerkki menestyneestä yrittäjästä."</li>
+    </ol>
+    <p>Pyytäkää sitten tekoälyä tietoisesti rikkomaan nämä oletukset. Onnistuuko se? Mitä tämä kertoo tekoälyn tavasta kuvata maailmaa?</p>
+  </div>
+</section>
+
+<section id="avoimuus">
+  <h2 class="osio-otsikko">5. Avoimuus ja rehellisyys tekoälyn käytössä</h2>
+
+  <p>Yksi käytännöllinen eettinen kysymys on: pitääkö kertoa, kun on käyttänyt tekoälyä? Vastaus riippuu tilanteesta, mutta yleinen suositus on avoimuus silloin, kun se on merkityksellistä.</p>
+
+  <h3>Milloin kertominen on tärkeää?</h3>
+  <table>
+    <tr><th>Tilanne</th><th>Suositus</th></tr>
+    <tr><td>Yhdistyksen virallinen tiedote tai kannanotto</td><td>Mainitse, jos teksti on pääosin tekoälyn kirjoittama — hallituksella on oikeus tietää</td></tr>
+    <tr><td>Some-postaus omalla nimelläsi</td><td>Ei velvollisuutta, mutta jos sisältö on kokonaan tekoälyn tuottama, rehellisyys on hyve</td></tr>
+    <tr><td>Opinnäyte, artikkeli tai tutkimus</td><td>Useimmiten velvollisuus ilmoittaa — tarkista yhteisön omat käytännöt</td></tr>
+    <tr><td>Työnhakuasiakirja tai hakemus</td><td>Tekoäly voi auttaa muotoilemaan — sisältö on silti oltava totuudenmukainen</td></tr>
+    <tr><td>Yksityinen käyttö (muistiinpanot, luonnokset)</td><td>Ei tarvetta kertoa — se on henkilökohtainen työkalu</td></tr>
+  </table>
+
+  <h3>Tekijänoikeudet: kuka omistaa tekoälyn tuottaman tekstin?</h3>
+  <p>Tämä on oikeudellisesti vielä osittain avoin kysymys, jota käsitellään eri maiden tuomioistuimissa. Yleinen tilanne tällä hetkellä:</p>
+  <ul>
+    <li>ChatGPT:n, Geminin ja Copilotin käyttöehdot antavat pääsääntöisesti käyttäjälle oikeudet tuotettuun sisältöön</li>
+    <li>Puhtaasti tekoälyn tuottama teos ei saa tekijänoikeussuojaa Suomessa tai EU:ssa — tekijänoikeus vaatii ihmisen luovan panoksen</li>
+    <li>Jos muokkaat ja kehität tekoälyn tuottamaa sisältöä merkittävästi, sinä olet tekijä</li>
+  </ul>
+
+  <div class="etiikka">
+    <div class="etiikka-otsikko">Käytännön periaate</div>
+    Tekoäly voi olla apuväline — kuten sanastokirja tai oikolukija — tai se voi olla sisällön päätuottaja. Mitä suurempi on tekoälyn osuus, sitä tärkeämpää on avoimuus ja oman harkinnan käyttö.
+  </div>
+</section>
+
+<section id="tyo">
+  <h2 class="osio-otsikko">6. Tekoäly ja työ</h2>
+
+  <p>Tekoälyn vaikutus työhön on laajasti keskusteltu aihe. Pelot automatisoinnista ja huoli toimeentulosta ovat ymmärrettäviä — mutta tilanne on monimutkaisempi kuin pelkkä "tekoäly vie työt".</p>
+
+  <h3>Mitä tutkimukset tähän mennessä kertovat?</h3>
+  <ul>
+    <li>Toistuvat, selkeästi määritellyt tehtävät automatisoituvat herkimmin — tietyt toimistotehtävät, tiedonsiirto, raporttien generointi</li>
+    <li>Ihmistä vaativat tehtävät — empatia, luovuus, fyysinen läsnäolo, kulttuurinen herkkyys — automatisoituvat hitaammin tai eivät lainkaan</li>
+    <li>Useimmissa ammateissa tekoäly muuttaa työn sisältöä, ei poista ammattia kokonaan</li>
+    <li>Uusia ammatteja syntyy — tekoälyn kehittäminen, opettaminen, valvominen ja hyödyntäminen vaativat ihmistyötä</li>
+  </ul>
+
+  <div class="pohdinta">
+    <div class="pohdinta-otsikko">Pohdittavaksi ryhmässä</div>
+    <p>Ajatelkaa ammattia tai tehtävää, jonka tunnette hyvin. Mitkä osat siitä ovat sellaisia, joita tekoäly voisi tehdä — ja mitkä ovat sellaisia, joissa ihminen on korvaamaton? Onko raja selvä vai epäselvä?</p>
+  </div>
+
+  <h3>Eettinen vastuu teknologiamurroksessa</h3>
+  <p>Teknologiamurrokset ovat aina vaikuttaneet työhön — teollisuuden automatisointi, tietokoneistuminen, internet. Joka kerta on syntynyt pelkoja, ja joka kerta jotkut ammatit ovat hävinneet ja uusia on syntynyt. Mutta muutoksen nopeus ja laajuus vaikuttavat siihen, kuinka paljon yksilöillä ja yhteiskunnilla on aikaa sopeutua.</p>
+
+  <p>Tekoälyn kehittäjillä, yrityksillä ja päättäjillä on vastuu siitä, miten murros tapahtuu — tuetaanko ihmisiä muutoksessa vai jätetäänkö heidät yksin?</p>
+</section>
+
+<section id="harjoitukset">
+  <h2 class="osio-otsikko">7. Pienryhmäharjoitukset</h2>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä A – Tekoäly tuomarina</div>
+    <p>Lukekaa seuraava tilanne ja keskustelkaa: kenen vastuulla on, mitä tapahtui?</p>
+    <p><em>Yhdistyksen sihteeri kirjoittaa tekoälyn avulla vuosikertomuksen ja lähettää sen jäsenille. Tekstissä on tekoälyn keksimä fakta: "Yhdistys perustettiin vuonna 1952" — tosiasiassa se perustettiin 1972. Jäsen huomaa virheen ja ottaa yhteyttä.</em></p>
+    <ul>
+      <li>Kuka vastaa virheestä?</li>
+      <li>Miten tilanne olisi voitu välttää?</li>
+      <li>Pitääkö kertomuksessa mainita, että tekoäly oli mukana sen kirjoittamisessa?</li>
+    </ul>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä B – Ympäristölaskuri</div>
+    <p>Arvioikaa yhdessä tekoälyn käyttöänne tällä kurssilla:</p>
+    <ol>
+      <li>Kuinka monta kyselyä arvelette tehneenne kurssin aikana?</li>
+      <li>Miten monta kuvaa olette generoineet?</li>
+      <li>Pyytäkää tekoälyä arvioimaan, paljonko energiaa tämä on suunnilleen kuluttanut</li>
+      <li>Miten suhtaudutte tähän? Onko käyttö ollut mielestänne tarkoituksenmukaista?</li>
+    </ol>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä C – Eettinen vaakakuppi</div>
+    <p>Jokainen ryhmäläinen esittää yhden tekoälyn käyttötilanteen, joka tuntuu eettisesti hankalalta tai josta ei ole varma. Ryhmä pohtii yhdessä:</p>
+    <ul>
+      <li>Mikä tekee tilanteesta hankkalan?</li>
+      <li>Mitä hyvää käytöstä on?</li>
+      <li>Mitä riskejä liittyy?</li>
+      <li>Millä ehdoilla käyttö olisi eettistä?</li>
+    </ul>
+  </div>
+</section>
+
+<section id="yhteenveto">
+  <div class="yhteenveto">
+    <h3>Yhteenveto – mitä opimme tänään</h3>
+    <ul>
+      <li><strong>Ympäristövaikutukset ovat todellisia</strong> — energiankulutus, vesi, mineraalit. Tarkoituksenmukainen käyttö on vastuullista käyttöä</li>
+      <li><strong>Vastuu on aina ihmisellä</strong> — tekoäly ei kanna seurauksia, sinä kannat</li>
+      <li><strong>Vinoumat ovat rakenteellisia</strong> — ne eivät ole tahallisia, mutta ne toistuvat. Kriittinen lukutaito auttaa</li>
+      <li><strong>Avoimuus on lähtökohta</strong> — kerro tekoälyn käytöstä silloin, kun se on merkityksellistä</li>
+      <li><strong>Tekoäly muuttaa työtä</strong> — ei välttämättä poista sitä, mutta muutos on todellinen ja vaatii sopeutumista</li>
+    </ul>
+    <p style="margin-top:1rem">Etiikka ei ole kertasuoritus — se on jatkuva tapa miettiä, mitä tekee ja miksi.</p>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

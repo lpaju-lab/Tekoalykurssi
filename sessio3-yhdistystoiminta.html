@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessio 3 – Tekoäly yhdistystoiminnan apuna</title>
+<style>
+  :root {
+    --sininen: #1a3a5c;
+    --vaaleasininen: #2d6aa0;
+    --korostus: #e8f0fa;
+    --harjoitus: #fff8e1;
+    --harjoitus-reuna: #f0c040;
+    --tärkeä: #fdecea;
+    --tärkeä-reuna: #c62828;
+    --vihreä: #e8f5e9;
+    --vihreä-reuna: #388e3c;
+    --yhdistys: #e8f5e9;
+    --yhdistys-reuna: #2e7d32;
+    --teksti: #1a1a1a;
+    --taustaharmoninen: #f5f7fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--teksti);
+    background: #fff;
+  }
+  .header { background: var(--sininen); color: white; padding: 2rem 2.5rem; }
+  .header .kurssinimi {
+    font-size: 0.95rem; opacity: 0.8; font-family: Arial, sans-serif;
+    margin-bottom: 0.4rem; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .header h1 { font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem; }
+  .header .info { font-size: 1rem; opacity: 0.85; font-family: Arial, sans-serif; }
+  .nav-bar {
+    background: var(--vaaleasininen);
+    padding: 0.75rem 2.5rem;
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    font-family: Arial, sans-serif; font-size: 0.9rem;
+  }
+  .nav-bar a { color: white; text-decoration: none; opacity: 0.9; }
+  .nav-bar a:hover { opacity: 1; text-decoration: underline; }
+  .nav-bar .aktiivinen { font-weight: bold; opacity: 1; }
+  .sisällysluettelo {
+    background: var(--korostus);
+    border-left: 5px solid var(--vaaleasininen);
+    margin: 2rem 2.5rem;
+    padding: 1.5rem 2rem;
+    border-radius: 0 8px 8px 0;
+    font-family: Arial, sans-serif;
+  }
+  .sisällysluettelo h2 {
+    font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--sininen); margin-bottom: 0.75rem;
+  }
+  .sisällysluettelo ol { padding-left: 1.5rem; }
+  .sisällysluettelo li { margin-bottom: 0.3rem; }
+  .sisällysluettelo a { color: var(--vaaleasininen); text-decoration: none; }
+  .sisällysluettelo a:hover { text-decoration: underline; }
+  main { max-width: 860px; margin: 0 auto; padding: 1rem 2.5rem 4rem; }
+  section { margin-top: 3rem; }
+  h2.osio-otsikko {
+    font-size: 1.6rem; color: var(--sininen);
+    border-bottom: 3px solid var(--vaaleasininen);
+    padding-bottom: 0.5rem; margin-bottom: 1.2rem;
+    font-family: Arial, sans-serif;
+  }
+  h3 { font-size: 1.2rem; color: var(--vaaleasininen); margin: 1.8rem 0 0.7rem; font-family: Arial, sans-serif; }
+  p { margin-bottom: 1rem; }
+  .aikamerkki {
+    font-family: Arial, sans-serif; font-size: 0.85rem; color: #666;
+    background: #eee; display: inline-block;
+    padding: 0.2rem 0.7rem; border-radius: 12px; margin-bottom: 1rem;
+  }
+  .harjoitus {
+    background: var(--harjoitus);
+    border-left: 5px solid var(--harjoitus-reuna);
+    padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  }
+  .harjoitus .harjoitus-otsikko {
+    font-family: Arial, sans-serif; font-weight: bold;
+    font-size: 0.95rem; color: #7a5800; margin-bottom: 0.6rem;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .tärkeää {
+    background: var(--tärkeä); border-left: 5px solid var(--tärkeä-reuna);
+    padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  }
+  .tärkeää .tärkeä-otsikko {
+    font-family: Arial, sans-serif; font-weight: bold;
+    color: var(--tärkeä-reuna); margin-bottom: 0.5rem;
+  }
+  .vinkki {
+    background: var(--vihreä); border-left: 5px solid var(--vihreä-reuna);
+    padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  }
+  .vinkki .vinkki-otsikko {
+    font-family: Arial, sans-serif; font-weight: bold;
+    color: #2e7d32; margin-bottom: 0.5rem;
+  }
+  .kehote-esimerkki {
+    background: #1e1e2e; color: #e0e0ff;
+    font-family: 'Courier New', monospace; font-size: 0.95rem;
+    padding: 1.2rem 1.5rem; border-radius: 8px;
+    margin: 1rem 0; white-space: pre-wrap; line-height: 1.6;
+  }
+  .kehote-esimerkki .label {
+    font-family: Arial, sans-serif; font-size: 0.78rem; color: #aaa;
+    display: block; margin-bottom: 0.5rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  table {
+    width: 100%; border-collapse: collapse;
+    margin: 1.2rem 0; font-family: Arial, sans-serif; font-size: 0.95rem;
+  }
+  th { background: var(--sininen); color: white; padding: 0.6rem 1rem; text-align: left; }
+  td { padding: 0.6rem 1rem; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: var(--taustaharmoninen); }
+  .taukopalkki {
+    background: var(--sininen); color: white; text-align: center;
+    padding: 1rem; border-radius: 8px; margin: 2rem 0;
+    font-family: Arial, sans-serif; font-size: 1rem;
+  }
+  ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+  li { margin-bottom: 0.4rem; }
+  .yhteenveto {
+    background: var(--korostus); border: 2px solid var(--vaaleasininen);
+    border-radius: 10px; padding: 1.5rem 2rem; margin-top: 3rem;
+    font-family: Arial, sans-serif;
+  }
+  .yhteenveto h3 { color: var(--sininen); margin-bottom: 0.8rem; }
+  .esimerkki-tulos {
+    background: #f8f8f8; border: 1px solid #ccc;
+    border-radius: 8px; padding: 1.2rem 1.5rem;
+    margin: 1rem 0; font-style: italic;
+    font-family: Arial, sans-serif; font-size: 0.95rem;
+    color: #333;
+  }
+  .esimerkki-tulos .esimerkki-label {
+    font-style: normal; font-weight: bold; color: #555;
+    font-size: 0.8rem; text-transform: uppercase;
+    letter-spacing: 0.06em; display: block; margin-bottom: 0.5rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="kurssinimi">Tekoälytaitoja arjen tarpeisiin · Ikääntyvien yliopisto</div>
+  <h1>Sessio 3: Tekoäly yhdistystoiminnan apuna</h1>
+  <div class="info">Viestinnästä apurahahakemuksiin &nbsp;·&nbsp; 3 tuntia</div>
+</div>
+
+<div class="nav-bar">
+  <a href="index.html">Etusivu</a>
+  <a href="sessio1-kehotekoulu.html">S1: Kehotekoulu</a>
+  <a href="sessio2-turvallisuus-sukututkimus.html">S2: Turvallisuus</a>
+  <a href="sessio3-yhdistystoiminta.html" class="aktiivinen">S3: Yhdistystoiminta</a>
+  <a href="sessio4-kielet.html">S4: Kielten opiskelu</a>
+  <a href="sessio5-kuvat.html">S5: Kuvat</a>
+  <a href="sessio6-etiikka.html">S6: Etiikka &amp; Ympäristö</a>
+  <a href="sessio7-vinkit.html">S7: Vinkit &amp; Edistynyt käyttö</a>
+  <a href="sessio8-sukututkimus.html">S8: Sukututkimus</a>
+</div>
+
+<div class="sisällysluettelo">
+  <h2>Tämän session sisältö</h2>
+  <ol>
+    <li><a href="#johdanto">Johdanto: tekoäly yhdistyksen palveluksessa</a></li>
+    <li><a href="#viestinta">Viestintä: tiedotteet, some ja uutiskirjeet</a></li>
+<li><a href="#kokousdokumentit">Kokousdokumentit: esityslistat ja pöytäkirjat</a></li>
+    <li><a href="#tapahtumat">Tapahtumien suunnittelu</a></li>
+<li><a href="#rahoitus">Rahoitushakemukset ja toimintakertomukset</a></li>
+    <li><a href="#harjoitukset">Pienryhmäharjoitukset</a></li>
+    <li><a href="#yhteenveto">Yhteenveto ja kurssin päätös</a></li>
+  </ol>
+</div>
+
+<main>
+
+<!-- ===================== JOHDANTO ===================== -->
+<section id="johdanto">
+  <h2 class="osio-otsikko">1. Johdanto: tekoäly yhdistyksen palveluksessa</h2>
+<p>Yhdistystoiminta pyörii pitkälti vapaaehtoisvoimin, ja monet tehtävät vievät aikaa: tiedotteet, kokouskutsuikset, pöytäkirjat, tapahtumien suunnittelu, apurahahakemukset. Tekoäly voi olla tässä merkittävä apuri — ei korvata ihmistä, vaan vapauttaa aikaa olennaiseen.</p>
+
+  <h3>Mitä tekoäly voi tehdä yhdistyksessä?</h3>
+  <ul>
+    <li>Kirjoittaa luonnoksia, joita ihminen viimeistelee</li>
+    <li>Muotoilla saman asian eri kohderyhmille tai kanaviin</li>
+    <li>Tiivistää pitkiä dokumentteja</li>
+    <li>Tarkistaa kielioppia ja sujuvuutta</li>
+    <li>Ideoida tapahtumia, teemoja, nimiä</li>
+    <li>Auttaa rakentamaan asiakirjojen rakenteen</li>
+  </ul>
+
+  <div class="tärkeää">
+    <div class="tärkeä-otsikko">Mitä tekoäly ei tee</div>
+    <ul>
+      <li>Tekoäly ei tunne yhdistyksesi historiaa, arvoja tai jäsenistöä — ne pitää kertoa kehotteessa</li>
+      <li>Tekoäly ei tarkista, ovatko faktat tai luvut oikeita — sinä tarkistat ne</li>
+      <li>Tekoäly ei allekirjoita asiakirjoja tai osallistu kokouksiin — se auttaa valmistautumaan</li>
+      <li>Yhdistyksen nimissä julkaistu teksti on aina luettava ja hyväksyttävä ennen julkaisua</li>
+    </ul>
+  </div>
+
+  <div class="vinkki">
+    <div class="vinkki-otsikko">Käytännön työnkulku yhdistyksessä</div>
+    Tehokkain tapa: Tekoäly tekee luonnoksen → sinä luet ja muokkaat → lopullinen versio on sinun käsialaasi, tekoäly teki raakatyön.
+  </div>
+</section>
+
+<!-- ===================== VIESTINTÄ ===================== -->
+<section id="viestinta">
+  <h2 class="osio-otsikko">2. Viestintä: tiedotteet, some ja uutiskirjeet</h2>
+<p>Yhdistyksen viestintä tapahtuu monessa kanavassa: verkkosivut, sähköpostilistat, sosiaalinen media, paikalliset lehdet. Sama sisältö pitää usein muotoilla eri tavoilla eri kanaviin.</p>
+
+  <h3>Tiedote paikallislehdelle</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Tiedotteen kirjoittaminen</span>Kirjoita tiedote paikallislehdelle seuraavasta tapahtumasta:
+
+Yhdistys: Kotiseutuyhdistys Koivulahti ry
+Tapahtuma: Syysretki Hämeenlinnan linnaan
+Ajankohta: 12.10.2025 klo 9.00–17.00
+Lähtöpaikka: Torin parkkipaikka klo 9.00
+Hinta: 35 € / henkilö, sisältää bussikuljetuksen ja opastetun kierroksen
+Ilmoittautuminen: 5.10. mennessä Leena Mäkiselle, p. 040-123 4567
+
+Tiedotteen tulee olla selkeä ja innostava, enintään 150 sanaa. Kirjoita asiallisessa mutta lämpimässä sävyssä.</div>
+
+  <div class="esimerkki-tulos">
+    <span class="esimerkki-label">Esimerkki siitä, mitä tekoäly voisi tuottaa:</span>
+    <strong>Kotiseutuyhdistys kutsuu syysretkelle Hämeenlinnaan</strong><br><br>
+    Kotiseutuyhdistys Koivulahti ry järjestää syysretken Hämeenlinnan linnaan sunnuntaina 12. lokakuuta 2025. Retkelle mahtuu mukaan kaikki kiinnostuneet.<br><br>
+    Linja-auto lähtee torin parkkipaikalta klo 9.00. Päivän ohjelmaan kuuluu opastettu kierros historiallisessa linnassa sekä aikaa itsenäiseen tutustumiseen. Kotimatkalle lähdetään iltapäivällä.<br><br>
+    Retken hinta on 35 euroa henkilöltä, ja se sisältää bussikuljetuksen ja opastuksen. Ilmoittaudu viimeistään 5.10. Leena Mäkiselle, p. 040-123 4567.
+  </div>
+
+  <h3>Sama viesti eri kanaville</h3>
+  <p>Kun tiedote on kirjoitettu, tekoäly auttaa muokkaamaan sen eri kanaviin:</p>
+
+  <div class="kehote-esimerkki"><span class="label">Some-versio tiedotteesta</span>Muokkaa edellinen tiedote lyhyeksi Facebook-julkaisuksi. Enintään 3 lausetta, mukaan yksi kysymys, joka kannustaa kommentoimaan tai ilmoittautumaan.</div>
+
+  <div class="kehote-esimerkki"><span class="label">Sähköpostikutsu jäsenille</span>Kirjoita sähköpostikutsu yhdistyksen jäsenille samasta retkestä. Sävy saa olla henkilökohtaisempi ja lämpimämpi kuin lehtitiedotteessa. Aloita persoonallisesti, ei "Hyvät jäsenet".</div>
+
+  <h3>Uutiskirje</h3>
+  <p>Uutiskirjeen rakenne kannattaa kertoa kehotteessa selkeästi:</p>
+
+  <div class="kehote-esimerkki"><span class="label">Uutiskirjeen rakenne</span>Kirjoita yhdistyksen syyskauden uutiskirje. Rakenne:
+1. Tervehdys (2-3 lausetta, lämmin sävy)
+2. Tulevan kauden päätapahtuma (lyhyesti)
+3. Muistutus jäsenmaksuista (ei luentomainen)
+4. Lopputervehdys
+
+Tiedot:
+- Yhdistys: [nimi]
+- Päätapahtuma: [tapahtuma, aika]
+- Jäsenmaksu: [summa], eräpäivä [pvm]
+
+Enintään 200 sanaa. Sävy: ystävällinen, ei byrokraattinen.</div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 2.1 – Kirjoita oman yhdistyksen tiedote</div>
+    <p>Mieti jokin oikea tai kuvitteellinen tapahtuma tai asia, josta yhdistyksesi (tai keksimäsi yhdistys) voisi tiedottaa. Kirjoita tekoälyn avulla:</p>
+    <ol>
+      <li>Lyhyt tiedote (lehdelle tai verkkosivuille)</li>
+      <li>Some-versio samasta (Facebook tai vastaava)</li>
+    </ol>
+    <p>Muokkaa tulosta tarpeen mukaan. <em></em></p>
+  </div>
+</section>
+<!-- ===================== KOKOUSDOKUMENTIT ===================== -->
+<section id="kokousdokumentit">
+  <h2 class="osio-otsikko">3. Kokousdokumentit: esityslistat ja pöytäkirjat</h2>
+<p>Kokousasiakirjat ovat monessa yhdistyksessä raskas rutiini. Tekoäly ei kirjoita pöytäkirjaa automaattisesti, mutta se voi helpottaa merkittävästi.</p>
+
+  <h3>Esityslistan luominen</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Esityslista vuosikokoukseen</span>Laadi esityslista yhdistyksen vuosikokoukselle. Kokouksessa käsitellään seuraavat lakisääteiset asiat sekä hallituksen esittämät lisäpykälät.
+
+Yhdistys: Kotiseutuyhdistys Koivulahti ry
+Kokousaika: 15.11.2025 klo 18.00
+Kokouspaikka: Koivulahden seurantalo
+Hallituksen esitykset: jäsenmaksun korotus 5 eurolla, uusi toimintasuunnitelma ensi vuodelle
+
+Muotoile virallinen esityslista, joka sisältää kaikki yhdistyslain vaatimat kohdat vuosikokoukselle.</div>
+
+  <div class="vinkki">
+    <div class="vinkki-otsikko">Vinkki: yhdistyslaista voi kysyä</div>
+    Jos et muista, mitä lakisääteisiä kohtia vuosikokouksessa pitää olla, voit kysyä tekoälyltä suoraan: <em>"Mitkä asiat yhdistyslaki edellyttää käsiteltäväksi yhdistyksen vuosikokouksessa?"</em> Tarkista tieto kuitenkin virallisesta lähteestä tai yhdistystoiminnan oppaasta.
+  </div>
+
+  <h3>Pöytäkirjan kirjoittaminen muistiinpanoista</h3>
+  <p>Tämä on yksi tekoälyn hyödyllisimmistä käyttötavoista yhdistystoiminnassa: sinä kirjoitat kokouksessa löyhät muistiinpanot, tekoäly muotoilee niistä siistin pöytäkirjan.</p>
+
+  <div class="kehote-esimerkki"><span class="label">Pöytäkirja muistiinpanoista</span>Olet yhdistyksen sihteeri. Muodosta alla olevista kokouksen muistiinpanoista virallinen pöytäkirja. Käytä pöytäkirjoille tyypillistä rakennetta: §-numerointi, asia, päätös/keskustelu, mahdolliset äänestystulokset.
+
+Muistiinpanot:
+- Kokous alkoi 18:05, puheenjohtaja Virtanen avasi
+- Läsnä 14 jäsentä, nimilista liitteenä
+- Esityslista hyväksyttiin
+- Toimintakertomus: sihteerillä kaikki hyvin, retki onnistui, 23 osallistujaa
+- Talous: tilinpäätös +320€ ylijäämä, tilintarkastajat hyväksyi
+- Jäsenmaksu: ehdotus korottaa 30→35€. Äänestys: puolesta 10, vastaan 3, tyhjää 1. Hyväksyttiin.
+- Muut asiat: ehdotus kesäretkestä Turkuun, selvitetään
+- Kokous päättyi 19:30</div>
+
+  <div class="esimerkki-tulos">
+    <span class="esimerkki-label">Esimerkki tekoälyn muotoilemasta pöytäkirjapykälästä:</span>
+    <strong>§ 5 Jäsenmaksu</strong><br>
+    Hallitus esitti jäsenmaksun korottamista 30 eurosta 35 euroon vuodesta 2026 alkaen. Korotuksen perusteluna on toimintakulujen kasvu.<br><br>
+    Asiasta äänestettiin. Äänestystulos: puolesta 10, vastaan 3, tyhjiä 1.<br><br>
+    Päätös: Kokous päätti korottaa jäsenmaksun 35 euroon vuodelle 2026.
+  </div>
+
+  <h3>Kokouksen muistion tai tiivistelmän tekeminen</h3>
+  <p>Jos varsinainen pöytäkirja ei ole tarpeen, tekoäly voi tehdä kevyemmän muistion tai tiivistelmän jäsenille tiedotettavaksi:</p>
+
+  <div class="kehote-esimerkki"><span class="label">Jäsenkirje kokouksen jälkeen</span>Kirjoita lyhyt tiedote yhdistyksen jäsenille kokouksen tärkeimmistä päätöksistä. Sävy: ystävällinen, ytimekäs. Ei protokollamaista kieltä.
+
+Päätökset:
+[kirjoita tähän]</div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 3.1 – Muistiinpanoista pöytäkirjaksi</div>
+    <p>Kirjoita lyhyet, hieman sekavat muistiinpanot kuvitteellisesta kokouksesta (n. 5–6 kohtaa). Pyydä sitten tekoälyä muodostamaan niistä siisti pöytäkirja tai muistio. Vertaile lähtötekstejä ja lopputulosta.</p>
+</div>
+</section>
+
+<!-- ===================== TAPAHTUMAT ===================== -->
+<section id="tapahtumat">
+  <h2 class="osio-otsikko">4. Tapahtumien suunnittelu</h2>
+<p>Tapahtumien suunnittelu vaatii paljon yksityiskohtia ja koordinointia. Tekoäly voi toimia ideoijana, suunnittelijana ja tarkistuslistojen tekijänä.</p>
+
+  <h3>Tapahtumaohjelma ja aikataulu</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Tapahtumaohjelman suunnittelu</span>Suunnittele ohjelma yhdistyksen 50-vuotisjuhlaan.
+
+Tiedot:
+- Ajankohta: lauantai iltapäivällä, n. 4 tuntia (klo 14–18)
+- Vieraita: n. 60–80 jäsentä ja kutsuvieraita
+- Tila: seurantalo (ei näyttämöä, mutta tilaa puheille)
+- Toiveet: juhlava mutta rento, ei liian pitkiä puheita, musiikkia, yhteinen hetki historian äärellä
+
+Ehdota tuntiaikataulu ja ohjelman rakenne. Merkitse, mitä pitää järjestää etukäteen.</div>
+
+  <h3>Kutsu eri muodoissa</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Kutsun eri versiot</span>Kirjoita kutsu yhdistyksen 50-vuotisjuhlaan kolmessa muodossa:
+1. Muodollinen kirjallinen kutsu (postitse lähetettävä)
+2. Sähköpostikutsu
+3. Facebook-julkaisu
+
+Juhla: [tiedot]
+Ilmoittautuminen: [tiedot]</div>
+
+  <h3>Tarkistuslistat ja muistilistat</h3>
+  <p>Tekoäly on erinomainen tarkistuslistojen tekijä — se muistaa asiat, jotka kiireessä unohtuvat.</p>
+
+  <div class="kehote-esimerkki"><span class="label">Tapahtuman tarkistuslista</span>Tee kattava tarkistuslista ulkoilmatapahtuman järjestäjälle. Tapahtuma: kesäpiknik puistossa, n. 40 henkilöä. Listaa kaikki huomioitavat asiat vähintään 3 viikkoa ennen tapahtumaa, viikko ennen ja tapahtumapäivänä.</div>
+
+  <div class="kehote-esimerkki"><span class="label">Vapaaehtoisten tehtävänjako</span>Jaa seuraavat tehtävät tasapuolisesti kolmen vapaaehtoisen kesken. Tee selkeä lista, josta jokainen näkee omat vastuunsa:
+
+Tehtävät: [kirjaa tehtävät]
+Vapaaehtoiset: [nimet tai roolit]</div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 4.1 – Suunnittele tapahtuma</div>
+    <p>Suunnittelkaa pienryhmissä jokin kuvitteellinen yhdistystapahtuma tekoälyn avulla. Tehtävinä:</p>
+    <ol>
+      <li>Pyydä ohjelmarunko (kesto, rakenne)</li>
+      <li>Pyydä tarkistuslista järjestäjälle</li>
+      <li>Pyydä lyhyt some-kutsu</li>
+    </ol>
+</div>
+</section>
+<!-- ===================== RAHOITUS ===================== -->
+<section id="rahoitus">
+  <h2 class="osio-otsikko">5. Rahoitushakemukset ja toimintakertomukset</h2>
+<p>Apurahahakemukset ja toimintakertomukset ovat monelle yhdistystoimijalle raskaita kirjoitustehtäviä. Tekoäly ei tee niitä valmiiksi, mutta se voi dramaattisesti helpottaa kirjoitusprosessia.</p>
+
+  <h3>Apurahahakemus</h3>
+  <p>Apurahahakemuksissa on yleensä tietty rakenne, joka vaihtelee rahoittajan mukaan. Tekoäly auttaa muotoilemaan sisällön selkeästi ja vakuuttavasti.</p>
+
+  <div class="kehote-esimerkki"><span class="label">Apurahahakemuksen luonnostelu</span>Auta kirjoittamaan apurahahakemus kulttuuritapahtumalle. Ennen kuin aloitat, kysy minulta seuraavat tiedot:
+- Mikä on tapahtuma?
+- Kenelle se on suunnattu?
+- Mikä on tapahtuman merkitys yhteisölle?
+- Paljonko haetaan ja mihin rahat käytetään?
+- Kuka on hakija?
+
+Kysy yksi asia kerrallaan.</div>
+
+  <div class="vinkki">
+    <div class="vinkki-otsikko">Hyödyllinen tapa: täytä itse, tekoäly muotoilee</div>
+    Kirjoita itse ensin ranskalaisilla viivoilla kaikki oleelliset tiedot. Sitten pyydä tekoälyä muotoilemaan ne selkeäksi, vakuuttavaksi hakemustekstiksi. Näin sisältö on sinun, tekoäly vain viimeistelee.
+  </div>
+
+  <div class="kehote-esimerkki"><span class="label">Raakainformation muotoilu hakemukseksi</span>Muotoile seuraavat tiedot apurahahakemuksen "Toiminnan kuvaus" -osioksi. Tee siitä selkeä, vakuuttava ja enintään 200 sanaa.
+
+Tiedot:
+- Järjestämme kotiseutuhistoriaan liittyvän valokuvanäyttelyn
+- Näyttely on auki kolme viikkoa paikallisessa kirjastossa
+- Tavoitteena on tuoda esiin kaupunginosaan 1900-luvulla muuttaneiden siirtolaisten tarinoita
+- Kuvat kerätään yhteisöltä, digitoidaan ja arkistoidaan
+- Näyttelyyn liittyy avajaistapahtuma ja kaksi yleisöluentoa
+- Kohdeyleisö on kaikki kiinnostuneet, erityisesti paikalliset asukkaat ja alueen historianharrastajat</div>
+
+  <h3>Toimintakertomus</h3>
+  <p>Toimintakertomus vaatii tapahtumatietojen, jäsenmäärän ja muiden faktojen kokoamista — nämä sinä annat, tekoäly kirjoittaa johdonmukaisen tekstin.</p>
+
+  <div class="kehote-esimerkki"><span class="label">Toimintakertomuksen rakenne</span>Laadi rakenne yhdistyksen vuosittaiselle toimintakertomukselle. Yhdistys järjestää kulttuuritapahtumia ja kotiseutuhistorian tallentamista. Rakenteessa tulee olla kaikki tyypillisesti toimintakertomuksessa käsitellyt asiat.</div>
+
+  <div class="kehote-esimerkki"><span class="label">Toimintakertomuksen täyttö</span>Kirjoita toimintakertomuksen "Tapahtumat ja toiminta" -osio seuraavista tiedoista:
+
+Tapahtumat vuonna 2024:
+- Kevätretki Hämeenlinnaan, 28 osallistujaa, huhtikuu
+- Kesäpiknik Koivupuistossa, 45 osallistujaa, kesäkuu
+- Valokuvanäyttely kirjastossa, 3 viikkoa, lokakuu (kävijöitä n. 200)
+- Syyskokoous, 31 jäsentä läsnä, marraskuu
+- Joululounas, 38 osallistujaa, joulukuu
+
+Kirjoita sujuva, muutaman kappaleen kuvaus, joka esittelee vuoden toimintaa positiivisessa valossa. Ei luettelomaisuutta.</div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 5.1 – Apurahahakemuksen luonnostelu</div>
+    <p>Pienryhmissä: keksikää yhdessä kuvitteellinen tapahtuma tai projekti, johon haetaan apurahaa. Kirjoittakaa ensin itse ranskalaisilla viivoilla, mitä hakemuksessa pitäisi kertoa. Pyytäkää sitten tekoälyä muotoilemaan se hakemukseksi.</p>
+    <p>Arvioikaa: Mitä tekoäly teki hyvin? Mikä vaati korjaamista? <em></em></p>
+  </div>
+</section>
+
+<!-- ===================== PIENRYHMÄHARJOITUKSET ===================== -->
+<section id="harjoitukset">
+  <h2 class="osio-otsikko">6. Pienryhmäharjoitukset – vapaa soveltaminen</h2>
+<p>Valitse pienryhmässä yksi seuraavista tai tuo oman yhdistyksen todellinen tarve.</p>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä A – Uuden jäsenen tervetuliaispaketti</div>
+    <p>Suunnittelkaa tekoälyn avulla lyhyt "tervetuliaispaketti" yhdistyksen uudelle jäsenelle:</p>
+    <ol>
+      <li>Tervetuliaissähköposti</li>
+      <li>Lyhyt kuvaus yhdistyksen toiminnasta (1 sivu)</li>
+      <li>Usein kysytyt kysymykset (3–5 kysymystä vastauksineen)</li>
+    </ol>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä B – Somestrategia pienelle yhdistykselle</div>
+    <p>Pyydäkää tekoälyä auttamaan yksinkertaisen some-suunnitelman tekemisessä:</p>
+    <ol>
+      <li>Mitä aiheita yhdistys voisi jakaa somessa?</li>
+      <li>Miten usein kannattaa julkaista?</li>
+      <li>Kirjoittakaa kolme valmista some-postausta, jotka voisivat toimia heti</li>
+    </ol>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä C – Oma tarve</div>
+    <p>Jos jollakin on oma yhdistys ja todellinen kirjoitustarve — kirje, tiedote, hakemus, ohjelma — käyttäkää tätä aikaa sen tekemiseen tekoälyn avulla. Pyytäkää toisilta apua ja palautetta.</p>
+  </div>
+</section>
+
+<!-- ===================== YHTEENVETO ===================== -->
+<section id="yhteenveto">
+  <div class="yhteenveto">
+    <h3>Yhteenveto – mitä opimme tänään ja koko kurssilla</h3>
+
+    <p><strong>Tänään:</strong></p>
+    <ul>
+      <li>Tekoäly tekee luonnokset, sinä viimeistelet — vastuu on aina ihmisellä</li>
+      <li>Viestintä moniin kanaviin onnistuu helposti: sama sisältö, eri muoto</li>
+      <li>Kokousasiakirjat helpottuvat, kun tekoäly muotoilee muistiinpanot</li>
+      <li>Tapahtumien suunnittelussa tekoäly toimii luovana apurina ja muistilistojen tekijänä</li>
+      <li>Apurahahakemukset: anna faktat, tekoäly muotoilee</li>
+    </ul>
+
+    <p style="margin-top:1rem"><strong>Koko jatkokurssi lyhyesti:</strong></p>
+    <ul>
+      <li>Hyvä kehote on selkeä, kontekstuaalinen ja iteratiivinen</li>
+      <li>Tekoälyn kanssa kannattaa käydä dialogia, ei vain esittää kysymys kerran</li>
+      <li>Tietoturva ja kriittinen arviointi ovat aina mukana</li>
+      <li>Tekoäly on apuväline — se ei korvaa asiantuntemustasi, kokemustasi tai ihmisyyttäsi</li>
+    </ul>
+
+    <p style="margin-top:1.5rem; font-style: italic;">Kiitos osallistumisesta! Toivottavasti tekoäly on tämän kurssin jälkeen tutumpi ja käytännöllisempi työkalu arkeesi.</p>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

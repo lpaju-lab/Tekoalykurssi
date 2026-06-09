@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessio 4 – Kielten opiskelu tekoälyn avulla</title>
+<style>
+  :root {
+    --sininen: #1a3a5c;
+    --vaaleasininen: #2d6aa0;
+    --korostus: #e8f0fa;
+    --harjoitus: #fff8e1;
+    --harjoitus-reuna: #f0c040;
+    --tärkeä: #fdecea;
+    --tärkeä-reuna: #c62828;
+    --vihreä: #e8f5e9;
+    --vihreä-reuna: #388e3c;
+    --kieli: #f3e5f5;
+    --kieli-reuna: #7b1fa2;
+    --teksti: #1a1a1a;
+    --taustaharmoninen: #f5f7fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; color: var(--teksti); background: #fff; }
+  .header { background: var(--sininen); color: white; padding: 2rem 2.5rem; }
+  .header .kurssinimi { font-size: 0.95rem; opacity: 0.8; font-family: Arial, sans-serif; margin-bottom: 0.4rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .header h1 { font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem; }
+  .header .info { font-size: 1rem; opacity: 0.85; font-family: Arial, sans-serif; }
+  .nav-bar { background: var(--vaaleasininen); padding: 0.75rem 2.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap; font-family: Arial, sans-serif; font-size: 0.9rem; }
+  .nav-bar a { color: white; text-decoration: none; opacity: 0.9; }
+  .nav-bar a:hover { opacity: 1; text-decoration: underline; }
+  .nav-bar .aktiivinen { font-weight: bold; opacity: 1; }
+  .sisällysluettelo { background: var(--korostus); border-left: 5px solid var(--vaaleasininen); margin: 2rem 2.5rem; padding: 1.5rem 2rem; border-radius: 0 8px 8px 0; font-family: Arial, sans-serif; }
+  .sisällysluettelo h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--sininen); margin-bottom: 0.75rem; }
+  .sisällysluettelo ol { padding-left: 1.5rem; }
+  .sisällysluettelo li { margin-bottom: 0.3rem; }
+  .sisällysluettelo a { color: var(--vaaleasininen); text-decoration: none; }
+  .sisällysluettelo a:hover { text-decoration: underline; }
+  main { max-width: 860px; margin: 0 auto; padding: 1rem 2.5rem 4rem; }
+  section { margin-top: 3rem; }
+  h2.osio-otsikko { font-size: 1.6rem; color: var(--sininen); border-bottom: 3px solid var(--vaaleasininen); padding-bottom: 0.5rem; margin-bottom: 1.2rem; font-family: Arial, sans-serif; }
+  h3 { font-size: 1.2rem; color: var(--vaaleasininen); margin: 1.8rem 0 0.7rem; font-family: Arial, sans-serif; }
+  p { margin-bottom: 1rem; }
+  .aikamerkki { font-family: Arial, sans-serif; font-size: 0.85rem; color: #666; background: #eee; display: inline-block; padding: 0.2rem 0.7rem; border-radius: 12px; margin-bottom: 1rem; }
+  .harjoitus { background: var(--harjoitus); border-left: 5px solid var(--harjoitus-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .harjoitus .harjoitus-otsikko { font-family: Arial, sans-serif; font-weight: bold; font-size: 0.95rem; color: #7a5800; margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .tärkeää { background: var(--tärkeä); border-left: 5px solid var(--tärkeä-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .tärkeää .tärkeä-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: var(--tärkeä-reuna); margin-bottom: 0.5rem; }
+  .vinkki { background: var(--vihreä); border-left: 5px solid var(--vihreä-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .vinkki .vinkki-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: #2e7d32; margin-bottom: 0.5rem; }
+  .kielilaatikko { background: var(--kieli); border-left: 5px solid var(--kieli-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .kielilaatikko .kieli-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: var(--kieli-reuna); margin-bottom: 0.5rem; }
+  .kehote-esimerkki { background: #1e1e2e; color: #e0e0ff; font-family: 'Courier New', monospace; font-size: 0.95rem; padding: 1.2rem 1.5rem; border-radius: 8px; margin: 1rem 0; white-space: pre-wrap; line-height: 1.6; }
+  .kehote-esimerkki .label { font-family: Arial, sans-serif; font-size: 0.78rem; color: #aaa; display: block; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-family: Arial, sans-serif; font-size: 0.95rem; }
+  th { background: var(--sininen); color: white; padding: 0.6rem 1rem; text-align: left; }
+  td { padding: 0.6rem 1rem; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: var(--taustaharmoninen); }
+  .taukopalkki { background: var(--sininen); color: white; text-align: center; padding: 1rem; border-radius: 8px; margin: 2rem 0; font-family: Arial, sans-serif; font-size: 1rem; }
+  ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+  li { margin-bottom: 0.4rem; }
+  .yhteenveto { background: var(--korostus); border: 2px solid var(--vaaleasininen); border-radius: 10px; padding: 1.5rem 2rem; margin-top: 3rem; font-family: Arial, sans-serif; }
+  .yhteenveto h3 { color: var(--sininen); margin-bottom: 0.8rem; }
+  .vertailu { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0; }
+  @media (max-width: 640px) { .vertailu { grid-template-columns: 1fr; } }
+  .vertailu .vasen { background: #fdecea; border: 2px solid #d32f2f; border-radius: 8px; padding: 1rem; font-family: Arial, sans-serif; font-size: 0.9rem; }
+  .vertailu .oikea { background: #e8f5e9; border: 2px solid #388e3c; border-radius: 8px; padding: 1rem; font-family: Arial, sans-serif; font-size: 0.9rem; }
+  .vertailu .v-label { font-weight: bold; margin-bottom: 0.5rem; font-size: 0.85rem; text-transform: uppercase; }
+  .vertailu .vasen .v-label { color: #d32f2f; }
+  .vertailu .oikea .v-label { color: #388e3c; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="kurssinimi">Tekoälytaitoja arjen tarpeisiin · Ikääntyvien yliopisto</div>
+  <h1>Sessio 4: Kielten opiskelu tekoälyn avulla</h1>
+  <div class="info">Käännöksistä keskusteluharjoitteluun &nbsp;·&nbsp; 3 tuntia</div>
+</div>
+
+<div class="nav-bar">
+  <a href="index.html">Etusivu</a>
+  <a href="sessio1-kehotekoulu.html">S1: Kehotekoulu</a>
+  <a href="sessio2-turvallisuus-sukututkimus.html">S2: Turvallisuus</a>
+  <a href="sessio3-yhdistystoiminta.html">S3: Yhdistystoiminta</a>
+  <a href="sessio4-kielet.html" class="aktiivinen">S4: Kielten opiskelu</a>
+  <a href="sessio5-kuvat.html">S5: Kuvat</a>
+  <a href="sessio6-etiikka.html">S6: Etiikka &amp; Ympäristö</a>
+  <a href="sessio7-vinkit.html">S7: Vinkit &amp; Edistynyt käyttö</a>
+  <a href="sessio8-sukututkimus.html">S8: Sukututkimus</a>
+</div>
+
+<div class="sisällysluettelo">
+  <h2>Tämän session sisältö</h2>
+  <ol>
+    <li><a href="#johdanto">Johdanto: tekoäly kieltenopetuksessa</a></li>
+    <li><a href="#kaantaminen">Kääntäminen ja kielten ymmärtäminen</a></li>
+<li><a href="#kielioppi">Kielioppiapuri ja kirjoituksen tarkistus</a></li>
+    <li><a href="#keskustelu">Keskusteluharjoittelu tekoälyn kanssa</a></li>
+<li><a href="#matkailu">Matkailu ja käytännön tilanteet</a></li>
+    <li><a href="#harjoitukset">Pienryhmäharjoitukset</a></li>
+    <li><a href="#yhteenveto">Yhteenveto</a></li>
+  </ol>
+</div>
+
+<main>
+
+<section id="johdanto">
+  <h2 class="osio-otsikko">1. Johdanto: tekoäly kieltenoppimisessa</h2>
+<p>Tekoälystä on tullut yksi parhaista kieltenoppimisen apuvälineistä — ei kielikurssin korvike, vaan harjoittelukumppani, joka on saatavilla aina, ei koskaan väsy, ja osaa säätää tasonsa oppijan mukaan.</p>
+
+  <h3>Mitä tekoäly voi tehdä kielten kanssa?</h3>
+  <ul>
+    <li>Kääntää tekstejä luonnollisella, idiomaattisella kielellä</li>
+    <li>Selittää, <em>miksi</em> jokin käännetään tietyllä tavalla</li>
+    <li>Tarkistaa kirjoittamasi tekstin kieliopillisuuden ja luontevan sujuvuuden</li>
+    <li>Harjoitella kanssasi dialogina — esim. ranskaksi, englanniksi, espanjaksi</li>
+    <li>Selittää kielioppisäännöt omien esimerkkiesi kautta</li>
+    <li>Opettaa kulttuuria kielen taustalla</li>
+    <li>Tutustuttaa sanastoon teeman mukaan</li>
+  </ul>
+
+  <div class="kielilaatikko">
+    <div class="kieli-otsikko">Tärkeä ero: kääntäminen vs. oppiminen</div>
+    <p>Tekoäly on nopea kääntäjä, mutta jos tavoitteena on <em>oppia</em> kieli, älä pyydä vain käännöstä — pyydä selitys. Kysy "miksi" eikä pelkästään "mitä". Oppiminen tapahtuu dialogissa, ei valmiissa vastauksessa.</p>
+  </div>
+
+  <h3>Mihin kieliin tekoäly soveltuu?</h3>
+  <p>ChatGPT, Gemini ja Copilot osaavat kymmeniä kieliä. Parhaiten ne toimivat laajalle levinneiden kielten kanssa: englanti, espanja, ranska, saksa, italia, portugali, ruotsi, venäjä, japani, kiina ja monet muut. Pienten kielten kohdalla (esim. harvemmat skandinaavisen kielet tai alueelliset murteet) laatu vaihtelee.</p>
+</section>
+
+<section id="kaantaminen">
+  <h2 class="osio-otsikko">2. Kääntäminen ja kielten ymmärtäminen</h2>
+<p>Kääntäminen on helpoin tapa aloittaa tekoälyn käyttö kielissä. Mutta tekoäly pystyy paljon enempään kuin pelkkään sanasta sanaan -käännökseen.</p>
+
+  <h3>Perusasiat: suoraan käännös</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Yksinkertainen käännös</span>Käännä seuraava teksti englanniksi / ranskaksi / espanjaksi / saksaksi:
+
+[Liitä teksti tähän]</div>
+
+  <h3>Parempi tapa: selittävä käännös</h3>
+  <p>Kun haluat oppia pelkän käännöksen sijaan, pyydä selitys:</p>
+
+  <div class="kehote-esimerkki"><span class="label">Selittävä käännös</span>Käännä seuraava lause englanniksi ja selitä lyhyesti, jos käännöksessä on jokin sanonta tai rakenne, joka ei suoraan vastaa suomea:
+
+"Minulla on nälkä."</div>
+
+  <div class="kehote-esimerkki"><span class="label">Vieraskielisen tekstin ymmärtäminen</span>Tässä on espanjankielinen teksti. Käännä se suomeksi ja selitä kolme vaikea sanaa tai ilmausta, jotka on hyvä muistaa:
+
+[Liitä teksti tähän]</div>
+
+  <h3>Sävyn ja rekisterin valinta</h3>
+  <p>Hyvä kääntäjä osaa valita oikean sävyn. Tekoäly voi tehdä saman käännöksen eri tyyleillä:</p>
+
+  <div class="kehote-esimerkki"><span class="label">Käännös eri sävyissä</span>Käännä seuraava teksti englanniksi kahdella tavalla:
+1. Virallinen, asiallinen tyyli (esim. sähköpostiviesti yritykselle)
+2. Rento, puhekielinen tyyli (esim. viesti ystävälle)
+
+Teksti: "Haluaisin tietää, onko tuote vielä saatavilla."</div>
+
+  <h3>Käännöstyökalujen vertailu</h3>
+
+  <table>
+    <tr><th>Työkalu</th><th>Vahvuudet</th><th>Rajoitteet</th></tr>
+    <tr><td><strong>ChatGPT / Gemini / Copilot</strong></td><td>Selittää, vastaa kysymyksiin, osaa kontekstin ja sävyn</td><td>Voi tehdä hienovaraisia virheitä harvinaisemmissa kielissä</td></tr>
+    <tr><td><strong>DeepL</strong> (deepl.com)</td><td>Erittäin laadukas käännös, nopea, tukee tiedostojen kääntämistä</td><td>Ei selitä eikä käy dialogia</td></tr>
+    <tr><td><strong>Google Translate</strong></td><td>Nopea, ilmainen, tukee yli 100 kieltä, kameratulkkaus puhelimella</td><td>Laatu vaihtelee, ei selityksiä</td></tr>
+  </table>
+
+  <div class="vinkki">
+    <div class="vinkki-otsikko">Käytännön vinkki: kamerakäännös matkalla</div>
+    Google Translate -sovelluksessa voit osoittaa puhelimen kameralla kylttiin, menutauluun tai opasteeseen — teksti kääntyy reaaliajassa ruudulle. Tätä ei tarvita tietokoneella, mutta kannattaa mainita puhelinkäyttöä ajatellen.
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 2.1 – Käännösvertailu</div>
+    <p>Valitse lyhyt suomenkielinen teksti (esim. uutinen, reseptin johdanto tai matkailukuvaus). Käännätä se haluamaasi kieleen:</p>
+    <ol>
+      <li>ChatGPT:llä tai Geminillä</li>
+      <li>DeepL:llä (deepl.com)</li>
+    </ol>
+    <p>Vertailkaa tuloksia. Missä on eroja? Kumpi tuntuu luontevammalta? Pyydä sitten ChatGPT:tä selittämään jokin kohdekielen ilmaus, joka herätti kysymyksen.</p>
+</div>
+</section>
+<section id="kielioppi">
+  <h2 class="osio-otsikko">3. Kielioppiapuri ja kirjoituksen tarkistus</h2>
+<p>Yksi tekoälyn parhaista ominaisuuksista kieltenoppijalle on kyky tarkistaa kirjoitettua tekstiä ja selittää virheet — ei vain korjata niitä, vaan opettaa miksi ne ovat virheitä.</p>
+
+  <h3>Tekstin tarkistus ja parantaminen</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Kieliopintarkistus selityksin</span>Olet englanninopettaja. Tarkista seuraava englanninkielinen tekstini ja:
+1. Korjaa kielioppivirheet
+2. Selitä jokainen korjaus lyhyesti suomeksi
+3. Ehdota luontevampaa ilmausta, jos jokin kuulostaa liian suomalaiselta
+
+Teksti: [kirjoita tähän oma tekstisi]</div>
+
+  <div class="kehote-esimerkki"><span class="label">Sujuvuuden parantaminen</span>Tässä on kirjoittamani ranskankielinen sähköposti. En ole varma, kuulostaako se luontevalta natiivipuhujalle. Paranna sujuvuutta tarpeen mukaan ja kerro, mitä muutit ja miksi.
+
+[Teksti tähän]</div>
+
+  <h3>Kielioppisäännöt esimerkkien kautta</h3>
+  <p>Tekoäly on kärsivällinen opettaja. Voit kysyä saman asian moneen kertaan eri tavoin, ja voit pyytää lisää esimerkkejä niin kauan kuin tarvitset.</p>
+
+  <div class="kehote-esimerkki"><span class="label">Kielioppisäännön selitys</span>Selitä englanniksi "present perfect -aikamuoto" -aikamuoto suomeksi. Milloin sitä käytetään ja miten se eroaa simple past -aikamuoto -aikamuodosta? Anna kolme esimerkkiparia, joissa näkyy ero.</div>
+
+  <div class="kehote-esimerkki"><span class="label">Oman virheen selitys</span>Kirjoitin englanniksi: "I have went to Paris last year." Mikä tässä on väärin ja miksi? Kirjoita oikea versio ja selitä säännön lyhyesti.</div>
+
+  <h3>Sanaston rakentaminen teemoittain</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Teemallinen sanasto</span>Opetan itselleni espanjaa. Tee minulle lista 15 hyödyllisimmästä sanasta tai ilmauksesta ravintolassa asioimiseen. Jokaisesta: espanjalainen sana, lausumisohje suomeksi kirjoitettuna ja suomenkielinen käännös.</div>
+
+  <div class="kehote-esimerkki"><span class="label">Sanastotesti</span>Tenttaa minua äsken oppimastani sanastosta. Näytä minulle suomenkielinen sana, minä kirjoitan espanjaksi, sitten kerrot onko oikein ja mikä olisi oikea vastaus jos meni väärin. Aloita.</div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 3.1 – Tarkistuta oma tekstisi</div>
+    <p>Kirjoita noin 3–5 lausetta jollakin haluamallasi kielellä (englanti, ruotsi, saksa, ranska, espanja tai muu). Aihe saa olla mitä tahansa — esim. kuvaus omasta kotipaikastasi tai suosikkiharrastuksestasi. Pyydä sitten tekoälyä tarkistamaan teksti ja selittämään korjaukset.</p>
+    <p><em>Jaa ryhmälle: mitä opit korjauksista?</em></p>
+  </div>
+</section>
+
+<section id="keskustelu">
+  <h2 class="osio-otsikko">4. Keskusteluharjoittelu tekoälyn kanssa</h2>
+<p>Yksi yleisimmistä kieltenoppimisen esteistä on pelko puhua — ei ole luontevaa harjoitteluseuraa, tai hävetään virheitä. Tekoäly on täydellinen harjoittelukumppani: se ei tuomitse, ei väsy ja voi toimia juuri sinulle sopivalla tasolla.</p>
+
+  <h3>Dialogiharjoittelu</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Roolipeliharjoittelu</span>Harjoitellaan englanniksi. Olet kaupan myyjä Lontoossa. Minä olen asiakas, joka etsii lahjaideaa ystävälleen. Käy kanssani luonnollinen myymäläkeskustelu englanniksi. Jos teen kielioppivirheen, korjaa se lempeästi lyhyesti suluissa ennen kuin jatkat dialogia. Aloita tervehtimällä.</div>
+
+  <div class="kehote-esimerkki"><span class="label">Säädä taso sopivaksi</span>Harjoitellaan ranskaa. Tasoni on alkaja — osaan perussanat mutta kielioppi on heikkoa. Puhu kanssani ranskan tunnin aiheista hitaasti ja selkeästi. Jos en ymmärrä jotain, selitä suomeksi. Aloita kysymällä nimeni ranskaksi.</div>
+
+  <div class="kehote-esimerkki"><span class="label">Vapaa keskustelu kohdekielellä</span>Haluaisin harjoitella espanjaa juttelemalla vapaasti. Olen keskitason oppija. Valitse jokin arkinen aihe (esim. ruoka, matkustelu, harrastukset) ja aloita keskustelu. Korjaa virheeni, mutta älä keskeytä lauskeeni — tee korjaus vastauksen lopussa.</div>
+
+  <h3>Äänitila — puhuminen tekoälylle</h3>
+  <p>ChatGPT:n ja Geminin äänitilassa voi harjoitella puhumista — ei vain kirjoittamista. Tämä on erityisen hyödyllistä ääntämisen harjoitteluun.</p>
+
+  <div class="kielilaatikko">
+    <div class="kieli-otsikko">Näin käytät äänitilaa kielten harjoitteluun</div>
+    <ol>
+      <li>Avaa ChatGPT tai Gemini puhelimella tai tietokoneella</li>
+      <li>Klikkaa mikrofonipainiketta (ChatGPT:ssä alareunassa, Geminissä vastaavasti)</li>
+      <li>Kerro ensin kirjoittamalla haluamasi harjoittelutilanne ja kieli</li>
+      <li>Vaihda äänikeskusteluun — puhu kohdekieltä, tekoäly vastaa äänellä</li>
+    </ol>
+    <p style="margin-top:0.5rem">Ääntämistä ei arvioida automaattisesti, mutta voit pyytää: <em>"Kuulostiko ääntämiseni luontevalta?"</em></p>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 4.1 – Rooliharjoittelu pienryhmässä</div>
+    <p>Jokainen valitsee oman kielensä ja harjoittelutilanteensa. Esimerkkitilanteita:</p>
+    <ul>
+      <li>Hotellin vastaanotto (englanti)</li>
+      <li>Kaupassa asiointi (espanja tai ranska)</li>
+      <li>Lääkärissä (englanti tai saksa)</li>
+      <li>Tutustuminen uuteen ihmiseen (ruotsi tai jokin muu)</li>
+    </ul>
+    <p>Kerro tekoälylle tilanteen ja pyydä se aloittamaan. Jatka dialogia vähintään 5–6 vuoroa. Pyydä lopuksi lyhyt palaute: mitä meni hyvin, mitä voisi parantaa?</p>
+</div>
+</section>
+<section id="matkailu">
+  <h2 class="osio-otsikko">5. Matkailu ja käytännön tilanteet</h2>
+<p>Yksi konkreettisimmista käyttötavoista: matkalle valmistautuminen. Tekoäly voi opettaa juuri ne fraasit ja tilanteet, joita tarvitset — eikä kaikkea muuta, mitä perinteiset kurssit yrittävät opettaa.</p>
+
+  <h3>Matkafraasit kohdennettuna</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Matkafraasit tiettyyn tilanteeseen</span>Matkustan ensi kuussa Lissaboniin. En osaa portugalia lainkaan. Opeta minulle 10 tärkeintä fraasia, joita tarvitsen ravintolassa. Kirjoita jokainen:
+- Portugali (alkuperäinen)
+- Ääntäminen suomeksi kirjoitettuna
+- Suomenkielinen merkitys</div>
+
+  <div class="kehote-esimerkki"><span class="label">Hätätilanteen sanasto</span>Mitä pitäisi osata sanoa italiaksi, jos:
+1. Tarvitsen apua
+2. Minulle on tapahtunut onnettomuus
+3. Tarvitsen lääkärin
+4. Lompakkoni on varastettu
+
+Kirjoita fraasit selkeästi lausumisohjeilla.</div>
+
+  <h3>Kulttuurinen osaaminen kielen takana</h3>
+  <p>Kieli ei ole vain sanoja — se on kulttuuria. Tekoäly osaa selittää tapoja ja käytäntöjä, jotka auttavat kommunikoimaan luontevasti.</p>
+
+  <div class="kehote-esimerkki"><span class="label">Kulttuurivinkit</span>Matkustan Japaniin. Mitkä ovat tärkeimmät kulttuuriset tavat, jotka suomalaisen pitää tietää asioidessa japanilaisten kanssa? Mitä saa tehdä, mitä ei?</div>
+
+  <div class="kehote-esimerkki"><span class="label">Matkakeskustelun harjoittelu</span>Olen matkalla Barcelonassa ja haluan kysyä paikallisilta suosituksia. Harjoitellaan tätä tilannetta espanjaksi. Olet paikallinen, minä olen turisti. Aloita vastaamalla, kun pysäytän sinut kadulla.</div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 5.1 – Oma matkasuunnitelma ja fraasipaketti</div>
+    <p>Ajattele jotain matkaa, jonka haluaisit tehdä — oikea tai kuvitteellinen. Pyydä tekoälyltä:</p>
+    <ol>
+      <li>10 hyödyllisintä fraasia kyseisen maan kielellä</li>
+      <li>Yksi kulttuurivinkki, jota et ehkä tiennyt</li>
+      <li>Lyhyt harjoittelutilanne (esim. ravintolassa tai museossa)</li>
+    </ol>
+    <p><em>Jaa ryhmälle: mikä fraasi tai kulttuurivinkki yllätti eniten?</em></p>
+  </div>
+</section>
+
+<section id="harjoitukset">
+  <h2 class="osio-otsikko">6. Pienryhmäharjoitukset</h2>
+<div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä A – Kielikoulu viidessä minuutissa</div>
+    <p>Jokainen valitsee kielen, jota haluaa oppia tai jota jo osaa. Pyytäkää tekoälyä opettamaan yksi kieliopillinen asia (esim. "miten muodostan menneaikamuodon ranskassa") ja harjoitelkaa sitä kolmella esimerkkilauseella. Jaa ryhmälle: opittiinko jotain uutta?</p>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä B – Kirjeprojekti</div>
+    <p>Kirjoittakaa yhdessä lyhyt kirje tai sähköposti jollakin kielellä — esim. englanniksi ulkomaiselle ystävälle tai espanjaksi lomakohteen hotellille. Kirjoittakaa ensin itse, sitten pyytäkää tekoälyä tarkistamaan ja parantamaan. Käykää läpi ehdotetut muutokset yhdessä.</p>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä C – Kielitietovisa</div>
+    <p>Pyydäkää tekoälyä järjestämään lyhyt kielitietovisa ryhmälle. Esimerkiksi: "Tee 5 kysymyksen visa englannin idiomeista suomeksi vastattuna." Voitte kilpailla kuka tietää eniten — tekoäly tarkistaa vastaukset ja selittää.</p>
+  </div>
+</section>
+
+<section id="yhteenveto">
+  <div class="yhteenveto">
+    <h3>Yhteenveto – mitä opimme tänään</h3>
+    <ul>
+      <li><strong>Käännös + selitys</strong> oppii enemmän kuin pelkkä käännös</li>
+      <li><strong>Kielioppivirheet</strong> voi tarkistuttaa ja selityttää — tekoäly opettaa, ei vain korjaa</li>
+      <li><strong>Dialogiharjoittelu</strong> on turvallinen tapa harjoitella ilman suorituspaineita</li>
+      <li><strong>Matkailu</strong> — juuri oikeat fraasit juuri oikeaan tilanteeseen</li>
+      <li>Äänitila mahdollistaa puheharjoittelun</li>
+    </ul>
+    <p style="margin-top:1rem"><strong>Kotitehtävä (vapaaehtoinen):</strong> Harjoittele haluamaasi kieltä 10 minuuttia tekoälyn kanssa ennen seuraavaa sessiota. Voit valita minkä tahansa aiemmin harjoitelluista tavoista.</p>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

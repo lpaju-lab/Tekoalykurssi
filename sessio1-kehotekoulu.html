@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessio 1 – Kehotekoulu: Kohti parempia kehotteita</title>
+<style>
+  :root {
+    --sininen: #1a3a5c;
+    --vaaleasininen: #2d6aa0;
+    --korostus: #e8f0fa;
+    --harjoitus: #fff8e1;
+    --harjoitus-reuna: #f0c040;
+    --tärkeä: #fdecea;
+    --tärkeä-reuna: #c62828;
+    --vihreä: #e8f5e9;
+    --vihreä-reuna: #388e3c;
+    --teksti: #1a1a1a;
+    --taustaharmoninen: #f5f7fa;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--teksti);
+    background: #fff;
+  }
+
+  .header {
+    background: var(--sininen);
+    color: white;
+    padding: 2rem 2.5rem;
+  }
+  .header .kurssinimi {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    font-family: Arial, sans-serif;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  .header .info {
+    font-size: 1rem;
+    opacity: 0.85;
+    font-family: Arial, sans-serif;
+  }
+
+  .nav-bar {
+    background: var(--vaaleasininen);
+    padding: 0.75rem 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+  }
+  .nav-bar a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.9;
+  }
+  .nav-bar a:hover { opacity: 1; text-decoration: underline; }
+  .nav-bar .aktiivinen { font-weight: bold; opacity: 1; }
+
+  .sisällysluettelo {
+    background: var(--korostus);
+    border-left: 5px solid var(--vaaleasininen);
+    margin: 2rem 2.5rem;
+    padding: 1.5rem 2rem;
+    border-radius: 0 8px 8px 0;
+    font-family: Arial, sans-serif;
+  }
+  .sisällysluettelo h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sininen);
+    margin-bottom: 0.75rem;
+  }
+  .sisällysluettelo ol {
+    padding-left: 1.5rem;
+  }
+  .sisällysluettelo li {
+    margin-bottom: 0.3rem;
+  }
+  .sisällysluettelo a {
+    color: var(--vaaleasininen);
+    text-decoration: none;
+  }
+  .sisällysluettelo a:hover { text-decoration: underline; }
+
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 1rem 2.5rem 4rem;
+  }
+
+  section {
+    margin-top: 3rem;
+  }
+
+  h2.osio-otsikko {
+    font-size: 1.6rem;
+    color: var(--sininen);
+    border-bottom: 3px solid var(--vaaleasininen);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+    font-family: Arial, sans-serif;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    color: var(--vaaleasininen);
+    margin: 1.8rem 0 0.7rem;
+    font-family: Arial, sans-serif;
+  }
+
+  p { margin-bottom: 1rem; }
+
+  .aikamerkki {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    color: #666;
+    background: #eee;
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .harjoitus {
+    background: var(--harjoitus);
+    border-left: 5px solid var(--harjoitus-reuna);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .harjoitus .harjoitus-otsikko {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #7a5800;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .tärkeää {
+    background: var(--tärkeä);
+    border-left: 5px solid var(--tärkeä-reuna);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .tärkeää .tärkeä-otsikko {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: var(--tärkeä-reuna);
+    margin-bottom: 0.5rem;
+  }
+
+  .vinkki {
+    background: var(--vihreä);
+    border-left: 5px solid var(--vihreä-reuna);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .vinkki .vinkki-otsikko {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #2e7d32;
+    margin-bottom: 0.5rem;
+  }
+
+  .kehote-esimerkki {
+    background: #1e1e2e;
+    color: #e0e0ff;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    padding: 1.2rem 1.5rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
+  .kehote-esimerkki .label {
+    font-family: Arial, sans-serif;
+    font-size: 0.78rem;
+    color: #aaa;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .vertailu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.2rem 0;
+  }
+  @media (max-width: 640px) {
+    .vertailu { grid-template-columns: 1fr; }
+  }
+  .vertailu .huono {
+    background: #fdecea;
+    border: 2px solid #d32f2f;
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+  .vertailu .hyvä {
+    background: #e8f5e9;
+    border: 2px solid #388e3c;
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+  .vertailu .vertailu-label {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  .vertailu .huono .vertailu-label { color: #d32f2f; }
+  .vertailu .hyvä .vertailu-label { color: #388e3c; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.2rem 0;
+    font-family: Arial, sans-serif;
+    font-size: 0.95rem;
+  }
+  th {
+    background: var(--sininen);
+    color: white;
+    padding: 0.6rem 1rem;
+    text-align: left;
+  }
+  td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: var(--taustaharmoninen); }
+
+  .taukopalkki {
+    background: var(--sininen);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+  }
+
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  li { margin-bottom: 0.4rem; }
+
+  .yhteenveto {
+    background: var(--korostus);
+    border: 2px solid var(--vaaleasininen);
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    margin-top: 3rem;
+    font-family: Arial, sans-serif;
+  }
+  .yhteenveto h3 {
+    color: var(--sininen);
+    margin-bottom: 0.8rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="kurssinimi">Tekoälytaitoja arjen tarpeisiin · Ikääntyvien yliopisto</div>
+  <h1>Sessio 1: Kehotekoulu</h1>
+  <div class="info">Kohti parempia kehotteita &nbsp;·&nbsp; 3 tuntia</div>
+</div>
+
+<div class="nav-bar">
+  <a href="index.html">Etusivu</a>
+  <a href="sessio1-kehotekoulu.html" class="aktiivinen">S1: Kehotekoulu</a>
+  <a href="sessio2-turvallisuus-sukututkimus.html">S2: Turvallisuus</a>
+  <a href="sessio3-yhdistystoiminta.html">S3: Yhdistystoiminta</a>
+  <a href="sessio4-kielet.html">S4: Kielten opiskelu</a>
+  <a href="sessio5-kuvat.html">S5: Kuvat</a>
+  <a href="sessio6-etiikka.html">S6: Etiikka &amp; Ympäristö</a>
+  <a href="sessio7-vinkit.html">S7: Vinkit &amp; Edistynyt käyttö</a>
+  <a href="sessio8-sukututkimus.html">S8: Sukututkimus</a>
+</div>
+
+<div class="sisällysluettelo">
+  <h2>Tämän session sisältö</h2>
+  <ol>
+    <li><a href="#johdanto">Johdanto ja kertaus</a></li>
+    <li><a href="#miten-tekoaly-lukee">Miten tekoäly lukee kehotteitasi</a></li>
+    <li><a href="#roolit">Roolit ja persoonat</a></li>
+    <li><a href="#rakenteet">Rakenteet, muoto ja pituus</a></li>
+    <li><a href="#iteraatio">Iteraatio: parantele tulosta vaihe vaiheelta</a></li>
+    <li><a href="#ketjutus">Ketjuttaminen: monivaiheinen työ</a></li>
+    <li><a href="#harjoitukset">Pienryhmäharjoitukset</a></li>
+    <li><a href="#yhteenveto">Yhteenveto</a></li>
+  </ol>
+</div>
+
+<main>
+
+<!-- ===================== JOHDANTO ===================== -->
+<section id="johdanto">
+  <h2 class="osio-otsikko">1. Johdanto ja kertaus</h2>
+  <p>Hyvä kehote on selkeä, antaa kontekstia ja kertoo tavoitteen. Nyt mennään syvemmälle: miten tekoälyä voi ohjata hienovaraisemmin, mikä tekee kehotteesta todella hyvän, ja miten kehittää omaa tapaa kommunikoida tekoälyn kanssa.</p>
+
+  <h3>Kehotteiden perusta:</h3>
+ 
+  <ul>
+    <li>Selkeän kysymyksen esittäminen</li>
+    <li>Kontekstin antaminen</li>
+    <li>Tavoitteen kertominen</li>
+    <li>Muotoilun määrittely (tyyli, pituus, kohderyhmä)</li>
+  </ul>
+
+  
+
+</section>
+
+<!-- ===================== MITEN TEKOÄLY LUKEE ===================== -->
+<section id="miten-tekoaly-lukee">
+  <h2 class="osio-otsikko">2. Miten tekoäly lukee kehotteitasi</h2>
+  <p>Tekoäly ei "ymmärrä" kehotettasi ihmisen tavoin. Se ennustaa todennäköisimmän jatkeen syötteellesi. Tämä tarkoittaa, että pienetkin sanamuodon muutokset voivat muuttaa vastausta merkittävästi.</p>
+
+  <h3>Kehotteen anatomiaa</h3>
+  <p>Hyvä kehote koostuu yleensä näistä osista — kaikkia ei tarvita joka kerta:</p>
+
+  <table>
+    <tr><th>Osa</th><th>Mitä se tekee</th><th>Esimerkki</th></tr>
+    <tr><td><strong>Rooli</strong></td><td>Kertoo, millaisena asiantuntijana tekoälyn pitäisi toimia</td><td>"Olet kokenut historioitsija..."</td></tr>
+    <tr><td><strong>Konteksti</strong></td><td>Antaa taustatietoa, jonka perusteella tekoäly vastaa</td><td>"Kirjoitan 1800-luvun Savossa eläneestä suvustani..."</td></tr>
+    <tr><td><strong>Tehtävä</strong></td><td>Kertoo, mitä haluat</td><td>"Kirjoita lyhyt yhteenveto..."</td></tr>
+    <tr><td><strong>Muoto</strong></td><td>Miten vastaus pitäisi esittää</td><td>"...ranskalaisia viivoja käyttäen, enintään 150 sanaa"</td></tr>
+    <tr><td><strong>Rajoitteet</strong></td><td>Mitä ei saa tehdä tai mitä pitää välttää</td><td>"Älä käytä ammattisanastoa."</td></tr>
+  </table>
+
+  <h3>Vertailu: epätarkka vs. tarkka kehote</h3>
+
+  <div class="vertailu">
+    <div class="huono">
+      <div class="vertailu-label">Epätarkka</div>
+      Kirjoita jotain sukututkimuksesta.
+    </div>
+    <div class="hyvä">
+      <div class="vertailu-label">Tarkka</div>
+      Olet sukututkimuksen asiantuntija. Kirjoita lyhyt (enintään 200 sanaa) johdanto sukututkimuksen aloittamiseen, joka sopii henkilölle, joka ei ole koskaan aiemmin tutkinut sukuaan. Käytä selkeää kieltä, ei ammattisanastoa.
+    </div>
+  </div>
+
+  <h3>Positiiviset ja negatiiviset ohjeet</h3>
+  <p>Tekoäly reagoi sekä siihen, mitä pyydät, että siihen, mitä kiellät. Negatiiviset ohjeet ovat usein hyödyllisiä, mutta kannattaa mieluummin kertoa, mitä haluaa, kuin luetella mitä ei saa tehdä.</p>
+
+  <div class="vertailu">
+    <div class="huono">
+      <div class="vertailu-label">Pelkkä kielto</div>
+      Älä käytä vaikeita sanoja. Älä kirjoita liian pitkästi. Älä ole tylsä.
+    </div>
+    <div class="hyvä">
+      <div class="vertailu-label">Selkeä ohje</div>
+      Kirjoita selkeästi ja kansantajuisesti, enintään 100 sanaa, käytä esimerkkejä.
+    </div>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 2.1 – Paranna kehote</div>
+    <p>Avaa ChatGPT, Gemini tai Copilot. Kokeile ensin tätä kehotetta:</p>
+    <div class="kehote-esimerkki"><span class="label">Kokeile ensin:</span>Kerro minulle Suomen historiasta.</div>
+    <p>Sitten paranna se käyttämällä taulukon osatekijöitä (rooli, konteksti, tehtävä, muoto, rajoitteet). Oma aihe saa olla mikä tahansa, joka sinua kiinnostaa. Vertaa vastauksia.</p>
+    <p><em>Jaa ryhmälle yksi havainto: mikä muuttui eniten?</em></p>
+  </div>
+</section>
+
+<!-- ===================== ROOLIT ===================== -->
+<section id="roolit">
+  <h2 class="osio-otsikko">3. Roolit ja persoonat</h2>
+  <p>Yksi tehokkaimmista tavoista ohjata tekoälyä on antaa sille rooli. Roolin antaminen ei "pimennä" tekoälyä tai tee siitä eri ohjelma — se ohjaa vastaustyyliä, sanastoa ja näkökulmaa.</p>
+
+  <h3>Miten rooli vaikuttaa?</h3>
+  <p>Sama kysymys voi tuottaa hyvin erilaisia vastauksia eri rooleilla:</p>
+
+  <div class="kehote-esimerkki"><span class="label">Esimerkki: sama kysymys, eri rooli</span>Olet kokenut lääkäri, joka selittää asioita potilaille selkeästi ja ymmärrettävästi.
+Mitä tarkoittaa kohonnut verenpaine?
+
+---
+
+Olet toimittaja, joka kirjoittaa yleistajuiseen terveyslehteen.
+Mitä tarkoittaa kohonnut verenpaine?
+
+---
+
+Olet ravitsemusterapeutti.
+Mitä tarkoittaa kohonnut verenpaine?</div>
+
+  <h3>Hyödyllisiä rooleja käytännön tilanteisiin</h3>
+
+  <table>
+    <tr><th>Tilanne</th><th>Rooli kehotteessa</th></tr>
+    <tr><td>Kirjeen tai sähköpostin kirjoittaminen</td><td>"Olet kokenut toimistosihteeri, joka kirjoittaa selkeää virallista suomea."</td></tr>
+    <tr><td>Tiedon selittäminen yksinkertaisesti</td><td>"Olet opettaja, joka selittää asiat selkeästi ilman ammattisanastoa."</td></tr>
+    <tr><td>Tekstin kriittinen arviointi</td><td>"Olet tarkka kielentarkastaja. Kommentoi tekstiä rakentavasti."</td></tr>
+    <tr><td>Sukututkimusapuri</td><td>"Olet sukututkimuksen asiantuntija, joka tuntee Suomen kirkonkirjakäytännöt."</td></tr>
+    <tr><td>Tapahtuman suunnittelu</td><td>"Olet tapahtumatuottaja, joka on erikoistunut pieniin kulttuuritapahtumiin."</td></tr>
+  </table>
+
+  <div class="tärkeää">
+    <div class="tärkeä-otsikko">Muista: rooli ei tee tekoälystä oikeaa asiantuntijaa</div>
+    Tekoäly voi vastata lääkärin roolissa, mutta se ei ole lääkäri. Kriittisissä asioissa (terveys, oikeudelliset seikat, taloudelliset päätökset) on aina käännyttävä oikean ammattilaisen puoleen.
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 3.1 – Roolikoe</div>
+    <p>Valitse jokin sinua kiinnostava aihe tai kysymys. Esitä se tekoälylle kolmella eri roolilla:</p>
+    <ol>
+      <li>Ilman roolia</li>
+      <li>Asiantuntijan roolilla (esim. historioitsija, lääkäri, toimittaja)</li>
+      <li>Opettajan roolilla, joka selittää asiaa lapselle tai aloittelijalle</li>
+    </ol>
+    <p><em>Millaisia eroja huomasit? Milloin roolin antaminen auttoi eniten?</em></p>
+  </div>
+</section>
+
+<!-- ===================== RAKENTEET ===================== -->
+<section id="rakenteet">
+  <h2 class="osio-otsikko">4. Rakenteet, muoto ja pituus</h2>
+
+  <p>Tekoäly voi tuottaa vastauksen monessa eri muodossa. Muodon määrittely etukäteen säästää aikaa ja tuottaa suoraan käyttökelpoista sisältöä.</p>
+
+  <h3>Yleisiä muotopyyntöjä</h3>
+
+  <table>
+    <tr><th>Pyyntö</th><th>Milloin hyödyllinen</th></tr>
+    <tr><td>"Tee ranskalaisilla viivoilla"</td><td>Nopea silmäily, kokousmuistiot</td></tr>
+    <tr><td>"Kirjoita taulukkona"</td><td>Vertailu, luettelot</td></tr>
+    <tr><td>"Kirjoita juoksevana tekstinä"</td><td>Kirjeet, artikkelit, esitykset</td></tr>
+    <tr><td>"Enintään 100 sanaa"</td><td>Tiivistelmät, some-postaukset</td></tr>
+    <tr><td>"Jaa osiin: johdanto, sisältö, lopetus"</td><td>Rakenteiset dokumentit</td></tr>
+    <tr><td>"Numeroi vaiheet"</td><td>Ohjeet, toimintasuunnitelmat</td></tr>
+    <tr><td>"Kysy minulta tarkentavia kysymyksiä ennen kuin kirjoitat"</td><td>Kun tehtävä on monimutkainen</td></tr>
+  </table>
+   <div class="harjoitus">
+ <div class="harjoitus-otsikko">Ärsyttääkö mielistely?</div>
+    <p>Voit ohjeistaa tekoälyn pois mielistelevästä tyylistä, esim.: “Anna aina rehellinen palaute. Älä kehu tai tue näkemyksiäni vain kohteliaisuudesta tai siksi, että se tuntuisi kannustavalta. Jos argumentti, rakenne, metodologinen perustelu tai teoreettinen ratkaisu on heikko, epälooginen tai ristiriitainen, tuo se selkeästi esiin ja perustele miksi. Priorisoi tieteellinen johdonmukaisuus, käsitteellinen tarkkuus ja argumentatiivinen selkeys. Vältä tarpeetonta kannustavaa tai emotionaalista kieltä.”</p>
+     </div>
+  <div class="kehote-esimerkki"><span class="label">Pyydä tekoälyltä arvio kehotetaidostasi</span>Arvioi, millainen kehotteiden antaja olen niillä tiedoilla, joita sinulla minusta on. Anna minulle konkreettisia vinkkejä, joilla voin parantaa omia kehotteitani.</div>
+
+
+  <h3>Pituuden hallinta</h3>
+  <p>Tekoälyllä on taipumus kirjoittaa pitkästi. Pituus kannattaa määritellä aina etukäteen, kun se on tärkeää.</p>
+
+  <div class="kehote-esimerkki"><span class="label">Pituuden hallinta</span>Kirjoita 3-4 lauseen tiivistelmä seuraavasta tekstistä. Älä lisää mitään, mitä tekstissä ei ole.
+
+[Liitä tähän teksti]</div>
+
+  <h3>Askel eteenpäin: esimerkin antaminen</h3>
+  <p>Yksi tehokkaimmista ohjauskeinoista on näyttää esimerkkiä — mitä haluat tai mitä et halua.</p>
+
+  <div class="kehote-esimerkki"><span class="label">Esimerkki: tyyliesimerkki kehotteessa</span>Kirjoita kolme some-viestiä yhdistyksemme tapahtumasta.
+Tyyli: ystävällinen, lyhyt, ei huutomerkkejä.
+
+Esimerkki hyvästä viestistä:
+"Tervetuloa syyskokoukseemme 15.10. Tarjolla kahvia ja yhteinen hetki. Ilmoittaudu 10.10. mennessä."
+
+Tapahtuman tiedot: [kirjoita tähän]</div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 4.1 – Muodon hallinta</div>
+    <p>Pyydä tekoälyä tekemään jokin konkreettinen asia — esimerkiksi kirjoita lyhyt tiedote kuvitteellisesta tapahtumasta. Kokeile pyytää sama sisältö eri muodoissa:</p>
+    <ol>
+      <li>Ranskalaisina viivoina</li>
+      <li>Juoksevana tekstinä, enintään 80 sanaa</li>
+      <li>Taulukkona (tapahtuma, aika, paikka, kenelle sopii)</li>
+    </ol>
+    <p><em>Mikä muoto tuntui hyödyllisimmältä?</em></p>
+  </div>
+</section>
+
+<!-- ===================== ITERAATIO ===================== -->
+<section id="iteraatio">
+  <h2 class="osio-otsikko">5. Iteraatio: parantele tulosta vaihe vaiheelta</h2>
+  <p>Tekoälyn kanssa ei kannata odottaa täydellistä vastausta ensimmäisellä kehotteella. Ammattilaisten tapa käyttää tekoälyä on <strong>iteroida</strong> — jatkaa keskustelua ja pyytää parannuksia.</p>
+
+  <h3>Iteraation perusperiaatteet</h3>
+  <ul>
+    <li>Aloita riittävän hyvällä kehotteella, älä täydellisellä</li>
+    <li>Pyydä muutoksia konkreettisesti: "tee tämä lyhyemmäksi", "lisää esimerkki", "vaihda sävy asiallisemmaksi"</li>
+    <li>Voit pyytää tekoälyä selittämään valintojaan</li>
+    <li>Jos vastaus on täysin väärä, aloita uusi keskustelu puhtaalta pöydältä</li>
+  </ul>
+
+  <h3>Hyödyllisiä jatkopyyntöjä</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Iteraatiopyyntöjä</span>"Tee tästä lyhyempi, enintään puolet nykyisestä."
+
+"Vaihda sävy virallisemmaksi / rennommaksi."
+
+"Lisää konkreettinen esimerkki kohtaan 2."
+
+"Kirjoita sama asia toisen näkökulman kautta."
+
+"Mistä olet epävarma tässä vastauksessa?"
+
+"Mitä jätit kertomatta?"
+
+"Tee kolme vaihtoehtoista versiota."</div>
+
+  <h3>Esimerkki: iteraatio käytännössä</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Kierros 1</span>Kirjoita kutsu yhdistyksen syyskokoukseen.
+
+→ Tekoäly kirjoittaa pitkän muodollisen kutsun.</div>
+
+  <div class="kehote-esimerkki"><span class="label">Kierros 2</span>Hyvä alku! Tee siitä lyhyempi — enintään 5 lausetta. Pidä silti kaikki oleelliset tiedot.
+
+→ Tekoäly tiivistää.</div>
+
+  <div class="kehote-esimerkki"><span class="label">Kierros 3</span>Muuta aloitus henkilökohtaisemmaksi ja lämpimämmäksi.
+
+→ Tekoäly pehmentää sävyä.</div>
+
+  <div class="vinkki">
+    <div class="vinkki-otsikko">Vinkki: kysy tekoälytä, miten parannat kehotettasi</div>
+    Jos et ole tyytyväinen vastaukseen, voit pyytää: <em>"Miten minun pitäisi muotoilla pyyntöni, jotta saisin paremman vastauksen?"</em> Tekoäly osaa usein neuvoa itse.
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 5.1 – Kolmen kierroksen iteraatio</div>
+    <p>Valitse jokin käytännöllinen kirjoitustehtävä (esim. kutsu, tiedote, yhteenveto, sähköpostiviesti). Tee kolme kierrosta:</p>
+    <ol>
+      <li>Kirjoita ensimmäinen kehote ja katso vastaus</li>
+      <li>Pyydä jokin konkreettinen muutos (sävy, pituus, rakenne)</li>
+      <li>Pyydä vielä yksi parannus tai vaihtoehtoinen versio</li>
+    </ol>
+    <p><em>Milloin huomasit, että vastaus oli "valmis"? Miltä se tuntui?</em></p>
+  </div>
+</section>
+
+<!-- ===================== KETJUTUS ===================== -->
+<section id="ketjutus">
+  <h2 class="osio-otsikko">6. Ketjuttaminen: monivaiheinen työ</h2>
+  <p>Monimutkaiset tehtävät kannattaa pilkkoa vaiheisiin. Sen sijaan että pyytää kaiken yhdellä kertaa, voi ohjata tekoälyä vaihe vaiheelta.</p>
+
+  <h3>Milloin ketjuttaminen auttaa?</h3>
+  <ul>
+    <li>Pitkän tekstin kirjoittaminen (ensin hahmotelma, sitten sisältö)</li>
+    <li>Tutkimustyö (ensin taustatiedot, sitten analyysi)</li>
+    <li>Suunnittelu (ensin ideat, sitten valinta, sitten yksityiskohdat)</li>
+    <li>Kääntäminen ja muokkaaminen (ensin käännös, sitten tarkistus)</li>
+  </ul>
+
+  <h3>Esimerkki: artikkelin kirjoittaminen vaiheittain</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Vaihe 1: Rakenne</span>Autan yhdistystämme kirjoittamaan artikkelin kotiseutuhistoriasta jäsenlehteen.
+Tee ensin rakenne (otsikot ja lyhyt kuvaus kustakin osasta). Artikkelin pituus n. 500 sanaa.
+
+→ Tarkistamme rakenteen ja hyväksymme sen.</div>
+
+  <div class="kehote-esimerkki"><span class="label">Vaihe 2: Ensimmäinen luku</span>Hyvä rakenne! Kirjoita nyt ensimmäinen luku: [otsikko]. Pidä sävy lämpimänä ja lukijaa lähellä.
+
+→ Arvioimme ja jatkamme seuraavaan lukuun.</div>
+
+  <h3>Pyydä tekoälyä kysymään ensin</h3>
+  <p>Voit myös antaa tekoälyn johtaa prosessia pyytämällä sitä kysymään sinulta tarvitsemansa tiedot ennen kuin se aloittaa.</p>
+
+  <div class="kehote-esimerkki"><span class="label">Esimerkki</span>Autan kirjoittamaan apurahahakemuksen yhdistyksemme kulttuuritapahtumalle.
+Ennen kuin aloitat, kysy minulta kaikki tarvitsemasi tiedot. Kysele yksi asia kerrallaan.
+
+Auta minua tekemään matkasuunnitelma, joka sisältää tekemiset ja budjetin. Ennen kuin aloitat, kysy minulta tarvittavat kysymykset.</div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 6.1 – Vaiheistus käytännössä</div>
+    <p>Valitse jokin moniosainen tehtävä, esimerkiksi:</p>
+    <ul>
+      <li>Tapahtumaohjelma yhdistyksen vuosijuhlaan</li>
+      <li>Matkasuunnitelman hahmotelma</li>
+      <li>Lyhyen artikkelin rakenne jostakin sinua kiinnostavasta aiheesta</li>
+    </ul>
+    <p>Pyydä ensin pelkkä rakenne tai hahmotelma. Sitten pyydä tekoälyä täydentämään yksi osa kerrallaan.</p>
+  </div>
+</section>
+
+<!-- ===================== PIENRYHMÄHARJOITUKSET ===================== -->
+<section id="harjoitukset">
+  <h2 class="osio-otsikko">7. Pienryhmäharjoitukset</h2>
+
+  <p>Jakaannutaan pienryhmiin (3–4 henkilöä). Jokainen ryhmä valitsee yhden alla olevista tehtävistä tai keksii oman. Lopuksi jokainen ryhmä esittelee lyhyesti löydöksensä.</p>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä A – Muodonmuutos</div>
+    <p>Hakekaa netistä jokin lyhyt uutinen tai artikkeli (tai kirjoittakaa itse lyhyt teksti). Pyytäkää tekoälyä muuttamaan se:</p>
+    <ol>
+      <li>Tiivistelmäksi (enintään 3 lausetta)</li>
+      <li>Some-viestiksi (enintään 280 merkkiä)</li>
+      <li>Kirjeeksi seuralle tai yhdistykselle</li>
+    </ol>
+    <p>Arvioikaa: mikä versio onnistui parhaiten? Mitä piti korjata?</p>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä B – Kehotekilpailu</div>
+    <p>Jokainen ryhmän jäsen kirjoittaa oman kehotteensa samaan tehtävään (esim. "kirjoita kutsu kahvihetkeen"). Vertailkaa tuloksia:</p>
+    <ul>
+      <li>Mikä kehote tuotti parhaan tuloksen?</li>
+      <li>Mitä elementtejä parhaassa kehotteessa oli?</li>
+    </ul>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä C – Asiantuntijapaneeli</div>
+    <p>Valitse jokin kysymys, johon haluatte kuulla eri näkökulmia (esim. miten vähentää energiankulutusta, miten parantaa yhdistyksen kokouksia). Pyytäkää tekoälyä vastaamaan kolmella eri roolilla:</p>
+    <ol>
+      <li>Asiantuntijana</li>
+      <li>Tavalllisena kansalaisena</li>
+      <li>Kriittisen arvioijan roolissa</li>
+    </ol>
+    <p>Vertailkaa vastauksia. Mitä uutta opitte?</p>
+  </div>
+</section>
+
+<!-- ===================== YHTEENVETO ===================== -->
+<section id="yhteenveto">
+  <div class="yhteenveto">
+    <h3>Yhteenveto – mitä opimme tänään</h3>
+    <ul>
+      <li><strong>Kehotteen anatomia:</strong> rooli, konteksti, tehtävä, muoto, rajoitteet</li>
+      <li><strong>Roolit ohjaavat tyyliä</strong> — kokeile eri asiantuntijarooleja</li>
+      <li><strong>Muoto kannattaa määritellä</strong> — taulukko, lista, juokseva teksti, pituus</li>
+      <li><strong>Iteraatio on normaalia</strong> — jatka keskustelua ja pyydä parannuksia</li>
+      <li><strong>Vaiheistus auttaa</strong> monimutkaisissa tehtävissä</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+</body>
+</html>

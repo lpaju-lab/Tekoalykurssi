@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessio 5 – Kuvien tekeminen ja muokkaaminen</title>
+<style>
+  :root {
+    --sininen: #1a3a5c;
+    --vaaleasininen: #2d6aa0;
+    --korostus: #e8f0fa;
+    --harjoitus: #fff8e1;
+    --harjoitus-reuna: #f0c040;
+    --tärkeä: #fdecea;
+    --tärkeä-reuna: #c62828;
+    --vihreä: #e8f5e9;
+    --vihreä-reuna: #388e3c;
+    --kuva: #fff3e0;
+    --kuva-reuna: #e65100;
+    --teksti: #1a1a1a;
+    --taustaharmoninen: #f5f7fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; color: var(--teksti); background: #fff; }
+  .header { background: var(--sininen); color: white; padding: 2rem 2.5rem; }
+  .header .kurssinimi { font-size: 0.95rem; opacity: 0.8; font-family: Arial, sans-serif; margin-bottom: 0.4rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .header h1 { font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem; }
+  .header .info { font-size: 1rem; opacity: 0.85; font-family: Arial, sans-serif; }
+  .nav-bar { background: var(--vaaleasininen); padding: 0.75rem 2.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap; font-family: Arial, sans-serif; font-size: 0.9rem; }
+  .nav-bar a { color: white; text-decoration: none; opacity: 0.9; }
+  .nav-bar a:hover { opacity: 1; text-decoration: underline; }
+  .nav-bar .aktiivinen { font-weight: bold; opacity: 1; }
+  .sisällysluettelo { background: var(--korostus); border-left: 5px solid var(--vaaleasininen); margin: 2rem 2.5rem; padding: 1.5rem 2rem; border-radius: 0 8px 8px 0; font-family: Arial, sans-serif; }
+  .sisällysluettelo h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--sininen); margin-bottom: 0.75rem; }
+  .sisällysluettelo ol { padding-left: 1.5rem; }
+  .sisällysluettelo li { margin-bottom: 0.3rem; }
+  .sisällysluettelo a { color: var(--vaaleasininen); text-decoration: none; }
+  .sisällysluettelo a:hover { text-decoration: underline; }
+  main { max-width: 860px; margin: 0 auto; padding: 1rem 2.5rem 4rem; }
+  section { margin-top: 3rem; }
+  h2.osio-otsikko { font-size: 1.6rem; color: var(--sininen); border-bottom: 3px solid var(--vaaleasininen); padding-bottom: 0.5rem; margin-bottom: 1.2rem; font-family: Arial, sans-serif; }
+  h3 { font-size: 1.2rem; color: var(--vaaleasininen); margin: 1.8rem 0 0.7rem; font-family: Arial, sans-serif; }
+  p { margin-bottom: 1rem; }
+  .aikamerkki { font-family: Arial, sans-serif; font-size: 0.85rem; color: #666; background: #eee; display: inline-block; padding: 0.2rem 0.7rem; border-radius: 12px; margin-bottom: 1rem; }
+  .harjoitus { background: var(--harjoitus); border-left: 5px solid var(--harjoitus-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .harjoitus .harjoitus-otsikko { font-family: Arial, sans-serif; font-weight: bold; font-size: 0.95rem; color: #7a5800; margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .tärkeää { background: var(--tärkeä); border-left: 5px solid var(--tärkeä-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .tärkeää .tärkeä-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: var(--tärkeä-reuna); margin-bottom: 0.5rem; }
+  .vinkki { background: var(--vihreä); border-left: 5px solid var(--vihreä-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .vinkki .vinkki-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: #2e7d32; margin-bottom: 0.5rem; }
+  .kuvaohje { background: var(--kuva); border-left: 5px solid var(--kuva-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .kuvaohje .kuva-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: var(--kuva-reuna); margin-bottom: 0.5rem; }
+  .kehote-esimerkki { background: #1e1e2e; color: #e0e0ff; font-family: 'Courier New', monospace; font-size: 0.95rem; padding: 1.2rem 1.5rem; border-radius: 8px; margin: 1rem 0; white-space: pre-wrap; line-height: 1.6; }
+  .kehote-esimerkki .label { font-family: Arial, sans-serif; font-size: 0.78rem; color: #aaa; display: block; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-family: Arial, sans-serif; font-size: 0.95rem; }
+  th { background: var(--sininen); color: white; padding: 0.6rem 1rem; text-align: left; }
+  td { padding: 0.6rem 1rem; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: var(--taustaharmoninen); }
+  .taukopalkki { background: var(--sininen); color: white; text-align: center; padding: 1rem; border-radius: 8px; margin: 2rem 0; font-family: Arial, sans-serif; font-size: 1rem; }
+  ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+  li { margin-bottom: 0.4rem; }
+  .yhteenveto { background: var(--korostus); border: 2px solid var(--vaaleasininen); border-radius: 10px; padding: 1.5rem 2rem; margin-top: 3rem; font-family: Arial, sans-serif; }
+  .yhteenveto h3 { color: var(--sininen); margin-bottom: 0.8rem; }
+  .kehote-rakenne { background: #f8f4ff; border: 2px solid #7b1fa2; border-radius: 8px; padding: 1.2rem 1.5rem; margin: 1rem 0; font-family: Arial, sans-serif; }
+  .kehote-rakenne .kr-otsikko { font-weight: bold; color: #7b1fa2; margin-bottom: 0.8rem; }
+  .kehote-rakenne .kr-rivi { display: flex; gap: 0.8rem; margin-bottom: 0.4rem; align-items: baseline; }
+  .kehote-rakenne .kr-osa { background: #7b1fa2; color: white; padding: 0.1rem 0.6rem; border-radius: 10px; font-size: 0.82rem; white-space: nowrap; }
+  .kehote-rakenne .kr-teksti { font-size: 0.95rem; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="kurssinimi">Tekoälytaitoja arjen tarpeisiin · Ikääntyvien yliopisto</div>
+  <h1>Sessio 5: Kuvien tekeminen ja muokkaaminen</h1>
+  <div class="info">Tekoälykuvista käytännön muokkaukseen &nbsp;·&nbsp; 3 tuntia</div>
+</div>
+
+<div class="nav-bar">
+  <a href="index.html">Etusivu</a>
+  <a href="sessio1-kehotekoulu.html">S1: Kehotekoulu</a>
+  <a href="sessio2-turvallisuus-sukututkimus.html">S2: Turvallisuus</a>
+  <a href="sessio3-yhdistystoiminta.html">S3: Yhdistystoiminta</a>
+  <a href="sessio4-kielet.html">S4: Kielten opiskelu</a>
+  <a href="sessio5-kuvat.html" class="aktiivinen">S5: Kuvat</a>
+  <a href="sessio6-etiikka.html">S6: Etiikka &amp; Ympäristö</a>
+  <a href="sessio7-vinkit.html">S7: Vinkit &amp; Edistynyt käyttö</a>
+  <a href="sessio8-sukututkimus.html">S8: Sukututkimus</a>
+</div>
+
+<div class="sisällysluettelo">
+  <h2>Tämän session sisältö</h2>
+  <ol>
+    <li><a href="#johdanto">Johdanto: tekoälykuvat ja etiikka</a></li>
+    <li><a href="#generointi">Kuvien generointi – ensimmäiset kokeilut</a></li>
+<li><a href="#paremmat-kehotteet">Paremmat kuvakehotteet</a></li>
+    <li><a href="#muokkaus">Kuvien muokkaaminen tekoälyllä</a></li>
+<li><a href="#kaytto">Käyttötarkoitukset käytännössä</a></li>
+    <li><a href="#harjoitukset">Pienryhmäharjoitukset</a></li>
+    <li><a href="#yhteenveto">Yhteenveto</a></li>
+  </ol>
+</div>
+
+<main>
+
+<section id="johdanto">
+  <h2 class="osio-otsikko">1. Johdanto: tekoälykuvat ja etiikka</h2>
+<p>Tekoälyllä voi nykyään tuottaa valokuvamaisen realistisia kuvia, piirroksia, maalauksia tai kuvituksia pelkällä tekstikuvauksella. Tämä on sekä hämmästyttävä mahdollisuus että vastuuta vaativa taito.</p>
+
+  <h3>Miten tekoälykuvageneraatio toimii?</h3>
+  <p>Kuvageneraattori on koulutettu miljardeihin valokuviin ja kuvituksiin. Se ei "piirrä" kuten ihminen, vaan rakentaa kuvan tilastollisten mallien avulla, joissa on opittu, miltä tietyt asiat näyttävät. Tulos on aina uniikki — tekoäly ei kopioi olemassa olevia kuvia.</p>
+
+  <h3>Käytettävät työkalut tällä kurssilla</h3>
+
+  <table>
+    <tr><th>Työkalu</th><th>Missä</th><th>Ilmainen?</th><th>Huomioita</th></tr>
+    <tr><td><strong>ChatGPT (DALL-E)</strong></td><td>chat.openai.com</td><td>Rajoitettu ilmaisversio, GPT-4o sisältää kuvat</td><td>Helppokäyttöinen, korkealaatuinen, suomenkieliset kehotteet toimivat</td></tr>
+    <tr><td><strong>Microsoft Copilot</strong></td><td>copilot.microsoft.com</td><td>Kyllä</td><td>Ilmainen, käyttää DALL-E:ä, hyvä laatu</td></tr>
+    <tr><td><strong>Adobe Firefly</strong></td><td>firefly.adobe.com</td><td>Kyllä (rajattu)</td><td>Kaupallisesti turvallinen, ei käytä tekijänoikeussuojattua materiaalia</td></tr>
+    <tr><td><strong>Gemini</strong></td><td>gemini.google.com</td><td>Kyllä</td><td>Googlen oma generaattori, integroitu Gemini-chattiin</td></tr>
+  </table>
+
+  <div class="tärkeää">
+    <div class="tärkeä-otsikko">Etiikka ja tekijänoikeudet — tärkeä perusta</div>
+    <ul>
+      <li><strong>Älä luo kuvia tunnistettavista oikeista ihmisistä</strong> ilman heidän lupaansa — tämä koskee myös julkisuuden henkilöitä</li>
+      <li><strong>Merkitse tekoälykuvat</strong> kun niitä julkaisee — erityisesti uutisyhteyksissä tai kun asiayhteys voisi harhaan johtaa</li>
+      <li><strong>Kaupalliset oikeudet vaihtelevat</strong> — Copilot ja ChatGPT sallivat käytön, mutta kannattaa tarkistaa kulloisenkin palvelun ehdot</li>
+      <li><strong>Tekoäly ei luo taidetta tyhjästä</strong> — se on koulutettu ihmisten tekemillä teoksilla, mikä on eettisesti monitahoinen kysymys</li>
+    </ul>
+  </div>
+</section>
+
+<section id="generointi">
+  <h2 class="osio-otsikko">2. Kuvien generointi – ensimmäiset kokeilut</h2>
+<p>Aloitetaan yksinkertaisesti. Kuvakehote on tekstikuvaus siitä, millaisen kuvan haluat. Lyhytkin kuvaus tuottaa jonkin tuloksen — mutta parempi kuvaus tuottaa paremman kuvan.</p>
+
+  <h3>Ensimmäiset kokeilut Copilotissa tai ChatGPT:ssä</h3>
+
+  <div class="kuvaohje">
+    <div class="kuva-otsikko">Miten aloitat Copilotissa</div>
+    <ol>
+      <li>Mene osoitteeseen copilot.microsoft.com</li>
+      <li>Kirjoita chattikenttään kuvaus haluamastasi kuvasta</li>
+      <li>Copilot tuottaa automaattisesti kuvan, kun kehote viittaa kuvaan</li>
+      <li>Voit myös kirjoittaa suoraan "Luo kuva: [kuvaus]"</li>
+    </ol>
+  </div>
+
+  <div class="kehote-esimerkki"><span class="label">Yksinkertaisia aloituskehotteita</span>Luo kuva: kesäinen järvimaisema Suomessa, aurinkoinen päivä, puuvene rannassa.
+
+---
+
+Luo kuva: vanha kirjasto, korkeat kirjahyllyt, lämmin lampunvalo, lepotuoli nurkassa.
+
+---
+
+Luo kuva: kylmä talvinen aamunkoitto, pakkanen -20 astetta, metsä, tähtitaivas haalistuu.</div>
+
+  <h3>Havaitseminen: mitä tekoäly osaa ja ei osaa?</h3>
+  <p>Ensimmäiset kokeilut paljastavat nopeasti tekoälyn vahvuudet ja heikkoudet:</p>
+
+  <table>
+    <tr><th>Tekoäly osaa hyvin</th><th>Tekoäly voi epäonnistua</th></tr>
+    <tr><td>Maisemat, luonto, arkkitehtuuri</td><td>Kädet ja sormet (usein väärin)</td></tr>
+    <tr><td>Abstraktit tunnelmat</td><td>Tekstin lisääminen kuvaan (kirjaimet voivat olla sekaisin)</td></tr>
+    <tr><td>Tyylisuunnat (öljyvärimaalaus, vesiväri, valokuva)</td><td>Tietyt erikoistilanteet tai kulttuuriset yksityiskohdat</td></tr>
+    <tr><td>Värimaailmat ja valaistukset</td><td>Tarkat lukumäärät (esim. "viisi koiraa")</td></tr>
+    <tr><td>Eläimet</td><td>Tunnistettavat henkilöt tai paikat</td></tr>
+  </table>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 2.1 – Ensimmäiset kuvat</div>
+    <p>Avaa Copilot tai ChatGPT. Luo vähintään kaksi kuvaa omista aiheistasi. Voit kokeilla:</p>
+    <ul>
+      <li>Jokin suosikkipaikka tai maisema</li>
+      <li>Kuvitteellinen tunnelma tai hetki</li>
+      <li>Jokin harrastukseesi liittyvä kuva</li>
+    </ul>
+    <p>Mitä onnistui? Mikä ei onnistunut odotusten mukaisesti? <em></em></p>
+  </div>
+</section>
+<section id="paremmat-kehotteet">
+  <h2 class="osio-otsikko">3. Paremmat kuvakehotteet</h2>
+<p>Kuten tekstikehotteissa, myös kuvakehotteissa tarkempi kuvaus tuottaa paremman tuloksen. Kuvakehote koostuu useasta kerroksesta.</p>
+
+  <div class="kehote-rakenne">
+    <div class="kr-otsikko">Hyvän kuvakehotteen rakenne</div>
+    <div class="kr-rivi"><span class="kr-osa">Aihe</span><span class="kr-teksti">Mitä kuvassa on pääosassa?</span></div>
+    <div class="kr-rivi"><span class="kr-osa">Tyyli</span><span class="kr-teksti">Valokuva, öljyvärimaalaus, vesiväri, piirros, akvarelli, sarjakuva...</span></div>
+    <div class="kr-rivi"><span class="kr-osa">Tunnelma</span><span class="kr-teksti">Rauhallinen, juhlaisa, nostalginen, energinen, mystinen...</span></div>
+    <div class="kr-rivi"><span class="kr-osa">Valaistus</span><span class="kr-teksti">Aurinkoinen, hämärä, kynttilänvalo, aamuaurinko, sininen hetki...</span></div>
+    <div class="kr-rivi"><span class="kr-osa">Kulma</span><span class="kr-teksti">Lähikuva, lintuperspektiivi, silmien tasolta, panoraama...</span></div>
+    <div class="kr-rivi"><span class="kr-osa">Värit</span><span class="kr-teksti">Lämmin väripaletti, mustavalkoinen, pastellit, kirkkaat värit...</span></div>
+  </div>
+
+  <h3>Esimerkkejä: suppea vs. tarkka kehote</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Suppea</span>Vanha puutalo metsässä.</div>
+
+  <div class="kehote-esimerkki"><span class="label">Tarkka</span>Vanha, harmaantunut hirsitalo syysmetsässä, koivut ympärillä keltaisina, tummat ikkunat, ränsistynyt kuisti, yläviistosta kuvattu, melankolinen tunnelma, sinertävä iltavalo, öljyvärimaalauksen tyyli.</div>
+
+  <h3>Tyylit ovat tehokas työkalu</h3>
+  <p>Tyylin lisääminen on yksi helpoimmista tavoista parantaa tulosta. Voit viitata taidesuuntiin, aikakausiin tai tekniikoihin:</p>
+
+  <div class="kehote-esimerkki"><span class="label">Tyylimäärittelyjä</span>...akvarellimaalauksen tyylissä
+...kuin 1950-luvun postikortti
+...mustavalkoinen dokumenttivalokuva
+...impressionistinen maalaus
+...sarjakuvamaisesti piirretty
+...kuin vanha seepiasävyinen valokuva
+...skandinaavinen minimalistinen kuvitus
+...vesiväriluonnos</div>
+
+  <h3>Iteraatio kuvien kanssa</h3>
+  <p>Jos ensimmäinen kuva ei ole haluamasi, voit jatkaa samassa ChatGPT-keskustelussa ja pyytää muutoksia:</p>
+
+  <div class="kehote-esimerkki"><span class="label">Kuvien jatkokehittely</span>"Hyvä alku! Tee sama kuva, mutta vaihda vuodenaika talveksi."
+
+"Lisää etualalle pieni punainen laiva."
+
+"Tee tunnelmasta rauhallisempi, vähemmän dramaattinen valaistus."
+
+"Luo tästä neljä eri väripalettiversiota."</div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 3.1 – Kehotekilpailu</div>
+    <p>Kaikki luovat kuvan samasta aiheesta — esimerkiksi "kahvilassa istuva ihminen talvisena iltana". Jokainen kirjoittaa oman kehotteensa itsenäisesti. Lopuksi vertaillaan tuloksia:</p>
+    <ul>
+      <li>Miten erilaisiksi kuvat menivät?</li>
+      <li>Mikä kehotteen osa tuotti suurimman eron?</li>
+      <li>Kenen kehotteessa oli elementti, jota muut eivät olleet ajatelleet?</li>
+    </ul>
+</div>
+</section>
+
+<section id="muokkaus">
+  <h2 class="osio-otsikko">4. Kuvien muokkaaminen tekoälyllä</h2>
+<p>Tekoäly ei ainoastaan luo kuvia tyhjästä — se voi myös muokata olemassa olevia valokuvia. Tämä avaa käytännöllisiä mahdollisuuksia omien kuvien parantamiseen.</p>
+
+  <h3>Cleanup Pictures — häiritsevien asioiden poisto</h3>
+
+  <div class="kuvaohje">
+    <div class="kuva-otsikko">Cleanup Pictures (cleanup.pictures)</div>
+    <p>Ilmainen, selainpohjainen työkalu. Ei vaadi kirjautumista peruskäytössä.</p>
+    <ol>
+      <li>Mene osoitteeseen cleanup.pictures</li>
+      <li>Lataa valokuvasi</li>
+      <li>Maalaa sivellintyökalulla alue, jonka haluat poistaa (sähkölinja, roskakori, ohikulkija...)</li>
+      <li>Työkalu poistaa alueen ja täyttää sen automaattisesti ympäristöön sopivalla sisällöllä</li>
+      <li>Lataa valmis kuva</li>
+    </ol>
+  </div>
+
+  <h3>Adobe Firefly — monipuolinen muokkaus</h3>
+
+  <div class="kuvaohje">
+    <div class="kuva-otsikko">Adobe Firefly (firefly.adobe.com)</div>
+    <p>Ilmainen peruskäyttö, vaatii Adobe-tilin (ilmainen rekisteröityminen).</p>
+    <ul>
+      <li><strong>Generative Fill:</strong> Valitse alue kuvasta ja kuvaile, mitä haluat tilalle tai lisää</li>
+      <li><strong>Generative Expand:</strong> Laajenna kuvan reunoja — tekoäly jatkaa kuvaa</li>
+      <li><strong>Text to Image:</strong> Luo uusia kuvia tekstikuvauksella</li>
+    </ul>
+  </div>
+
+  <h3>ChatGPT:n kuvien muokkaus</h3>
+  <p>GPT-4o:ssa voit ladata oman valokuvasi ja pyytää muokkauksia tai analysointia:</p>
+
+  <div class="kehote-esimerkki"><span class="label">Kuvan lataaminen ChatGPT:hen</span>Lataa kuva ja kirjoita:
+
+"Kuvaile, mitä tässä kuvassa on."
+
+"Mitä vuodenaikaa, paikkaa tai tunnelmaa tämä kuva mielestäsi kuvaa?"
+
+"Ehdota, miten tätä kuvaa voisi rajata paremmin."
+
+"Luo samantyylinen uusi kuva, mutta talvisessa maisemassa."</div>
+
+  <h3>Vanhojen valokuvien restaurointi</h3>
+  <p>Yksi kiinnostavimmista käyttötavoista sukututkimuksen kannalta: vanhojen, haalistuneiden tai vahingoittuneiden valokuvien parantaminen.</p>
+
+  <div class="kehote-esimerkki"><span class="label">Vanhan valokuvan restaurointi ChatGPT:ssä</span>Lataa vanha, haalistunut valokuva ChatGPT:hen ja kirjoita:
+
+"Tee tästä vanhasta mustavalkoisesta valokuvasta värikäs versio, joka näyttää luontevalta."
+
+tai
+
+"Paranna tämän vanhan valokuvan terävyyttä ja kontrastia säilyttäen sen historiallinen tunnelma."</div>
+
+  <div class="vinkki">
+    <div class="vinkki-otsikko">Erikoistyökalu: MyHeritage Photo Enhancer</div>
+    MyHeritage-sukututkimusalustalla on ilmainen työkalu, joka erikoistuu nimenomaan vanhojen kasvokuvien terävöittämiseen. Se osaa myös lisätä liikettä vanhoihin stillkuviin (Photo Animator). Löytyy osoitteesta myheritage.com/photo-enhancer.
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 4.1 – Muokkauskokeilu</div>
+    <p>Valitse yksi:</p>
+    <ul>
+      <li><strong>Vaihtoehto A:</strong> Avaa cleanup.pictures ja lataa jokin oma valokuvasi. Kokeile poistaa jokin häiritsevä elementti (taustalla oleva henkilö, sähkölinja, roskakori tms.).</li>
+      <li><strong>Vaihtoehto B:</strong> Avaa Adobe Firefly (firefly.adobe.com) ja kokeile Generative Expand -toimintoa: lataa kuva ja laajenna sen reunoja.</li>
+      <li><strong>Vaihtoehto C:</strong> Lataa jokin oma valokuva ChatGPT:hen ja pyydä kuvailemaan sitä tai luomaan samantyylinen uusi kuva.</li>
+    </ul>
+</div>
+</section>
+<section id="kaytto">
+  <h2 class="osio-otsikko">5. Käyttötarkoitukset käytännössä</h2>
+<p>Mihin tekoälykuvia voi käytännössä käyttää? Tässä konkreettisia esimerkkejä, jotka liittyvät aiemmin käsiteltyihin teemoihin.</p>
+
+  <h3>Yhdistystoiminta</h3>
+  <ul>
+    <li>Kansikuva yhdistyksen uutiskirjeeseen tai sähköpostiin</li>
+    <li>Tapahtumamainos tai -juliste sosiaaliseen mediaan</li>
+    <li>Kuvitus artikkeliin tai toimintakertomukseen</li>
+    <li>Tapahtuman tunnuskuva tai teemakuva</li>
+  </ul>
+
+  <div class="kehote-esimerkki"><span class="label">Tapahtumamainos</span>Luo kuva: kesäinen puutarhabiletyyli kotiseutujuhla, pöytiä ulkona lippujen alla, ihmiset juttelevat, lämmin tunnelma, vesiväripiirros, pastelisävyt.</div>
+
+  <h3>Sukututkimus</h3>
+  <ul>
+    <li>Kuvituskuva sukukirjaan tai esitelmään (esim. aikakauden elämä)</li>
+    <li>Vanhojen valokuvien restaurointi ja väritys</li>
+    <li>Historiallisen ympäristön visualisointi</li>
+  </ul>
+
+  <div class="kehote-esimerkki"><span class="label">Historiallinen kuvitus sukukirjaan</span>Luo kuva: 1800-luvun suomalainen torppa talvella, savu nousee savupiiput, koivuja ympärillä, arki alkaa, sinertävä aamuvalo, realistinen öljyvärimaalaus.</div>
+
+  <h3>Henkilökohtainen käyttö</h3>
+  <ul>
+    <li>Onnittelukortin kuva</li>
+    <li>Taustakuva tietokoneelle tai puhelimelle</li>
+    <li>Luova kokeilu ja taiteellinen ilmaisu</li>
+    <li>Lahjaksi annettava julisteen tai kortin kuvitus</li>
+  </ul>
+
+  <div class="tärkeää">
+    <div class="tärkeä-otsikko">Muistutus: merkitse tekoälykuvat</div>
+    Kun julkaiset tekoälyn luomia kuvia, on hyvä tapa merkitä ne (esim. "Kuva: tekoäly"). Tämä lisää läpinäkyvyyttä ja auttaa yleisöä ymmärtämään kuvan alkuperän. Joissakin tilanteissa — kuten uutisissa tai virallisissa yhteyksissä — merkintä on erittäin tärkeä.
+  </div>
+</section>
+
+<section id="harjoitukset">
+  <h2 class="osio-otsikko">6. Pienryhmäharjoitukset</h2>
+<div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä A – Tapahtumamainos</div>
+    <p>Suunnitelkaa yhdessä kuvitteellinen yhdistystapahtuma ja luokaa sille mainosmateriaalia:</p>
+    <ol>
+      <li>Kuva tapahtumaan (generoitu tekoälyllä)</li>
+      <li>Lyhyt tekstikuvaus tapahtumasta (kirjoitettu aiemmilla kehottekniikoilla)</li>
+      <li>Yhdistelkää nämä kuvitteelliseksi some-julkaisuksi</li>
+    </ol>
+    <p>Esitelkää lopputulos muille ryhmille.</p>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä B – Tyylilaboratorio</div>
+    <p>Luokaa sama kuva-aihe (esim. "vanha puu kesäisessä puistossa") viidessä eri tyylissä:</p>
+    <ol>
+      <li>Realistinen valokuva</li>
+      <li>Akvarellimaalaus</li>
+      <li>Mustavalkoinen</li>
+      <li>Sarjakuvatyyli</li>
+      <li>Jokin oma tyylimääritys</li>
+    </ol>
+    <p>Mikä tyyli tuntuu omimmalta? Mihin käyttötarkoitukseen kukin sopisi?</p>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä C – Vanhan kuvan uusi elämä</div>
+    <p>Jos jollakin on mukanaan vanha valokuva (esim. puhelimessa skannattu), kokeilkaa yhdessä:</p>
+    <ol>
+      <li>Kuvan lataaminen ChatGPT:hen — mitä tekoäly näkee kuvassa?</li>
+      <li>Restaurointi cleanup.pictures -palvelussa jos kuva on vahingoittunut</li>
+      <li>Väritys ChatGPT:n avulla, jos kuva on mustavalkoinen</li>
+    </ol>
+    <p>Jos omaa kuvaa ei ole, käyttäkää jotain vapaasti käytettävää historiallista kuvaa netistä.</p>
+  </div>
+</section>
+
+<section id="yhteenveto">
+  <div class="yhteenveto">
+    <h3>Yhteenveto – mitä opimme tänään</h3>
+    <ul>
+      <li><strong>Kuvageneraatio</strong> on helppoa aloittaa — jokainen voi kokeilla heti</li>
+      <li><strong>Tarkka kehote</strong> tuottaa paremman kuvan: aihe, tyyli, tunnelma, valaistus, värit</li>
+      <li><strong>Iteraatio</strong> toimii myös kuvissa — jatka samaa keskustelua ja pyydä muutoksia</li>
+      <li><strong>Muokkaustyökalut</strong> (Cleanup Pictures, Firefly) avaavat uusia mahdollisuuksia omille valokuville</li>
+      <li><strong>Etiikka mukana</strong>: merkitse tekoälykuvat, älä luo kuvia oikeista ihmisistä ilman lupaa</li>
+    </ul>
+    <p style="margin-top:1.2rem"><em>Tämä on viimeinen sessio — kiitos osallistumisesta koko jatkokurssille! Toivottavasti tekoäly on nyt entistä tutumpi ja hyödyllisempi kumppani arjessa.</em></p>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

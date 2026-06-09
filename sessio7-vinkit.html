@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessio 7 – Vinkit, muistiasetukset, verkkohaku ja tiedostot</title>
+<style>
+  :root {
+    --sininen: #1a3a5c;
+    --vaaleasininen: #2d6aa0;
+    --korostus: #e8f0fa;
+    --harjoitus: #fff8e1;
+    --harjoitus-reuna: #f0c040;
+    --tärkeä: #fdecea;
+    --tärkeä-reuna: #c62828;
+    --vihreä: #e8f5e9;
+    --vihreä-reuna: #388e3c;
+    --vinkki2: #e3f2fd;
+    --vinkki2-reuna: #1565c0;
+    --teksti: #1a1a1a;
+    --taustaharmoninen: #f5f7fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; color: var(--teksti); background: #fff; }
+  .header { background: var(--sininen); color: white; padding: 2rem 2.5rem; }
+  .header .kurssinimi { font-size: 0.95rem; opacity: 0.8; font-family: Arial, sans-serif; margin-bottom: 0.4rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .header h1 { font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem; }
+  .header .info { font-size: 1rem; opacity: 0.85; font-family: Arial, sans-serif; }
+  .nav-bar { background: var(--vaaleasininen); padding: 0.75rem 2.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap; font-family: Arial, sans-serif; font-size: 0.9rem; }
+  .nav-bar a { color: white; text-decoration: none; opacity: 0.9; }
+  .nav-bar a:hover { opacity: 1; text-decoration: underline; }
+  .nav-bar .aktiivinen { font-weight: bold; opacity: 1; }
+  .sisällysluettelo { background: var(--korostus); border-left: 5px solid var(--vaaleasininen); margin: 2rem 2.5rem; padding: 1.5rem 2rem; border-radius: 0 8px 8px 0; font-family: Arial, sans-serif; }
+  .sisällysluettelo h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--sininen); margin-bottom: 0.75rem; }
+  .sisällysluettelo ol { padding-left: 1.5rem; }
+  .sisällysluettelo li { margin-bottom: 0.3rem; }
+  .sisällysluettelo a { color: var(--vaaleasininen); text-decoration: none; }
+  .sisällysluettelo a:hover { text-decoration: underline; }
+  main { max-width: 860px; margin: 0 auto; padding: 1rem 2.5rem 4rem; }
+  section { margin-top: 3rem; }
+  h2.osio-otsikko { font-size: 1.6rem; color: var(--sininen); border-bottom: 3px solid var(--vaaleasininen); padding-bottom: 0.5rem; margin-bottom: 1.2rem; font-family: Arial, sans-serif; }
+  h3 { font-size: 1.2rem; color: var(--vaaleasininen); margin: 1.8rem 0 0.7rem; font-family: Arial, sans-serif; }
+  p { margin-bottom: 1rem; }
+  .harjoitus { background: var(--harjoitus); border-left: 5px solid var(--harjoitus-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .harjoitus .harjoitus-otsikko { font-family: Arial, sans-serif; font-weight: bold; font-size: 0.95rem; color: #7a5800; margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .tärkeää { background: var(--tärkeä); border-left: 5px solid var(--tärkeä-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .tärkeää .tärkeä-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: var(--tärkeä-reuna); margin-bottom: 0.5rem; }
+  .vinkki { background: var(--vihreä); border-left: 5px solid var(--vihreä-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .vinkki .vinkki-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: #2e7d32; margin-bottom: 0.5rem; }
+  .nikksi { background: var(--vinkki2); border-left: 5px solid var(--vinkki2-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .nikksi .nikksi-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: var(--vinkki2-reuna); margin-bottom: 0.5rem; }
+  .kehote-esimerkki { background: #1e1e2e; color: #e0e0ff; font-family: 'Courier New', monospace; font-size: 0.95rem; padding: 1.2rem 1.5rem; border-radius: 8px; margin: 1rem 0; white-space: pre-wrap; line-height: 1.6; }
+  .kehote-esimerkki .label { font-family: Arial, sans-serif; font-size: 0.78rem; color: #aaa; display: block; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-family: Arial, sans-serif; font-size: 0.95rem; }
+  th { background: var(--sininen); color: white; padding: 0.6rem 1rem; text-align: left; }
+  td { padding: 0.6rem 1rem; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: var(--taustaharmoninen); }
+  ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+  li { margin-bottom: 0.4rem; }
+  .yhteenveto { background: var(--korostus); border: 2px solid var(--vaaleasininen); border-radius: 10px; padding: 1.5rem 2rem; margin-top: 3rem; font-family: Arial, sans-serif; }
+  .yhteenveto h3 { color: var(--sininen); margin-bottom: 0.8rem; }
+  .pikavinkki-ruudukko { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0; }
+  @media (max-width: 640px) { .pikavinkki-ruudukko { grid-template-columns: 1fr; } }
+  .pikavinkki-kortti { background: var(--taustaharmoninen); border: 1px solid #ccd; border-radius: 8px; padding: 1rem 1.2rem; font-family: Arial, sans-serif; font-size: 0.95rem; }
+  .pikavinkki-kortti strong { color: var(--sininen); display: block; margin-bottom: 0.3rem; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="kurssinimi">Tekoälytaitoja arjen tarpeisiin · Ikääntyvien yliopisto</div>
+  <h1>Sessio 7: Vinkit, muistiasetukset, verkkohaku ja tiedostot</h1>
+  <div class="info">Edistynyttä käyttöä käytännönläheisesti</div>
+</div>
+
+<div class="nav-bar">
+  <a href="index.html">Etusivu</a>
+  <a href="sessio1-kehotekoulu.html">S1: Kehotekoulu</a>
+  <a href="sessio2-turvallisuus-sukututkimus.html">S2: Turvallisuus</a>
+  <a href="sessio3-yhdistystoiminta.html">S3: Yhdistystoiminta</a>
+  <a href="sessio4-kielet.html">S4: Kielten opiskelu</a>
+  <a href="sessio5-kuvat.html">S5: Kuvat</a>
+  <a href="sessio6-etiikka.html">S6: Etiikka &amp; Ympäristö</a>
+  <a href="sessio7-vinkit.html" class="aktiivinen">S7: Vinkit &amp; Edistynyt käyttö</a>
+  <a href="sessio8-sukututkimus.html">S8: Sukututkimus</a>
+</div>
+
+<div class="sisällysluettelo">
+  <h2>Tämän session sisältö</h2>
+  <ol>
+    <li><a href="#muisti">Tekoälyn muistiasetukset ja mukautetut ohjeet</a></li>
+    <li><a href="#verkkohaku">Tekoäly yhdistettynä verkkohakuun</a></li>
+    <li><a href="#tiedostot">Tiedostojen käyttö tekoälyn kanssa</a></li>
+    <li><a href="#pikavinkki">Pikavinkkilista: käytännön niksejä</a></li>
+    <li><a href="#seuraaminen">Tekoälyn kehityksen seuraaminen</a></li>
+    <li><a href="#harjoitukset">Pienryhmäharjoitukset</a></li>
+    <li><a href="#yhteenveto">Yhteenveto</a></li>
+  </ol>
+</div>
+
+<main>
+
+<section id="muisti">
+  <h2 class="osio-otsikko">1. Tekoälyn muistiasetukset ja mukautetut ohjeet</h2>
+
+  <p>Yksi käytännöllisimmistä edistyneen käytön ominaisuuksista: voit kertoa tekoälylle kerran, kuka olet ja miten haluat sen vastaavan, ja se muistaa tämän jokaisessa tulevassa keskustelussa.</p>
+
+  <h3>ChatGPT:n muisti</h3>
+  <p>ChatGPT:n muistitoiminto tallentaa tietoja keskustelujen välille. Se voi muistaa esimerkiksi, että olet kiinnostunut sukututkimuksesta, asut tietyllä paikkakunnalla tai haluat vastaukset lyhyinä. Muisti täydentyy ajan myötä: mitä enemmän käytät, sitä paremmin se oppii.</p>
+
+  <div class="nikksi">
+    <div class="nikksi-otsikko">Muistin hallinta ChatGPT:ssä</div>
+    <ol>
+      <li>Klikkaa vasemmassa sivupalkissa oma nimesi tai profiilikuvake</li>
+      <li>Valitse <strong>Asetukset</strong> → <strong>Personointi</strong> → <strong>Muisti</strong></li>
+      <li>Näet mitä tekoäly on muistanut sinusta — voit muokata tai poistaa merkintöjä</li>
+    </ol>
+  </div>
+
+  <div class="kehote-esimerkki"><span class="label">Muistitoiminnon hyödyntäminen</span>Muista nämä asiat minusta:
+- Olen kiinnostunut sukututkimuksesta ja kotiseutuhistoriasta
+- Haluan vastaukset selkeällä suomen kielellä, enintään kolme kappaletta
+- Olen mukana yhdistystoiminnassa ja kirjoitan usein tiedotteita
+- En halua vastauksia, joissa on paljon ammattisanastoa</div>
+
+  <h3>ChatGPT:n mukautetut ohjeet</h3>
+  <p>Mukautetut ohjeet ovat pysyvä viesti, jonka tekoäly lukee jokaisen uuden keskustelun alussa. Ne ovat kahden tyyppisiä: mitä kerrot itsestäsi, ja miten haluat tekoälyn vastaavan.</p>
+
+  <div class="nikksi">
+    <div class="nikksi-otsikko">Mukautettujen ohjeiden asettaminen</div>
+    <ol>
+      <li>Asetukset → Personointi → Mukautetut ohjeet</li>
+      <li>Mukautetut ohjeet: Miten haluat ChatGPT:n vastaavan? — kerro toivomasi tyyli</li>
+      <li>Tietoja sinusta: Mitä ChatGPT:n pitäisi tietää sinusta? — kerro taustatietosi</li>
+    </ol>
+  </div>
+
+  <div class="kehote-esimerkki"><span class="label">Esimerkki mukautetuista ohjeista</span>Ylä-kenttä (Mitä tietää minusta):
+Olen eläkkeellä oleva opettaja Tampereelta. Harrastan sukututkimusta ja kotiseutuhistoriaa. Olen mukana kotiseutuyhdistyksen hallituksessa. Kirjoitan usein tiedotteita ja kokouskutsuja.
+
+Ala-kenttä (Miten vastata):
+Vastaa aina suomeksi. Pidä vastaukset tiiviinä — enintään 3-4 kappaletta ellei erikseen pyydetä muuta. Vältä ammattisanastoa. Jos asiani on epäselvä, kysy tarkentava kysymys ennen vastaamista.</div>
+
+  <h3>Geminin muisti</h3>
+  <p>Geminissä muistin voi kytkeä päälle Google-tilin asetuksista. Se toimii samankaltaisesti kuin ChatGPT:n muisti. Asetus löytyy: gemini.google.com → Asetukset → Gemini-sovellukset → Gemini-muisti.</p>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 1.1 – Aseta mukautetut ohjeet</div>
+    <p>Avaa ChatGPT:n asetukset ja kirjoita itsellesi sopivat mukautetut ohjeet. Mieti:</p>
+    <ul>
+      <li>Mitkä taustatiedot auttaisivat tekoälyä ymmärtämään sinua paremmin?</li>
+      <li>Millaisen vastaustyylin haluat — lyhyt, pitkä, virallinen, rento?</li>
+      <li>Onko aiheita, joista haet erityisen usein tietoa?</li>
+      <li>Tai testaa: Ehdota minulle, millaiset mukautetut ohjeet minun kannattaisi antaa tekoälylle.</li>
+
+    </ul>
+    <p>Testaa sitten, vaikuttavatko ohjeet vastauksiin. Aloita uusi keskustelu ja kysy jotain tuttua asiaa.</p>
+  </div>
+</section>
+
+<section id="verkkohaku">
+  <h2 class="osio-otsikko">2. Tekoäly yhdistettynä verkkohakuun</h2>
+
+  <p>Yksi tekoälyn tunnetuimmista rajoitteista on "jäätynyt tieto": malli on koulutettu tiettyyn hetkeen asti, eikä tiedä mitä on tapahtunut sen jälkeen. Verkkohaku poistaa tämän rajoitteen.</p>
+
+  <h3>Miten eri palvelut hakevat verkosta?</h3>
+
+  <table>
+    <tr><th>Palvelu</th><th>Verkkohaku</th><th>Miten toimii käytännössä</th></tr>
+    <tr>
+      <td><strong>Microsoft Copilot</strong></td>
+      <td>Aina päällä</td>
+      <td>Jokainen vastaus perustuu verkkohakuun. Copilot ilmoittaa lähteet automaattisesti. Paras valinta, kun tarvitset tuoretta tietoa.</td>
+    </tr>
+    <tr>
+      <td><strong>Gemini</strong></td>
+      <td>Käyttää Googlea</td>
+      <td>Gemini hakee Googlesta ja yhdistää tulokset vastaukseen. Toimii erityisen hyvin suomenkielisten aiheiden kanssa.</td>
+    </tr>
+    <tr>
+      <td><strong>ChatGPT</strong></td>
+      <td>Kytkettävissä päälle</td>
+      <td>Hakupainike löytyy chattiruudun alareunan työkalupalkista. Kytke päälle, kun tarvitset tuoretta tietoa.</td>
+    </tr>
+  </table>
+
+  <div class="tärkeää">
+    <div class="tärkeä-otsikko">Verkkohaku ei poista faktantarkistuksen tarvetta</div>
+    Vaikka tekoäly hakee verkosta, se voi silti tulkita tai tiivistää hakutuloksia virheellisesti. Tärkeissä asioissa kannattaa aina tarkistaa alkuperäinen lähde.
+  </div>
+
+  <h3>Milloin käyttää verkkohakua?</h3>
+  <ul>
+    <li>Tuoreet uutiset, tapahtumat tai muutokset lainsäädännössä</li>
+    <li>Yhdistyksen tai organisaation yhteystiedot ja aukioloajat</li>
+    <li>Tapahtuma-aikataulut ja ilmoittautumisohjeet</li>
+    <li>Hinnat, saatavuus ja palvelutiedot</li>
+    <li>Aikataulut (junat, linja-autot, lennot)</li>
+  </ul>
+
+  <div class="kehote-esimerkki"><span class="label">Verkkohakua hyödyntäviä kehotteita</span>Hae verkosta: mitä tapahtumia Tampereella järjestetään ensi viikonloppuna?
+
+---
+
+Etsi tuoreita uutisia: onko yhdistyslakiin tehty muutoksia vuoden 2024 aikana?
+
+---
+
+Tarkista verkosta: mikä on Kansallisarkiston Astia-palvelun osoite ja aukioloajat?</div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 2.1 – Vertailu: haku vs. ei hakua</div>
+    <p>Kysy sama kysymys kahdella tavalla:</p>
+    <ol>
+      <li>ChatGPT:ssä ilman verkkohakua: <em>"Mitä tapahtumia on meneillään Suomen museoissa tällä hetkellä?"</em></li>
+      <li>Sama kysymys Copilotissa tai ChatGPT:ssä verkkohaku päällä</li>
+    </ol>
+    <p>Vertailkaa vastauksia: kuinka paljon ne eroavat? Kumpi on hyödyllisempi? Onko verkkohaussa mainittuja lähteitä?</p>
+  </div>
+</section>
+
+<section id="tiedostot">
+  <h2 class="osio-otsikko">3. Tiedostojen käyttö tekoälyn kanssa</h2>
+
+  <p>Tekoäly ei osaa hakea tiedostoja tietokoneeltasi itse, mutta voit ladata tiedoston tekoälylle, ja se lukee sen sisällön. Tämä avaa paljon käytännöllisiä mahdollisuuksia.</p>
+
+  <h3>Mitä tiedostoja voi ladata?</h3>
+
+  <table>
+    <tr><th>Tiedostotyyppi</th><th>Tuki eri palveluissa</th><th>Käyttötapauksia</th></tr>
+    <tr>
+      <td><strong>PDF</strong></td>
+      <td>ChatGPT, Gemini, Copilot</td>
+      <td>Asiakirjan tiivistäminen, tietojen etsiminen, kääntäminen, kysymyksiin vastaaminen</td>
+    </tr>
+    <tr>
+      <td><strong>Word (.docx)</strong></td>
+      <td>ChatGPT, Copilot</td>
+      <td>Tekstin muokkaus, oikoluku, rakenteen parantaminen</td>
+    </tr>
+    <tr>
+      <td><strong>Excel (.xlsx)</strong></td>
+      <td>ChatGPT, Copilot</td>
+      <td>Datan analysointi, kaavioiden tekeminen, taulukon tulkinta</td>
+    </tr>
+    <tr>
+      <td><strong>Kuva (JPG, PNG)</strong></td>
+      <td>ChatGPT, Gemini, Copilot</td>
+      <td>Kuvan kuvaileminen, tekstin lukeminen kuvasta, asiakirjan tulkinta</td>
+    </tr>
+    <tr>
+      <td><strong>CSV</strong></td>
+      <td>ChatGPT</td>
+      <td>Taulukkodata-analyysi, tilastot, visualisoinnit</td>
+    </tr>
+  </table>
+
+  <h3>PDF-tiedostojen hyödyntäminen</h3>
+
+  <div class="kehote-esimerkki"><span class="label">PDF:n lataaminen ja käyttö</span>[Lataa PDF ChatGPT:hen klikkaamalla paperiliitinpainiketta]
+
+"Tee tästä asiakirjasta lyhyt yhteenveto — mitä tärkeintä siinä sanotaan?"
+
+"Etsi tästä sopimuksesta kohdat, jotka koskevat irtisanomisaikaa."
+
+"Käännä tämä PDF suomeksi ja tiivistä pääkohdat."
+
+"Onko tässä asiakirjassa jotain, johon minun pitäisi kiinnittää erityistä huomiota?"</div>
+
+  <h3>Excel-taulukoiden analysointi</h3>
+
+  <div class="kehote-esimerkki"><span class="label">Excel-tiedoston analysointi</span>[Lataa Excel-tiedosto]
+
+"Laske tämän taulukon yhdistyksen jäsenmaksuista yhteissumma ja ryhmittele ne liittymisperusteiden mukaan."
+
+"Tee tämän datan perusteella lyhyt yhteenveto: mitkä ovat suurimmat menoerät?"
+
+"Miten tämän datan voisi esittää selkeästi kokouksessa?"</div>
+
+  <h3>Kuvasta teksti — kätevä arjen työkalu</h3>
+  <p>Yksi kätevin arkinen käyttötapa: ota kuva käsin kirjoitetusta muistiinpanosta, vanhasta asiakirjasta tai taululla olevasta tekstistä — tekoäly muuntaa sen kirjoitetuksi tekstiksi.</p>
+
+  <div class="kehote-esimerkki"><span class="label">Kuvan tekstin lukeminen</span>[Lataa kuva käsin kirjoitetusta muistiosta]
+
+"Kirjoita tässä kuvassa näkyvä teksti puhtaaksi. Korjaa ilmeiset kirjoitusvirheet, mutta älä muuta sisältöä."
+
+---
+
+[Lataa kuva vanhasta asiakirjasta]
+
+"Mitä tässä asiakirjassa lukee? Tulkitse teksti niin hyvin kuin pystyt."</div>
+
+  <div class="vinkki">
+    <div class="vinkki-otsikko">Tiedostojen lataaminen ChatGPT:ssä</div>
+    Klikkaa chattiruudun vasemmassa alakulmassa olevaa paperiliitinpainiketta (📎). Voit ladata useita tiedostoja samaan keskusteluun. Tiedoston sisältö on käytettävissä vain siinä keskustelussa — sitä ei tallenneta pysyvästi.
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 3.1 – Tiedoston analysointi</div>
+    <p>Lataa jokin oma tiedosto tekoälylle — esimerkiksi:</p>
+    <ul>
+      <li>Yhdistyksen kokousmuistio tai pöytäkirja (PDF tai Word)</li>
+      <li>Kuva käsin kirjoitetusta muistilapusta</li>
+      <li>Jokin lyhyt artikkeli tai tiedote PDF-muodossa</li>
+    </ul>
+    <p>Pyydä tekoälyä tiivistämään sisältö tai vastaamaan yhteen konkreettiseen kysymykseen tiedoston perusteella. Onnistuiko? Mitä tekoäly osasi ja mitä ei?</p>
+  </div>
+</section>
+
+<section id="pikavinkki">
+  <h2 class="osio-otsikko">4. Pikavinkkilista: käytännön niksejä</h2>
+
+  <p>Kokoelma hyödyllisiä tapoja, jotka nopeuttavat ja parantavat tekoälyn käyttöä arjessa.</p>
+
+  <div class="pikavinkki-ruudukko">
+    <div class="pikavinkki-kortti">
+      <strong>Pyydä tekoälyä tarkistamaan itsensä</strong>
+      Vastauksen jälkeen voit pyytää: <em>"Tarkista vastauksesi. Onko siinä jotain epävarmaa tai virheellistä?"</em> Tekoäly löytää usein omat virheensä, kun sitä pyytää.
+    </div>
+    <div class="pikavinkki-kortti">
+      <strong>Jaa keskustelu</strong>
+      ChatGPT:ssä: klikkaa kolme pistettä (···) keskusteluotsikon vieressä → "Jaa linkki". Saat linkin, jonka voit lähettää muille — esim. kurssilaistovereille tai yhdistyksen hallitukselle.
+    </div>
+    <div class="pikavinkki-kortti">
+      <strong>Kopioi muotoiltuna</strong>
+      Kun kopioit tekoälyn vastausta Word-dokumenttiin tai sähköpostiin, pidä Ctrl+Shift+V (Mac: Cmd+Shift+V) poistaaksesi muotoilun — tai käytä tavallista Ctrl+V säilyttääkseen otsikoinnin.
+    </div>
+    <div class="pikavinkki-kortti">
+      <strong>Uusi keskustelu puhtaalta pöydältä</strong>
+      Jos tekoäly alkaa "seota" tai vastaukset heikkenevät pitkässä keskustelussa, aloita uusi keskustelu. Konteksti-ikkuna täyttyy, ja uusi alku auttaa.
+    </div>
+    <div class="pikavinkki-kortti">
+      <strong>Pyydä vaihtoehtoinen versio</strong>
+      Jos et pidä vastauksesta, kokeile: <em>"Kirjoita sama asia eri tavalla"</em> tai <em>"Tee kolme eri versiota, joista valitsen parhaan."</em>
+    </div>
+    <div class="pikavinkki-kortti">
+      <strong>Äänitila nopeampaan käyttöön</strong>
+      ChatGPT:n ja Geminin äänitilassa voit puhua kehotteesi sen sijaan, että kirjoitat. Hyvä, kun sinulla on paljon sanottavaa tai näppäimistö tuntuu hitaalta.
+    </div>
+    <div class="pikavinkki-kortti">
+      <strong>Käytä tekoälyä oikolukijana</strong>
+      Kopioi kirjoittamasi teksti ja pyydä: <em>"Tarkista kielioppi ja sujuvuus. Merkitse muutokset selkeästi."</em> Nopea tapa parantaa tiedotteiden ja kirjeiden tasoa.
+    </div>
+    <div class="pikavinkki-kortti">
+      <strong>Kysy mitä tekoäly tarvitsee</strong>
+      Jos et tiedä mistä aloittaa, voit pyytää: <em>"Haluan tehdä X. Mitä tietoja tarvitset minulta, jotta pystyt auttamaan parhaiten?"</em>
+    </div>
+  </div>
+
+  <h3>ChatGPT:n projektit pitkäjänteiseen työskentelyyn</h3>
+  <p>Projektit-toiminto (vasemmassa sivupalkissa) ryhmittää yhteen aiheeseen liittyvät keskustelut ja tiedostot. Esimerkiksi kaikki yhdistykseen liittyvät asiakirjat, tai kaikki sukututkimukseen liittyvä materiaali, voi tallentaa omaan projektiinsa. Projekti muistaa ladatut tiedostot kaikkien siihen kuuluvien keskustelujen välillä.</p>
+
+  <div class="nikksi">
+    <div class="nikksi-otsikko">Projektin luominen ChatGPT:ssä</div>
+    <ol>
+      <li>Vasemmassa sivupalkissa: klikkaa <strong>Uusi projekti</strong></li>
+      <li>Anna projektille nimi (esim. "Kotiseutuyhdistys" tai "Sukututkimus")</li>
+      <li>Lataa tiedostoja projektiin — ne ovat käytettävissä kaikissa projektin keskusteluissa</li>
+      <li>Voit lisätä projektiin myös erityisohjeet: miten tekoälyn pitää toimia juuri tässä projektissa</li>
+    </ol>
+  </div>
+</section>
+
+<section id="seuraaminen">
+  <h2 class="osio-otsikko">5. Tekoälyn kehityksen seuraaminen</h2>
+
+  <p>Tekoäly kehittyy nopeasti — uusia ominaisuuksia ja palveluita tulee jatkuvasti. Tämä voi tuntua ylivoimaiselta, mutta ei tarvitse seurata kaikkea. Muutama hyvä lähde ja kevyt tapa pysyä ajan tasalla riittää.</p>
+
+  <h3>Miksi edes seurata?</h3>
+  <ul>
+    <li>Uudet ominaisuudet voivat ratkaista ongelmia, joita olet kohdannut</li>
+    <li>Palveluiden hinnoittelu, ehdot tai asetukset muuttuvat</li>
+    <li>Yhteiskunnallinen keskustelu tekoälystä (lait, etiikka, vaikutukset) kehittyy</li>
+    <li>Uudet työkalut voivat sopia juuri sinulle</li>
+  </ul>
+
+  <h3>Suositeltavat lähteet suomeksi</h3>
+
+  <table>
+    <tr><th>Lähde</th><th>Mitä tarjoaa</th><th>Sopii kun</th></tr>
+    <tr>
+      <td><strong>Yle Uutiset</strong> (yle.fi)</td>
+      <td>Uutisia tekoälystä suomeksi, asiallinen käsittely</td>
+      <td>Haluat lukea uutisia omaan tahtiin</td>
+    </tr>
+    <tr>
+      <td><strong>Teknologiateollisuus / Digirata</strong></td>
+      <td>Suomalainen näkökulma tekoälyn hyödyntämiseen</td>
+      <td>Kiinnostaa ammatillinen tai yhteiskunnallinen näkökulma</td>
+    </tr>
+    <tr>
+      <td><strong>ChatGPT:n omat julkaisutiedotteet</strong> (openai.com/blog)</td>
+      <td>Uudet ominaisuudet suoraan valmistajalta, engl.</td>
+      <td>Haluat tietää mitä ChatGPT:ssä on muuttunut</td>
+    </tr>
+    <tr>
+      <td><strong>Tekoäly itse</strong></td>
+      <td>Kysy tekoälyltä: "Mitä uutta tekoälymaailmassa on tapahtunut viime aikoina?"</td>
+      <td>Nopea tapa hahmottaa tilannetta — muista tarkistaa lähteet</td>
+    </tr>
+  </table>
+
+  <div class="vinkki">
+    <div class="vinkki-otsikko">Kevyt tapa pysyä ajan tasalla</div>
+    Ei tarvitse seurata joka päivä. Riittää, että noin kerran kuussa kokeilee: "Onko tässä palvelussa tullut uusia ominaisuuksia?" tai "Mitä tekoälyuutisia on ollut viime kuukausina?" Tekoäly kertoo, jos on jotain oleellista. Muutaman tunnin kurssi tai webinaari kerran vuodessa täydentää tietopohjaa.
+  </div>
+
+  <h3>Mitä ei tarvitse seurata</h3>
+  <p>Tekoälyä koskevaa sisältöä tuotetaan valtavasti — paljon siitä on spekulaatiota, hypeä tai teknistä yksityiskohtia, joilla ei ole käytännön merkitystä tavalliselle käyttäjälle. Voit huoletta sivuuttaa:</p>
+  <ul>
+    <li>Uusien mallien teknisiä vertailuja ("mikä on paras tekoäly")</li>
+    <li>Startup-uutiset ja rahoituskierrokset</li>
+    <li>Tulevaisuuden spekulaatiot ("tekoäly vie kaikki työt vuoteen X mennessä")</li>
+    <li>Sosiaalisen median tekoälyvideot ilman selviä lähteitä</li>
+  </ul>
+</section>
+
+<section id="harjoitukset">
+  <h2 class="osio-otsikko">6. Pienryhmäharjoitukset</h2>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä A – Muista minut</div>
+    <p>Jokainen asettaa ChatGPT:hen mukautetut ohjeet, jotka heijastavat omia käyttötarpeitaan. Testatkaa sitten toistenne ohjeet: pyydä toinen ryhmäläinen testaamaan, vaikuttavatko ohjeet vastauksiin odotetusti. Mitä toimii, mitä kannattaisi muuttaa?</p>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä B – Tiedostohaaste</div>
+    <p>Ladatkaa jokin yhteinen tiedosto tekoälylle (esim. kurssin etusivu tai jokin lyhyt artikkeli PDF-muodossa). Kukin ryhmäläinen esittää tekoälylle eri kysymyksen saman tiedoston perusteella. Vertailkaa vastauksia: mistä tekoäly löysi tiedon, mistä ei?</p>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Pienryhmätehtävä C – Verkkohakukilpailu</div>
+    <p>Etsikää vastaus johonkin tuoreeseen kysymykseen kolmella tavalla:</p>
+    <ol>
+      <li>Google-haku</li>
+      <li>Copilot (verkkohaku aina päällä)</li>
+      <li>ChatGPT ilman verkkohakua</li>
+    </ol>
+    <p>Vertailkaa nopeutta, tarkkuutta ja lähteiden mainitsemista. Mikä tapa sopii mihinkin tilanteeseen?</p>
+  </div>
+</section>
+
+<section id="yhteenveto">
+  <div class="yhteenveto">
+    <h3>Yhteenveto – mitä opimme tänään</h3>
+    <ul>
+      <li><strong>Muistiasetukset ja mukautetut ohjeet</strong> tekevät tekoälystä henkilökohtaisemman — kerro kerran, hyödy joka kerta</li>
+      <li><strong>Verkkohaku</strong> poistaa "jäätyneen tiedon" rajoitteen — Copilot aina, ChatGPT kytkettynä</li>
+      <li><strong>Tiedostoja voi ladata</strong> tekoälylle PDF:stä Exceliin — tiivistäminen, analysointi ja kysymykset onnistuvat</li>
+      <li><strong>Pikavinkkilista</strong> täydentää arjen käyttöä — pyydä tarkistamaan, jaa, aloita uudelleen tarvittaessa</li>
+      <li><strong>Seuraa kevyesti</strong> — yksi hyvä lähde kuukaudessa riittää, tekoäly itse osaa kertoa uusimmasta</li>
+    </ul>
+    <p style="margin-top:1rem; font-style: italic;">Kiitos kaikesta! Kurssilla on nyt seitsemän sessiota täynnä käytännöllisiä taitoja. Hyvää käyttöä arjessa.</p>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

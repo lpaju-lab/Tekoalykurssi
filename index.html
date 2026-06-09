@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tekoälytaitoja arjen tarpeisiin</title>
+<style>
+  :root {
+    --sininen: #1a3a5c;
+    --vaaleasininen: #2d6aa0;
+    --korostus: #e8f0fa;
+    --teksti: #1a1a1a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--teksti);
+    background: #fff;
+  }
+  .header {
+    background: var(--sininen);
+    color: white;
+    padding: 3rem 2.5rem 2.5rem;
+    text-align: center;
+  }
+  .header .yläotsikko {
+    font-family: Arial, sans-serif;
+    font-size: 0.95rem;
+    opacity: 0.8;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .header h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.6rem;
+  }
+  .header .alaotsikko {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 2.5rem 4rem;
+  }
+
+  .kuvaus {
+    background: var(--korostus);
+    border-left: 5px solid var(--vaaleasininen);
+    padding: 1.5rem 2rem;
+    border-radius: 0 8px 8px 0;
+    margin: 2rem 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .sessiot {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .sessio-kortti {
+    border: 2px solid var(--vaaleasininen);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: box-shadow 0.2s;
+  }
+  .sessio-kortti:hover {
+    box-shadow: 0 4px 16px rgba(45,106,160,0.2);
+  }
+  .sessio-kortti .kortti-header {
+    background: var(--vaaleasininen);
+    color: white;
+    padding: 1rem 1.5rem;
+    font-family: Arial, sans-serif;
+  }
+  .sessio-kortti .kortti-numero {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .sessio-kortti .kortti-otsikko {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 0.2rem;
+  }
+  .sessio-kortti .kortti-sisältö {
+    padding: 1.2rem 1.5rem;
+    font-family: Arial, sans-serif;
+    font-size: 0.95rem;
+  }
+  .sessio-kortti .kortti-teemat {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+  }
+  .sessio-kortti .teema {
+    background: var(--korostus);
+    border: 1px solid var(--vaaleasininen);
+    border-radius: 16px;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.85rem;
+    color: var(--sininen);
+  }
+  .sessio-kortti .lue-lisää {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--vaaleasininen);
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    color: var(--sininen);
+    margin: 2.5rem 0 1rem;
+    font-family: Arial, sans-serif;
+    border-bottom: 2px solid var(--vaaleasininen);
+    padding-bottom: 0.4rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-family: Arial, sans-serif;
+    font-size: 0.95rem;
+  }
+  th {
+    background: var(--sininen);
+    color: white;
+    padding: 0.6rem 1rem;
+    text-align: left;
+  }
+  td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f5f7fa; }
+
+  p { margin-bottom: 1rem; }
+  ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+  li { margin-bottom: 0.4rem; }
+
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 1px solid #eee;
+    margin-top: 3rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="yläotsikko">Ikääntyvien yliopisto · Jatkokurssi</div>
+  <h1>Tekoälytaitoja arjen tarpeisiin</h1>
+  <div class="alaotsikko">Syventävä kurssi tekoälyn käyttäjille</div>
+</div>
+
+<main>
+
+  <div class="kuvaus">
+    <p>Tämä jatkokurssi rakentuu alkeiskurssin pohjalle. Oletuksena on, että tiedät jo tekoälyn perusteet: mitä se on, miten sille kirjoitetaan kehote, ja mitä palveluita on olemassa. Nyt mennään syvemmälle — käytäntöön, kriittiseen arviointiin ja erityiskäyttötapauksiin.</p>
+    <p><strong>Käytettävät palvelut:</strong> ChatGPT, Gemini ja Copilot. Voit käyttää omaa suosikkiasi.</p>
+  </div>
+
+  <h2>Sessioiden sisältö</h2>
+
+  <div class="sessiot">
+    <a href="sessio1-kehotekoulu.html" class="sessio-kortti">
+      <div class="kortti-header">
+        <div class="kortti-numero">Sessio 1 · 3 tuntia</div>
+        <div class="kortti-otsikko">Kehotekoulu: Kohti parempia kehotteita</div>
+      </div>
+      <div class="kortti-sisältö">
+        <p>Syvennymme siihen, miten tekoäly lukee kehotteita ja miten niitä voi ohjata entistä tarkemmin. Harjoitellaan rooleja, muotoilua, iterointia ja monivaiheisia tehtäviä.</p>
+        <div class="kortti-teemat">
+          <span class="teema">Kehotteen anatomia</span>
+          <span class="teema">Roolit ja persoonat</span>
+          <span class="teema">Muodon hallinta</span>
+          <span class="teema">Iteraatio</span>
+          <span class="teema">Ketjuttaminen</span>
+        </div>
+        <div class="lue-lisää">Avaa sessio →</div>
+      </div>
+    </a>
+
+    <a href="sessio2-turvallisuus-sukututkimus.html" class="sessio-kortti">
+      <div class="kortti-header">
+        <div class="kortti-numero">Sessio 2 · 3 tuntia</div>
+        <div class="kortti-otsikko">Turvallisuus</div>
+      </div>
+      <div class="kortti-sisältö">
+        <p>Tietosuoja eri palveluissa, kriittinen arviointi ja faktantarkistus. Opitaan tunnistamaan hallusinointi ja deepfake-sisältö sekä hallitsemaan omia tietoja.</p>
+        <div class="kortti-teemat">
+          <span class="teema">Tietosuoja</span>
+          <span class="teema">Faktantarkistus</span>
+          <span class="teema">Hallusinointi</span>
+          <span class="teema">Deepfake</span>
+        </div>
+        <div class="lue-lisää">Avaa sessio →</div>
+      </div>
+    </a>
+
+    <a href="sessio3-yhdistystoiminta.html" class="sessio-kortti">
+      <div class="kortti-header">
+        <div class="kortti-numero">Sessio 3 · 3 tuntia</div>
+        <div class="kortti-otsikko">Tekoäly yhdistystoiminnan apuna</div>
+      </div>
+      <div class="kortti-sisältö">
+        <p>Käytännönläheinen sessio yhdistystoimijoille: viestintä, kokousdokumentit, tapahtumien suunnittelu ja apurahahakemukset. Paljon konkreettisia esimerkkejä ja malleja.</p>
+        <div class="kortti-teemat">
+          <span class="teema">Tiedotteet ja some</span>
+          <span class="teema">Pöytäkirjat</span>
+          <span class="teema">Tapahtumat</span>
+          <span class="teema">Apurahahakemukset</span>
+          <span class="teema">Toimintakertomus</span>
+        </div>
+        <div class="lue-lisää">Avaa sessio →</div>
+      </div>
+    </a>
+
+    <a href="sessio4-kielet.html" class="sessio-kortti">
+      <div class="kortti-header">
+        <div class="kortti-numero">Sessio 4 · 3 tuntia</div>
+        <div class="kortti-otsikko">Kielten opiskelu tekoälyn avulla</div>
+      </div>
+      <div class="kortti-sisältö">
+        <p>Tekoäly kärsivällisenä kieltenoppimisen kumppanina: käännöstyökalut, kieliopintarkistus, keskusteluharjoittelu ja matkailuun valmistautuminen.</p>
+        <div class="kortti-teemat">
+          <span class="teema">Kääntäminen</span>
+          <span class="teema">Kielioppiapuri</span>
+          <span class="teema">Dialogiharjoittelu</span>
+          <span class="teema">Matkafraasit</span>
+          <span class="teema">Kulttuuriosaaminen</span>
+        </div>
+        <div class="lue-lisää">Avaa sessio →</div>
+      </div>
+    </a>
+
+    <a href="sessio5-kuvat.html" class="sessio-kortti">
+      <div class="kortti-header">
+        <div class="kortti-numero">Sessio 5 · 3 tuntia</div>
+        <div class="kortti-otsikko">Kuvien tekeminen ja muokkaaminen</div>
+      </div>
+      <div class="kortti-sisältö">
+        <p>Tekoälyllä luodaan ja muokataan kuvia: kuvageneraatio kehotteilla, vanhojen valokuvien restaurointi ja käytännön muokkaustyökalut.</p>
+        <div class="kortti-teemat">
+          <span class="teema">Kuvageneraatio</span>
+          <span class="teema">Kuvakehotteet</span>
+          <span class="teema">Muokkaus</span>
+          <span class="teema">Vanhat valokuvat</span>
+          <span class="teema">Etiikka</span>
+        </div>
+        <div class="lue-lisää">Avaa sessio →</div>
+      </div>
+    </a>
+
+    <a href="sessio6-etiikka.html" class="sessio-kortti">
+      <div class="kortti-header">
+        <div class="kortti-numero">Sessio 6</div>
+        <div class="kortti-otsikko">Tekoäly, etiikka ja ympäristö</div>
+      </div>
+      <div class="kortti-sisältö">
+        <p>Ympäristövaikutukset, vastuu, vinoumat, avoimuus ja tekoäly työelämässä. Pohdintaa ja käytännön harjoituksia eettisistä kysymyksistä.</p>
+        <div class="kortti-teemat">
+          <span class="teema">Energiankulutus</span>
+          <span class="teema">Vastuu</span>
+          <span class="teema">Vinoumat</span>
+          <span class="teema">Avoimuus</span>
+          <span class="teema">Työ ja murros</span>
+        </div>
+        <div class="lue-lisää">Avaa sessio →</div>
+      </div>
+    </a>
+
+    <a href="sessio7-vinkit.html" class="sessio-kortti">
+      <div class="kortti-header">
+        <div class="kortti-numero">Sessio 7</div>
+        <div class="kortti-otsikko">Vinkit, muistiasetukset, verkkohaku ja tiedostot</div>
+      </div>
+      <div class="kortti-sisältö">
+        <p>Käytännön niksejä edistyneeseen käyttöön: tekoälyn muisti ja mukautetut ohjeet, verkkohaku eri palveluissa, tiedostojen hyödyntäminen ja tekoälyn kehityksen seuraaminen.</p>
+        <div class="kortti-teemat">
+          <span class="teema">Muistiasetukset</span>
+          <span class="teema">Verkkohaku</span>
+          <span class="teema">PDF ja Excel</span>
+          <span class="teema">Pikavinkki</span>
+          <span class="teema">Pysyä ajan tasalla</span>
+        </div>
+        <div class="lue-lisää">Avaa sessio →</div>
+      </div>
+    </a>
+
+    <a href="sessio8-sukututkimus.html" class="sessio-kortti">
+      <div class="kortti-header" style="background: #7b1fa2;">
+        <div class="kortti-numero">Sessio 8 · 3 tuntia</div>
+        <div class="kortti-otsikko">Tekoäly sukututkimuksessa</div>
+      </div>
+      <div class="kortti-sisältö">
+        <p>Sukujuurten jäljillä tekoälyn ja Kansallisarkiston Astia-palvelun avulla. Vanhojen tekstien tulkinta, käsialantunnistus ja historiallinen konteksti.</p>
+        <div class="kortti-teemat">
+          <span class="teema">Astia ja HTR</span>
+          <span class="teema">Vanhat tekstit</span>
+          <span class="teema">Kääntäminen</span>
+          <span class="teema">Historiallinen konteksti</span>
+          <span class="teema">Sukutarina</span>
+        </div>
+        <div class="lue-lisää">Avaa sessio →</div>
+      </div>
+    </a>
+  </div>
+
+  <h2>Kurssin rakenne</h2>
+
+  <table>
+    <tr><th>Sessio</th><th>Aihe</th><th>Ajankohta</th></tr>
+    <tr><td>1</td><td>Kehotekoulu: Kohti parempia kehotteita</td><td>[merkitse tähän]</td></tr>
+    <tr><td>2</td><td>Turvallisuus: tietosuoja ja faktantarkistus</td><td>[merkitse tähän]</td></tr>
+    <tr><td>3</td><td>Yhdistystoiminta</td><td>[merkitse tähän]</td></tr>
+    <tr><td>4</td><td>Kielten opiskelu tekoälyn avulla</td><td>[merkitse tähän]</td></tr>
+    <tr><td>5</td><td>Kuvien tekeminen ja muokkaaminen</td><td>[merkitse tähän]</td></tr>
+    <tr><td>6</td><td>Tekoäly, etiikka ja ympäristö</td><td>[merkitse tähän]</td></tr>
+    <tr><td>7</td><td>Vinkit, muistiasetukset, verkkohaku ja tiedostot</td><td>[merkitse tähän]</td></tr>
+    <tr><td>8</td><td>Tekoäly sukututkimuksessa</td><td>[merkitse tähän]</td></tr>
+  </table>
+
+  <h2>Miten materiaalit toimivat?</h2>
+  <ul>
+    <li>Avaa session sivu selaimessa ja jaa näyttö Zoomissa</li>
+    <li>Harjoitukset on merkitty keltaisilla laatikoilla — nämä tehdään pienryhmissä</li>
+    <li>Vihreät vinkkilaatikot sisältävät käytännön neuvoja</li>
+    <li>Punaiset varoituslaatikot nostavat esiin erityistä huomiota vaativat asiat</li>
+    <li>Tummalla pohjalla olevat tekstit ovat kehotteesimerkkejä, joita voi kopioida suoraan tekoälylle</li>
+  </ul>
+
+</main>
+
+<div class="footer">
+  Tekoälytaitoja arjen tarpeisiin · Ikääntyvien yliopisto
+</div>
+
+</body>
+</html>
