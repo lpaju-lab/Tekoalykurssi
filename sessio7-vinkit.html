@@ -90,6 +90,8 @@
   <ol>
     <li><a href="#muisti">Tekoälyn muistiasetukset ja mukautetut ohjeet</a></li>
     <li><a href="#verkkohaku">Tekoäly yhdistettynä verkkohakuun</a></li>
+    <li><a href="#syvaajattelu">Syväajattelu: milloin ja miksi kannattaa käyttää?</a></li>
+    <li><a href="#ryhmakeskustelut">Ryhmäkeskustelut (Copilot): mitä tarkoittaa ja miten käyttää?</a></li>
     <li><a href="#tiedostot">Tiedostojen käyttö tekoälyn kanssa</a></li>
     <li><a href="#pikavinkki">Pikavinkkilista: käytännön niksejä</a></li>
     <li><a href="#seuraaminen">Tekoälyn kehityksen seuraaminen</a></li>
@@ -219,8 +221,85 @@ Tarkista verkosta: mikä on Kansallisarkiston Astia-palvelun osoite ja aukioloaj
   </div>
 </section>
 
+<section id="syvaajattelu">
+  <h2 class="osio-otsikko">3. Syväajattelu: milloin ja miksi kannattaa käyttää?</h2>
+
+  <p>Useissa tekoälypalveluissa on nykyään erillinen <strong>syväajattelutila</strong> (engl. <em>extended thinking</em> tai <em>deep thinking</em>). Tässä tilassa tekoäly miettii vastaustaan pidempään ennen kuin antaa lopullisen vastauksen — aivan kuten ihminenkin saattaa ensin miettiä ääneen ennen johtopäätöstä.</p>
+
+  <h3>Mitä syväajattelu käytännössä tarkoittaa?</h3>
+  <p>Tekoäly käy ensin sisäistä "pohdintaprosessia": se harkitsee eri näkökulmia, arvioi omia epävarmuuksiaan ja rakentaa vastausta askel askeleelta. Tämä näkyy usein käyttäjälle niin, että tekoäly kestää kauemmin vastata, ja joissakin palveluissa voit nähdä sen "ajatusketjun" ennen varsinaista vastausta.</p>
+
+  <h3>Milloin syväajattelua kannattaa käyttää?</h3>
+  <table>
+    <tr><th>Tilanne</th><th>Miksi syväajattelu auttaa</th></tr>
+    <tr><td>Monivaiheinen ongelma tai laskutoimitus</td><td>Tekoäly ei hyppää heti johtopäätökseen vaan tarkistaa välivaiheet</td></tr>
+    <tr><td>Päätöksenteon tuki (plussat ja miinukset)</td><td>Harkittu analyysi eri puolista, ei pelkkä ensimmäinen mieleen tuleva vastaus</td></tr>
+    <tr><td>Monimutkaiset kirjoitustehtävät</td><td>Rakenne ja argumentointi suunnitellaan etukäteen</td></tr>
+    <tr><td>Tilanteen analysointi tai strateginen pohdinta</td><td>Tekoäly osaa ottaa huomioon useamman näkökulman yhtä aikaa</td></tr>
+  </table>
+
+  <h3>Milloin syväajattelua EI tarvita?</h3>
+  <ul>
+    <li>Yksinkertaiset fakta- tai käytännön kysymykset ("Milloin kirjasto on auki?")</li>
+    <li>Nopeat käännökset tai tiivistelmät</li>
+    <li>Arkipäiväinen jutustelu tai ideointi</li>
+  </ul>
+
+  <div class="vinkki">
+    <div class="vinkki-otsikko">Miten se kytketään päälle?</div>
+    <ul>
+      <li><strong>ChatGPT:</strong> Valitse mallivalikosta "o3" tai "o4-mini" — ne ovat syväajattelumalleja. Normaali GPT-4o ei käytä syväajattelua.</li>
+      <li><strong>Gemini:</strong> Valitse "Gemini 2.0 Flash Thinking" tai vastaava thinking-versio.</li>
+      <li><strong>Copilot:</strong> Copilotissa syväajattelu ei ole erillinen asetus — se toimii automaattisesti monimutkaisissa kysymyksissä.</li>
+    </ul>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 3.1 – Koeajattelu</div>
+    <p>Kysy jokin moniosainen kysymys ensin tavallisella mallilla, sitten syväajattelumallilla (esim. ChatGPT:ssä o3). Esimerkkikysymys: <em>"Mitä minun kannattaisi ottaa huomioon, jos haluaisin aloittaa vapaaehtoistyön yhdistyksessä?"</em></p>
+    <p>Vertaile vastauksia: onko syväajattelun tulos erilainen? Onko se parempi tai vain pidempi?</p>
+  </div>
+</section>
+
+<section id="ryhmakeskustelut">
+  <h2 class="osio-otsikko">4. Ryhmäkeskustelut (Copilot): mitä tarkoittaa ja miten käyttää?</h2>
+
+  <p>Microsoft Copilotissa on toiminto nimeltä <strong>ryhmäkeskustelu</strong> (engl. <em>group chat</em> tai <em>shared chat</em>). Sen avulla useampi henkilö voi osallistua samaan tekoälykeskusteluun yhtä aikaa — aivan kuten ryhmäviestikeskustelussa.</p>
+
+  <h3>Mihin ryhmäkeskustelua voi käyttää?</h3>
+  <ul>
+    <li>Yhdistyksen hallituksen kokouksen valmistelu yhdessä</li>
+    <li>Yhteisen asiakirjan tai suunnitelman ideointi porukalla</li>
+    <li>Koulutustilanne, jossa kaikki näkevät saman tekoälykeskustelun</li>
+    <li>Projektin läpikäynti tiimissä — kukin voi esittää kysymyksiä tekoälylle samassa tilassa</li>
+  </ul>
+
+  <h3>Miten ryhmäkeskustelu aloitetaan?</h3>
+  <ol>
+    <li>Avaa Copilot (copilot.microsoft.com) ja kirjaudu sisään Microsoft-tilillä.</li>
+    <li>Aloita normaali keskustelu tekoälyn kanssa.</li>
+    <li>Etsi jakamispainike (Share) tai kopioi keskustelun linkki.</li>
+    <li>Jaa linkki muille osallistujille — he voivat liittyä saman keskustelun jatkamiseen.</li>
+  </ol>
+
+  <div class="tärkeää">
+    <div class="tärkeä-otsikko">Huomio yksityisyydestä</div>
+    Ryhmäkeskustelussa kaikki osallistujat näkevät koko keskusteluhistorian, myös aiemmat viestit. Älä jaa arkaluonteista tietoa ryhmäkeskustelussa, jonka linkki on liikkeellä useammalla henkilöllä.
+  </div>
+
+  <div class="vinkki">
+    <div class="vinkki-otsikko">Vinkki opettajille ja kouluttajille</div>
+    Ryhmäkeskustelu sopii hyvin demonstraatiotilanteisiin: kouluttaja voi aloittaa keskustelun, ja kaikki osallistujat seuraavat samaa tekoälyvuoropuhelua omilta laitteiltaan. Näin ei tarvita erikseen projektoria tai jaettua näyttöä.
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 4.1 – Yhdessä kyseleminen</div>
+    <p>Yksi ryhmän jäsen aloittaa Copilot-keskustelun ja jakaa linkin muille. Kukin esittää yhden kysymyksen samaan keskusteluun. Lopuksi tarkastellaan yhdessä: miten tekoäly otti aiemmat kysymykset huomioon myöhemmissä vastauksissa?</p>
+  </div>
+</section>
+
 <section id="tiedostot">
-  <h2 class="osio-otsikko">3. Tiedostojen käyttö tekoälyn kanssa</h2>
+  <h2 class="osio-otsikko">5. Tiedostojen käyttö tekoälyn kanssa</h2>
 
   <p>Tekoäly ei osaa hakea tiedostoja tietokoneeltasi itse, mutta voit ladata tiedoston tekoälylle, ja se lukee sen sisällön. Tämä avaa paljon käytännöllisiä mahdollisuuksia.</p>
 
@@ -308,7 +387,7 @@ Tarkista verkosta: mikä on Kansallisarkiston Astia-palvelun osoite ja aukioloaj
 </section>
 
 <section id="pikavinkki">
-  <h2 class="osio-otsikko">4. Pikavinkkilista: käytännön niksejä</h2>
+  <h2 class="osio-otsikko">6. Pikavinkkilista: käytännön niksejä</h2>
 
   <p>Kokoelma hyödyllisiä tapoja, jotka nopeuttavat ja parantavat tekoälyn käyttöä arjessa.</p>
 
@@ -362,7 +441,7 @@ Tarkista verkosta: mikä on Kansallisarkiston Astia-palvelun osoite ja aukioloaj
 </section>
 
 <section id="seuraaminen">
-  <h2 class="osio-otsikko">5. Tekoälyn kehityksen seuraaminen</h2>
+  <h2 class="osio-otsikko">7. Tekoälyn kehityksen seuraaminen</h2>
 
   <p>Tekoäly kehittyy nopeasti — uusia ominaisuuksia ja palveluita tulee jatkuvasti. Tämä voi tuntua ylivoimaiselta, mutta ei tarvitse seurata kaikkea. Muutama hyvä lähde ja kevyt tapa pysyä ajan tasalla riittää.</p>
 
@@ -384,9 +463,9 @@ Tarkista verkosta: mikä on Kansallisarkiston Astia-palvelun osoite ja aukioloaj
       <td>Haluat lukea uutisia omaan tahtiin</td>
     </tr>
     <tr>
-      <td><strong>Teknologiateollisuus / Digirata</strong></td>
-      <td>Suomalainen näkökulma tekoälyn hyödyntämiseen</td>
-      <td>Kiinnostaa ammatillinen tai yhteiskunnallinen näkökulma</td>
+      <td><strong>YouTube / sosiaalinen media</strong></td>
+      <td>Somessa on lukuisia tekoälyyn keskittyneitä tilejä, jotka jakavat vinkkejä. Suomalaisista esimerkiksi Esa Riutta</td>
+      <td>Kiinnostaa pysyä trendien aallonharjalla</td>
     </tr>
     <tr>
       <td><strong>ChatGPT:n omat julkaisutiedotteet</strong> (openai.com/blog)</td>
@@ -396,14 +475,11 @@ Tarkista verkosta: mikä on Kansallisarkiston Astia-palvelun osoite ja aukioloaj
     <tr>
       <td><strong>Tekoäly itse</strong></td>
       <td>Kysy tekoälyltä: "Mitä uutta tekoälymaailmassa on tapahtunut viime aikoina?"</td>
-      <td>Nopea tapa hahmottaa tilannetta — muista tarkistaa lähteet</td>
+      <td>Nopea tapa hahmottaa tilannetta — muista tarkistaa lähteet ja muista, että tekoäly ei välttämättä ole tietoinen viimeisimmistä asioista</td>
     </tr>
   </table>
 
-  <div class="vinkki">
-    <div class="vinkki-otsikko">Kevyt tapa pysyä ajan tasalla</div>
-    Ei tarvitse seurata joka päivä. Riittää, että noin kerran kuussa kokeilee: "Onko tässä palvelussa tullut uusia ominaisuuksia?" tai "Mitä tekoälyuutisia on ollut viime kuukausina?" Tekoäly kertoo, jos on jotain oleellista. Muutaman tunnin kurssi tai webinaari kerran vuodessa täydentää tietopohjaa.
-  </div>
+
 
   <h3>Mitä ei tarvitse seurata</h3>
   <p>Tekoälyä koskevaa sisältöä tuotetaan valtavasti — paljon siitä on spekulaatiota, hypeä tai teknistä yksityiskohtia, joilla ei ole käytännön merkitystä tavalliselle käyttäjälle. Voit huoletta sivuuttaa:</p>
@@ -416,7 +492,7 @@ Tarkista verkosta: mikä on Kansallisarkiston Astia-palvelun osoite ja aukioloaj
 </section>
 
 <section id="harjoitukset">
-  <h2 class="osio-otsikko">6. Pienryhmäharjoitukset</h2>
+  <h2 class="osio-otsikko">8. Pienryhmäharjoitukset</h2>
 
   <div class="harjoitus">
     <div class="harjoitus-otsikko">Pienryhmätehtävä A – Muista minut</div>
@@ -450,7 +526,6 @@ Tarkista verkosta: mikä on Kansallisarkiston Astia-palvelun osoite ja aukioloaj
       <li><strong>Pikavinkkilista</strong> täydentää arjen käyttöä — pyydä tarkistamaan, jaa, aloita uudelleen tarvittaessa</li>
       <li><strong>Seuraa kevyesti</strong> — yksi hyvä lähde kuukaudessa riittää, tekoäly itse osaa kertoa uusimmasta</li>
     </ul>
-    <p style="margin-top:1rem; font-style: italic;">Kiitos kaikesta! Kurssilla on nyt seitsemän sessiota täynnä käytännöllisiä taitoja. Hyvää käyttöä arjessa.</p>
   </div>
 </section>
 

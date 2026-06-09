@@ -16,45 +16,108 @@
     --vihreä: #e8f5e9;
     --vihreä-reuna: #388e3c;
     --teksti: #1a1a1a;
-    --taustaharmoninen: #f5f7fa;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; color: var(--teksti); background: #fff; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--teksti);
+    background: #fff;
+  }
   .header { background: var(--sininen); color: white; padding: 2rem 2.5rem; }
-  .header .kurssinimi { font-size: 0.95rem; opacity: 0.8; font-family: Arial, sans-serif; margin-bottom: 0.4rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .header .kurssinimi {
+    font-size: 0.95rem; opacity: 0.8; font-family: Arial, sans-serif;
+    margin-bottom: 0.4rem; letter-spacing: 0.05em; text-transform: uppercase;
+  }
   .header h1 { font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem; }
   .header .info { font-size: 1rem; opacity: 0.85; font-family: Arial, sans-serif; }
-  .nav-bar { background: var(--vaaleasininen); padding: 0.75rem 2.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap; font-family: Arial, sans-serif; font-size: 0.9rem; }
+  .nav-bar {
+    background: var(--vaaleasininen);
+    padding: 0.75rem 2.5rem;
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    font-family: Arial, sans-serif; font-size: 0.9rem;
+  }
   .nav-bar a { color: white; text-decoration: none; opacity: 0.9; }
   .nav-bar a:hover { opacity: 1; text-decoration: underline; }
   .nav-bar .aktiivinen { font-weight: bold; opacity: 1; }
-  .sisällysluettelo { background: var(--korostus); border-left: 5px solid var(--vaaleasininen); margin: 2rem 2.5rem; padding: 1.5rem 2rem; border-radius: 0 8px 8px 0; font-family: Arial, sans-serif; }
-  .sisällysluettelo h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--sininen); margin-bottom: 0.75rem; }
+  .sisällysluettelo {
+    background: var(--korostus);
+    border-left: 5px solid var(--vaaleasininen);
+    margin: 2rem 2.5rem;
+    padding: 1.5rem 2rem;
+    border-radius: 0 8px 8px 0;
+    font-family: Arial, sans-serif;
+  }
+  .sisällysluettelo h2 {
+    font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--sininen); margin-bottom: 0.75rem;
+  }
   .sisällysluettelo ol { padding-left: 1.5rem; }
   .sisällysluettelo li { margin-bottom: 0.3rem; }
   .sisällysluettelo a { color: var(--vaaleasininen); text-decoration: none; }
   .sisällysluettelo a:hover { text-decoration: underline; }
   main { max-width: 860px; margin: 0 auto; padding: 1rem 2.5rem 4rem; }
   section { margin-top: 3rem; }
-  h2.osio-otsikko { font-size: 1.6rem; color: var(--sininen); border-bottom: 3px solid var(--vaaleasininen); padding-bottom: 0.5rem; margin-bottom: 1.2rem; font-family: Arial, sans-serif; }
+  h2.osio-otsikko {
+    font-size: 1.6rem; color: var(--sininen);
+    border-bottom: 3px solid var(--vaaleasininen);
+    padding-bottom: 0.5rem; margin-bottom: 1.2rem;
+    font-family: Arial, sans-serif;
+  }
   h3 { font-size: 1.2rem; color: var(--vaaleasininen); margin: 1.8rem 0 0.7rem; font-family: Arial, sans-serif; }
   p { margin-bottom: 1rem; }
-  .harjoitus { background: var(--harjoitus); border-left: 5px solid var(--harjoitus-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
-  .harjoitus .harjoitus-otsikko { font-family: Arial, sans-serif; font-weight: bold; font-size: 0.95rem; color: #7a5800; margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; }
-  .tärkeää { background: var(--tärkeä); border-left: 5px solid var(--tärkeä-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
-  .tärkeää .tärkeä-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: var(--tärkeä-reuna); margin-bottom: 0.5rem; }
-  .vinkki { background: var(--vihreä); border-left: 5px solid var(--vihreä-reuna); padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
-  .vinkki .vinkki-otsikko { font-family: Arial, sans-serif; font-weight: bold; color: #2e7d32; margin-bottom: 0.5rem; }
-  .kehote-esimerkki { background: #1e1e2e; color: #e0e0ff; font-family: 'Courier New', monospace; font-size: 0.95rem; padding: 1.2rem 1.5rem; border-radius: 8px; margin: 1rem 0; white-space: pre-wrap; line-height: 1.6; }
-  .kehote-esimerkki .label { font-family: Arial, sans-serif; font-size: 0.78rem; color: #aaa; display: block; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em; }
-  table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-family: Arial, sans-serif; font-size: 0.95rem; }
-  th { background: var(--sininen); color: white; padding: 0.6rem 1rem; text-align: left; }
-  td { padding: 0.6rem 1rem; border-bottom: 1px solid #ddd; vertical-align: top; }
-  tr:nth-child(even) td { background: var(--taustaharmoninen); }
   ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
   li { margin-bottom: 0.4rem; }
-  .yhteenveto { background: var(--korostus); border: 2px solid var(--vaaleasininen); border-radius: 10px; padding: 1.5rem 2rem; margin-top: 3rem; font-family: Arial, sans-serif; }
-  .yhteenveto h3 { color: var(--sininen); margin-bottom: 0.8rem; }
+  .harjoitus {
+    background: var(--harjoitus);
+    border-left: 5px solid var(--harjoitus-reuna);
+    padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  }
+  .harjoitus .harjoitus-otsikko {
+    font-family: Arial, sans-serif; font-weight: bold;
+    font-size: 0.95rem; color: #7a5800; margin-bottom: 0.6rem;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .tärkeää {
+    background: var(--tärkeä); border-left: 5px solid var(--tärkeä-reuna);
+    padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  }
+  .tärkeää .tärkeä-otsikko {
+    font-family: Arial, sans-serif; font-weight: bold;
+    color: var(--tärkeä-reuna); margin-bottom: 0.5rem;
+  }
+  .vinkki {
+    background: var(--vihreä); border-left: 5px solid var(--vihreä-reuna);
+    padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  }
+  .vinkki .vinkki-otsikko {
+    font-family: Arial, sans-serif; font-weight: bold;
+    color: #2e7d32; margin-bottom: 0.5rem;
+  }
+  .kehote-esimerkki {
+    background: #1e1e2e; color: #e0e0ff;
+    font-family: 'Courier New', monospace; font-size: 0.95rem;
+    padding: 1.2rem 1.5rem; border-radius: 8px;
+    margin: 1rem 0; white-space: pre-wrap; line-height: 1.6;
+  }
+  .kehote-esimerkki .label {
+    font-family: Arial, sans-serif; font-size: 0.78rem; color: #aaa;
+    display: block; margin-bottom: 0.5rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  table {
+    width: 100%; border-collapse: collapse;
+    margin: 1.2rem 0; font-family: Arial, sans-serif; font-size: 0.95rem;
+  }
+  th { background: var(--sininen); color: white; padding: 0.6rem 1rem; text-align: left; }
+  td { padding: 0.6rem 1rem; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f2f5f9; }
+  .yhteenveto {
+    background: var(--korostus); border: 2px solid var(--vaaleasininen);
+    padding: 1.5rem 2rem; border-radius: 8px; margin-top: 3rem;
+  }
+  .yhteenveto h3 { color: var(--sininen); margin-top: 0; }
 </style>
 </head>
 <body>
@@ -65,7 +128,7 @@
   <div class="info">Tietosuoja, kriittinen arviointi ja faktantarkistus &nbsp;·&nbsp; 3 tuntia</div>
 </div>
 
-<div class="nav-bar">
+<nav class="nav-bar">
   <a href="index.html">Etusivu</a>
   <a href="sessio1-kehotekoulu.html">S1: Kehotekoulu</a>
   <a href="sessio2-turvallisuus-sukututkimus.html" class="aktiivinen">S2: Turvallisuus</a>
@@ -75,13 +138,14 @@
   <a href="sessio6-etiikka.html">S6: Etiikka &amp; Ympäristö</a>
   <a href="sessio7-vinkit.html">S7: Vinkit &amp; Edistynyt käyttö</a>
   <a href="sessio8-sukututkimus.html">S8: Sukututkimus</a>
-</div>
+</nav>
 
 <div class="sisällysluettelo">
   <h2>Tämän session sisältö</h2>
   <ol>
     <li><a href="#data-ja-yksityisyys">Data, yksityisyys ja tekoälyjätit</a></li>
     <li><a href="#kriittinen-arviointi">Kriittinen arviointi ja faktantarkistus</a></li>
+    <li><a href="#turvallisuusapuri">Tekoäly turvallisuusapurina</a></li>
     <li><a href="#yhteenveto">Yhteenveto</a></li>
   </ol>
 </div>
@@ -90,10 +154,9 @@
 
 <section id="data-ja-yksityisyys">
   <h2 class="osio-otsikko">1. Data, yksityisyys ja tekoälyjätit</h2>
-<p>Alkeiskurssilla opimme perussäännön: älä syötä tekoälylle arkaluonteisia tietoja. Nyt mennään askelta syvemmälle: mitä oikeasti tapahtuu, kun käytät ChatGPT:tä, Geminiä tai Copilotia?</p>
+  <p>Alkeiskurssilla opimme perussäännön: älä syötä tekoälylle arkaluonteisia tietoja. Nyt mennään askelta syvemmälle: mitä oikeasti tapahtuu, kun käytät ChatGPT:tä, Geminiä tai Copilotia?</p>
 
   <h3>Missä data kulkee?</h3>
-
   <table>
     <tr><th>Palvelu</th><th>Mitä datalle tapahtuu oletuksena</th><th>Miten voit vaikuttaa</th></tr>
     <tr>
@@ -126,6 +189,16 @@
     <p style="margin-top:0.5rem">Yleistietoja (esim. "miten hoitaa korkea verenpaine") voi sen sijaan kysyä vapaasti.</p>
   </div>
 
+  <h3>Onko tietojen keräämisestä haittaa — ja kannattaako sitä pelätä?</h3>
+  <p>Moni miettii: voinko käyttää tekoälyä lainkaan, jos se kerää tietojani? Tähän ei ole yhtä vastausta, mutta asiaa voi ajatella mittakaavana.</p>
+  <ul>
+    <li><strong>Arkaluonteisten tietojen jakaminen on aina riski</strong> — henkilötunnukset, salasanat ja luottamukselliset asiakirjat voivat päätyä vääriin käsiin tai käytetyksi mallien koulutukseen. Tätä ei pidä tehdä.</li>
+    <li><strong>Tavallinen käyttö on yleensä turvallista</strong> — jos kysyt ruokaohjeita, kirjoitat kirjeen tai selität käsitettä, tietosi eivät ole sen arkaluonteisempaa kuin mitä Google-haussa tai sähköpostissa liikkuu.</li>
+    <li><strong>Pelko ei kannata, tietoisuus kannattaa</strong> — tekoälyjätit keräävät tietoja, mutta samoin tekevät monet muutkin palvelut, joita käytät päivittäin. Tärkeintä on tietää, mitä jakaa ja mitä ei.</li>
+    <li><strong>Voit vähentää riskiä asetuksilla</strong> — koulutukseen osallistuminen voidaan kytkeä pois, ja historian voi poistaa.</li>
+  </ul>
+  <p>Lyhyesti: tekoälyä <em>voi</em> käyttää huoletta, kun käyttää harkintaa. Pelkäämisen sijaan kannattaa oppia, missä raja kulkee — ja tämä kurssi auttaa juuri siinä.</p>
+
   <h3>Tietojen poistaminen ja hallinta</h3>
   <p>Kaikki kolme palvelua mahdollistavat keskusteluhistorian poistamisen. ChatGPT:ssä myös muistin voi tyhjentää tai säätää.</p>
 
@@ -143,7 +216,7 @@
 
 <section id="kriittinen-arviointi">
   <h2 class="osio-otsikko">2. Kriittinen arviointi ja faktantarkistus</h2>
-<p>Alkeiskurssilla opimme, että tekoäly hallusinoi — keksii asioita, jotka kuulostavat uskottavilta mutta ovat vääriä. Tällä tunnilla opitaan, miten tätä voi käytännössä hallita.</p>
+  <p>Alkeiskurssilla opimme, että tekoäly hallusinoi — keksii asioita, jotka kuulostavat uskottavilta mutta ovat vääriä. Tällä tunnilla opitaan, miten tätä voi käytännössä hallita.</p>
 
   <h3>Milloin hallusinointi on erityisen yleistä?</h3>
   <ul>
@@ -155,7 +228,6 @@
 
   <h3>Huomioi faktantarkistuksessa</h3>
   <p>Neljä kysymystä, jotka auttavat arvioimaan tekoälyn vastausta kriittisesti:</p>
-
   <table>
     <tr><th>Huomioi</th><th>Käytännössä</th></tr>
     <tr><td>Lähde</td><td>Mistä tieto on peräisin? Voiko lähdettä tarkistaa?</td></tr>
@@ -177,7 +249,6 @@
 
   <h3>Deepfake-sisällön tunnistaminen</h3>
   <p>Tekoäly voi tuottaa erittäin uskottavan näköistä väärää sisältöä. Näitä merkkejä kannattaa etsiä:</p>
-
   <table>
     <tr><th>Mitä etsiä</th><th>Miksi se paljastaa manipulaation</th></tr>
     <tr><td>Kädet ja sormet</td><td>Tekoäly tuottaa usein liikaa tai liian vähän sormiä, tai oudon muotoisia käsiä</td></tr>
@@ -190,9 +261,8 @@
   <div class="vinkki">
     <div class="vinkki-otsikko">Ilmaiset tarkistustyökalut</div>
     <ul>
-      <li><strong>Google Kuvahaku</strong> (images.google.com) — Etsii saman kuvan muualta netistä</li>
-      <li><strong>TinEye</strong> (tineye.com) — Käänteinen kuvahaku</li>
-      <li><strong>Fake News Detector</strong> -selainlaajennukset</li>
+      <li><strong>Google Lens</strong> — Etsii saman kuvan muualta netistä ("käänteinen" kuvahaku)</li>
+      <li><strong>Faktabaari</strong> (faktabaari.fi) — Verkossa toimiva faktantarkistuspalvelu</li>
     </ul>
   </div>
 
@@ -217,15 +287,73 @@
   </div>
 </section>
 
+<section id="turvallisuusapuri">
+  <h2 class="osio-otsikko">3. Tekoäly turvallisuusapurina</h2>
+  <p>Tekoäly ei ole pelkästään riski — se voi myös toimia apuna turvallisuusasioissa. Tässä osiossa harjoittelemme, miten tekoälyä voi käyttää huijausten tunnistamiseen ja tiedon luotettavuuden arviointiin.</p>
+
+  <h3>Huijausviestien tunnistaminen</h3>
+  <p>Huijausviestit (phishing, tekstiviestihuijaukset, valelasku) noudattavat usein tiettyjä kaavoja. Voit kopioida epäilyttävän viestin tekstin tekoälylle ja pyytää arviota:</p>
+
+  <div class="kehote-esimerkki"><span class="label">Esimerkkikehotteita huijausten tunnistamiseen:</span>"Sain tällaisen tekstiviestin. Onko tämä mahdollisesti huijaus? [liitä viesti tähän]"
+
+---
+
+"Analysoi tämä sähköposti. Mitkä piirteet viittaavat siihen, että se saattaa olla kalasteluviesti?"
+
+---
+
+"Mitä merkkejä tässä viestissä on, joiden perusteella en saisi klikata linkkiä?"</div>
+
+  <h3>Nettisivujen luotettavuuden arviointi</h3>
+  <p>Tekoäly voi auttaa arvioimaan, onko jokin verkkolähde tai sivusto luotettava. Se ei pysty käymään sivustolla itse, mutta voit kuvailla sivuston tai kopioida tekstiä sieltä:</p>
+
+  <div class="kehote-esimerkki"><span class="label">Esimerkkikehotteita sivuston arviointiin:</span>"Tämä sivusto väittää, että [lainaa väite]. Miten arvioisit tämän väitteen luotettavuutta?"
+
+---
+
+"Mikä on sivusto nimeltä [sivuston nimi] — onko se tunnettu ja luotettava lähde?"
+
+---
+
+"Mitkä merkit kertovat siitä, että uutissivu tai artikkeli voi olla epäluotettava?"</div>
+
+  <div class="tärkeää">
+    <div class="tärkeä-otsikko">Tekoälyn rajat turvallisuusasioissa</div>
+    Tekoäly on hyvä tunnistamaan tyypillisiä huijauskaavoja ja auttamaan kriittisessä arvioinnissa — mutta se ei ole erehtymätön. Erityisesti uudet tai hyvin kohdennetut huijaukset voivat mennä läpi. Tekoälyn arvio on yksi työkalu, ei lopullinen tuomio.
+  </div>
+
+  <h3>Tiedon luotettavuuden pikatarkistus tekoälyn avulla</h3>
+  <table>
+    <tr><th>Tilanne</th><th>Mitä pyydät tekoälyltä</th></tr>
+    <tr><td>Epäilyttävä uutinen tai väite</td><td>"Onko tämä väite yleisesti tunnettu tosiasia, vai onko siitä kiistaa?"</td></tr>
+    <tr><td>Tuntematon sivusto tai julkaisu</td><td>"Tiedätkö tästä julkaisusta tai sivustosta? Onko se tunnettu asialähde?"</td></tr>
+    <tr><td>Huijaussähköposti</td><td>"Mitkä piirteet tässä viestissä ovat tyypillisiä huijausyrityksille?"</td></tr>
+    <tr><td>Epäilyttävä puhelinsoitto tai viesti</td><td>"Kerro tyypillisistä tavoista, joilla ihmiset huijataan puhelimitse."</td></tr>
+  </table>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 3.1 – Huijausdetektiivi</div>
+    <p>Etsi netistä tai muistele jokin tunnettu huijausviesti- tai sähköpostiesimerkki (esim. "pakettisi odottaa", "tilisi on jäädytetty"). Kopioi teksti tekoälylle ja pyydä sitä analysoimaan, mitkä kohdat viestissä ovat huijauksen merkkejä.</p>
+    <p>Vertailkaa ryhmässä: löysikö tekoäly samat merkit kuin te itse?</p>
+  </div>
+
+  <div class="harjoitus">
+    <div class="harjoitus-otsikko">Harjoitus 3.2 – Sivuston arviointi</div>
+    <p>Valitse jokin tuntemattomampi tai epäilyttävä verkkosivusto (tai keksikää esimerkkejä). Kysy tekoälyltä, millä perusteella sivuston luotettavuutta voisi arvioida. Tarkastelkaa yhdessä: mitä merkkejä luotettavuudesta tai epäluotettavuudesta löytyy?</p>
+  </div>
+</section>
+
 <section id="yhteenveto">
   <div class="yhteenveto">
     <h3>Yhteenveto – mitä opimme tänään</h3>
     <ul>
       <li><strong>Tietosuoja-asetukset</strong> kannattaa tarkistaa eri palveluissa — oletusasetukset eivät aina ole yksityisimmät</li>
       <li><strong>Arkaluonteisia tietoja</strong> ei pidä syöttää tekoälylle: henkilötunnukset, salasanat, luottamukselliset asiakirjat</li>
+      <li><strong>Tavallinen käyttö on turvallista</strong> — pelko ei kannata, tietoisuus kannattaa</li>
       <li><strong>Tekoäly voi hallusinoida</strong> — neljän kohdan tarkistuslista auttaa arvioimaan vastausta kriittisesti</li>
       <li><strong>Pyydä tekoälyä kertomaan epävarmuutensa</strong> — se on usein rehellinen siitä, mistä ei tiedä</li>
       <li><strong>Deepfake-sisältöä</strong> voi oppia tunnistamaan — kädet, silmät ja äänen synkronointi paljastuvat</li>
+      <li><strong>Tekoäly turvallisuusapurina</strong> — auttaa tunnistamaan huijauksia ja arvioimaan tiedon luotettavuutta</li>
     </ul>
     <p style="margin-top:1rem"><strong>Kotitehtävä (vapaaehtoinen):</strong> Tarkista jonkin uutisen tai väitteen todenperäisyys tekoälyn avulla — ja sitten itse. Vertaa tuloksia.</p>
   </div>
