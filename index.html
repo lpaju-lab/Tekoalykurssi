@@ -164,6 +164,54 @@
     border-top: 1px solid #eee;
     margin-top: 3rem;
   }
+
+  .palvelut-ruudukko {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  @media (max-width: 500px) { .palvelut-ruudukko { grid-template-columns: 1fr; } }
+
+  .palvelu-linkki {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.4rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: box-shadow 0.2s, transform 0.15s;
+    border: 2px solid transparent;
+  }
+  .palvelu-linkki:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+    transform: translateY(-2px);
+  }
+  .palvelu-linkki .pl-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .palvelu-linkki .pl-teksti { display: flex; flex-direction: column; }
+  .palvelu-linkki .pl-nimi { font-size: 1.05rem; }
+  .palvelu-linkki .pl-osoite { font-size: 0.78rem; font-weight: normal; opacity: 0.65; margin-top: 1px; }
+
+  .pl-chatgpt  { background: #f0faf4; border-color: #10a37f; color: #0a6b53; }
+  .pl-chatgpt .pl-logo  { background: #10a37f; color: white; }
+  .pl-copilot  { background: #f0f4ff; border-color: #0078d4; color: #004e8c; }
+  .pl-copilot .pl-logo  { background: #0078d4; color: white; }
+  .pl-gemini   { background: #fff8f0; border-color: #ea8600; color: #8a4f00; }
+  .pl-gemini .pl-logo   { background: #ea8600; color: white; }
+  .pl-claude   { background: #fdf5ee; border-color: #c47f3c; color: #7a4d1d; }
+  .pl-claude .pl-logo   { background: #c47f3c; color: white; }
 </style>
 </head>
 <body>
@@ -179,6 +227,39 @@
   <div class="kuvaus">
     <p>Tämä jatkokurssi rakentuu alkeiskurssin pohjalle. Oletuksena on, että tiedät jo tekoälyn perusteet: mitä se on, miten sille kirjoitetaan kehote, ja mitä palveluita on olemassa. Nyt mennään syvemmälle — käytäntöön, kriittiseen arviointiin ja erityiskäyttötapauksiin.</p>
     <p><strong>Käytettävät palvelut:</strong> ChatGPT, Gemini ja Copilot. Voit käyttää omaa suosikkiasi.</p>
+  </div>
+
+  <h2>Tekoälypalvelut — avaa suoraan</h2>
+
+  <div class="palvelut-ruudukko">
+    <a href="https://chatgpt.com" target="_blank" rel="noopener" class="palvelu-linkki pl-chatgpt">
+      <div class="pl-logo">✦</div>
+      <div class="pl-teksti">
+        <span class="pl-nimi">ChatGPT</span>
+        <span class="pl-osoite">chatgpt.com</span>
+      </div>
+    </a>
+    <a href="https://copilot.microsoft.com" target="_blank" rel="noopener" class="palvelu-linkki pl-copilot">
+      <div class="pl-logo">⊞</div>
+      <div class="pl-teksti">
+        <span class="pl-nimi">Copilot</span>
+        <span class="pl-osoite">copilot.microsoft.com</span>
+      </div>
+    </a>
+    <a href="https://gemini.google.com" target="_blank" rel="noopener" class="palvelu-linkki pl-gemini">
+      <div class="pl-logo">✧</div>
+      <div class="pl-teksti">
+        <span class="pl-nimi">Gemini</span>
+        <span class="pl-osoite">gemini.google.com</span>
+      </div>
+    </a>
+    <a href="https://claude.ai" target="_blank" rel="noopener" class="palvelu-linkki pl-claude">
+      <div class="pl-logo">◆</div>
+      <div class="pl-teksti">
+        <span class="pl-nimi">Claude</span>
+        <span class="pl-osoite">claude.ai</span>
+      </div>
+    </a>
   </div>
 
   <h2>Sessioiden sisältö</h2>
